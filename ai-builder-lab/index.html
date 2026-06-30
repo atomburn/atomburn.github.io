@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Builder Lab | South Bay AI Workshop for Homeschool Families</title>
+<link rel="canonical" href="https://www.adambyrne.com/ai-builder-lab/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.adambyrne.com/ai-builder-lab/">
+<meta property="og:image" content="https://www.adambyrne.com/assets/ai-builder-lab-hero.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="AI Builder Lab helps South Bay homeschool and worldschool teens ages 13+ learn responsible, creative AI use through a free parent workshop and 4-week founding cohort.">
+<meta property="og:title" content="AI Builder Lab: Beyond ChatGPT for Homeschool Teens">
+<meta property="og:description" content="A hands-on South Bay AI builder lab for homeschool and worldschool families. Free parent workshop and 4-week founding cohort for teens 13+.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#F7F3E9;color:#262521;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  ::selection{background:#C7D2AE;color:#262521}
+  details > summary{list-style:none;cursor:pointer}
+  details > summary::-webkit-details-marker{display:none}
+  details[open] .faq-plus{transform:rotate(45deg)}
+  @keyframes lblUp{from{opacity:0;transform:translateY(-50%) translateY(8px)}to{opacity:1;transform:translateY(-50%) translateY(0)}}
+  .jrny svg{display:block;width:100%;height:auto}
+  .jrny .motif{transform-box:fill-box;transform-origin:center;animation:pop .62s cubic-bezier(.4,.05,.25,1) backwards}
+  .jrny .arr{transform-box:fill-box;transform-origin:top center;animation:arrDraw .42s ease-in-out backwards}
+  .jrny #m-conv{animation-delay:.10s}
+  .jrny #ARROW_1{animation-delay:.72s}
+  .jrny #m-ideas{animation-delay:1.05s}
+  .jrny #ARROW_2{animation-delay:1.67s}
+  .jrny #m-sketch{animation-delay:2.00s}
+  .jrny #ARROW_3{animation-delay:2.62s}
+  .jrny #m-proto{animation-delay:2.95s}
+  @keyframes pop{0%{opacity:0;transform:scale(.82)}60%{opacity:1;transform:scale(1.04,.98)}82%{transform:scale(.995,1.01)}100%{transform:scale(1)}}
+  @keyframes arrDraw{0%{opacity:0;transform:scaleY(0)}35%{opacity:1}100%{opacity:1;transform:scaleY(1)}}
+  a{color:inherit}
+
+  img{max-width:100%;height:auto}
+  input,textarea,button{font:inherit}
+  button,a,input,textarea,summary{touch-action:manipulation}
+  [data-form-state="submitted"]{display:none!important}
+  #interest-form.is-submitted [data-form-state="empty"]{display:none!important}
+  #interest-form.is-submitted [data-form-state="submitted"]{display:flex!important}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}}
+  @media (max-width: 900px){
+    [style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    [style*="position: relative; left: 106px"]{left:0!important}
+  }
+  @media (max-width: 700px){
+    header nav{display:none!important}
+    section{height:auto!important}
+    h1{font-size:clamp(46px,15vw,64px)!important;line-height:.95!important}
+    h2{width:auto!important;height:auto!important}
+    p,div,figure,section{max-width:100%!important}
+    [style*="width: 601px"],[style*="width: 935px"],[style*="width: 864px"],[style*="width: 1091px"],[style*="width: 522px"],[style*="width: 494px"],[style*="width: 439px"],[style*="width: 420px"]{width:auto!important;height:auto!important}
+    [style*="height: 761px"],[style*="height: 760px"],[style*="height: 660px"],[style*="height: 645px"],[style*="height: 613px"],[style*="height: 595px"],[style*="height: 407px"],[style*="height: 333px"],[style*="height: 314px"],[style*="height: 43px"],[style*="height: 40px"]{height:auto!important}
+    [style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr!important}
+    [style*="padding: 23px 54px 25px"]{padding:20px 34px 22px!important}
+    [style*="font-size:16.5px;line-height:1.05"]{font-size:15px!important}
+    .jrny + span,.jrny + span + span,.jrny + span + span + span,.jrny + span + span + span + span{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#F7F3E9;width:100%;overflow:hidden">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(247,243,233,0.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(38,37,31,0.08)">
+  <div style="max-width:1120px;margin:0 auto;padding:14px clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+      <span style="width:11px;height:11px;border-radius:3px;background:#3A5E86;display:inline-block"></span>
+      <span style="font-weight:800;font-size:17px;letter-spacing:-0.02em;color:#262521">AI Builder Lab</span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:clamp(14px,2.4vw,30px)">
+      <a href="#learn" style="text-decoration:none;color:#57544B;font-size:14.5px;font-weight:500">What they learn</a>
+      <a href="#cohort" style="text-decoration:none;color:#57544B;font-size:14.5px;font-weight:500">Cohort</a>
+      <a href="#faq" style="text-decoration:none;color:#57544B;font-size:14.5px;font-weight:500">FAQ</a>
+      <a href="#workshop" style="text-decoration:none;background:#3A5E86;color:#fff;font-size:14px;font-weight:600;padding:9px 16px;border-radius:9px">Free workshop</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<!-- ============ HERO ============ -->
+<section data-screen-label="Hero" style="max-width:1120px;margin:0 auto;padding:clamp(40px,7vw,84px) clamp(20px,5vw,40px) clamp(48px,6vw,72px)">
+  <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,3.5vw,52px);align-items:center">
+    <div style="flex:1 1 400px;min-width:300px">
+      <p style="margin: 0 0 22px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: #8C9B6E">South Bay &nbsp;•&nbsp; Homeschool + Worldschool Families &nbsp;•&nbsp; Teens 13+</p>
+      <h1 style="margin: 0; font-weight: 900; letter-spacing: -0.035em; line-height: 0.94; font-size: 76px; color: #262521">AI Builder Lab</h1>
+      <p style="margin:14px 0 0;font-weight:600;font-size:clamp(20px,3.2vw,30px);line-height:1.18;color:#3A5E86">Beyond ChatGPT: help your teen become a responsible builder with AI.</p>
+      <div style="width: 214px; height: 3px; background: #8C9B6E; border-radius: 2px; margin: 22px 0 26px"></div>
+      <p style="margin:0 0 16px;font-size:clamp(15.5px,1.7vw,17.5px);color:#46443C;max-width:520px">We're a homeschool family asking the same question many parents are asking right now: how do we prepare our kids for a future where the jobs, tools, and creative opportunities may look nothing like the past?</p>
+      <p style="margin:0 0 30px;font-size:clamp(15.5px,1.7vw,17.5px);color:#46443C;max-width:520px">AI Builder Lab is a hands-on program for self-directed teens and their parents. We explore AI as a thinking partner, creative studio, research assistant, coding collaborator, and prototyping tool — without losing human judgment, curiosity, or voice.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <a href="#workshop" style="position:relative;display:inline-flex;align-items:center;text-decoration:none;color:#fff;font-weight:700;font-size:16.5px;line-height:1.05;padding:23px 54px 25px">
+          <img src="/assets/btn-brush.svg" aria-hidden="true" style="position: absolute; left: -12px; top: 7px; width: calc(100% + 24px); height: calc(90% + 0px); z-index: 0; pointer-events: none; filter: drop-shadow(0 9px 16px rgba(58,94,134,0.32)); object-fit: fill">
+          <span style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:14px">
+            <img src="/assets/btn-megaphone.svg" aria-hidden="true" style="flex:none;width:42px;height:auto;transform:translateY(-1px)">
+            Save My Spot for the Free Parent Workshop
+          </span>
+        </a>
+        <a href="#cohort" style="text-decoration: none; color: #262521; font-weight: 600; font-size: 16px; padding: 15px 24px; border-radius: 11px; border: 1.5px solid rgba(38,37,31,0.22); position: relative; left: 106px">Learn About the Founding Cohort</a>
+      </div>
+      <p style="margin:18px 0 0;font-size:13.5px;color:#7C7969">Free workshop first. 4-week paid founding cohort for families who want to go deeper.</p>
+    </div>
+    <div style="flex:1 1 340px;min-width:280px;display:flex;justify-content:center">
+      <div style="position:relative;width:100%;max-width:360px">
+        <div class="jrny" style="width:clamp(190px,60%,236px)"></div>
+        <span style="position:absolute;top:12.6%;left:clamp(190px,60%,236px);margin-left:16px;transform:translateY(-50%);white-space:nowrap;font:600 11px/1 'Archivo',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#8C9B6E;opacity:0;animation:lblUp .45s ease-out .70s both">Conversation</span>
+        <span style="position:absolute;top:39.9%;left:clamp(190px,60%,236px);margin-left:16px;transform:translateY(-50%);white-space:nowrap;font:600 11px/1 'Archivo',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#8C9B6E;opacity:0;animation:lblUp .45s ease-out 1.65s both">Ideas</span>
+        <span style="position:absolute;top:63.1%;left:clamp(190px,60%,236px);margin-left:16px;transform:translateY(-50%);white-space:nowrap;font:600 11px/1 'Archivo',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#8C9B6E;opacity:0;animation:lblUp .45s ease-out 2.60s both">Sketches</span>
+        <span style="position:absolute;top:88.3%;left:clamp(190px,60%,236px);margin-left:16px;transform:translateY(-50%);white-space:nowrap;font:600 11px/1 'Archivo',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#8C9B6E;opacity:0;animation:lblUp .45s ease-out 3.55s both">Prototypes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section data-screen-label="Problem" style="border-top: 1px solid rgba(38,37,31,0.07); border-bottom: 1px solid rgba(38,37,31,0.07); background-color: #EDE7D7">
+  <div style="max-width: 1080px; margin: 0 auto; padding: clamp(56px,8vw,96px) clamp(20px,5vw,40px); padding-top: 36px; padding-bottom: 36px">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,68px);align-items:center">
+    <div style="flex:0 1 360px;min-width:230px;display:flex;justify-content:center">
+      <img src="/assets/old-map.png" alt="A torn paper map: a winding path past a schoolhouse toward a distant city, the right half of the land crumbling away into a chasm" style="display: block; width: 401px; max-width: 396px; height: 660px; filter: drop-shadow(0 16px 32px rgba(38,37,31,0.18))">
+    </div>
+    <div style="flex:1 1 440px;min-width:300px">
+    <h2 style="margin:0 0 28px;font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.6vw,46px);color:#262521">Parents can feel the shift. The old map is incomplete.</h2>
+    <p style="margin:0 0 18px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">College may still matter. Traditional skills still matter. But many families can feel that the old "study hard, pick a major, get a stable career" story no longer answers the whole question.</p>
+    <p style="margin:0 0 18px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">AI is already changing how people write, research, design, code, automate, make media, start businesses, and learn new skills. At the same time, parents are right to worry about screen time, safety, misinformation, cheating, dependency, and low-quality AI slop.</p>
+    <p style="margin:0 0 28px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">The answer is not to ignore AI. And it is not to hand kids a chatbot and hope for the best.</p>
+    <p style="margin: 0; font-weight: 700; font-size: clamp(10px,2.8vw,24px); line-height: 1.25; color: #3A5E86; padding-left: 22px; border-left: 4px solid #8C9B6E; width: 601px; height: 40px">The answer is guided, responsible builder fluency.</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFRAME ============ -->
+<section id="learn" data-screen-label="Reframe" style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+  <div style="max-width:720px;margin-bottom:clamp(40px,5vw,56px)">
+    <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#8C9B6E">The reframe</p>
+    <h2 style="margin: 0 0 20px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.07; font-size: clamp(28px,4.6vw,46px); color: #262521; width: 935px; height: 57px">AI should be a partner, not a replacement.</h2>
+    <p style="margin:0 0 12px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">We teach teens to use AI without outsourcing their mind.</p>
+    <p style="margin:0;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">That means learning how to ask better questions, test ideas, check facts, build prototypes, express themselves, and decide when not to use AI at all.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid rgba(38,37,31,0.1);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 30px -18px rgba(38,37,31,0.3)">
+      <div style="background:#FCF5EC;aspect-ratio:7/5;overflow:hidden;border-bottom:1px solid rgba(38,37,31,0.07)">
+        <img src="/assets/icon-thinking.png" alt="Two overlapping speech bubbles meeting at a bright spark" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 46%"></div>
+      <div style="padding:24px 26px 28px">
+        <h3 style="margin:0 0 8px;font-weight:700;font-size:19px;color:#262521">Thinking Partner</h3>
+        <p style="margin:0;font-size:15px;color:#57544B">Use AI to explore questions, generate possibilities, and sharpen ideas — not replace original thought.</p></div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(38,37,31,0.1);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 30px -18px rgba(38,37,31,0.3)">
+      <div style="background:#FCF5EC;aspect-ratio:7/5;overflow:hidden;border-bottom:1px solid rgba(38,37,31,0.07)">
+        <img src="/assets/icon-creative.png" alt="A framed picture being drawn with a pencil beside a paint palette" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 48%"></div>
+      <div style="padding:24px 26px 28px">
+        <h3 style="margin:0 0 8px;font-weight:700;font-size:19px;color:#262521">Creative Studio</h3>
+        <p style="margin:0;font-size:15px;color:#57544B">Turn interests into storyboards, visuals, scripts, videos, presentations, and creative experiments.</p></div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(38,37,31,0.1);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 30px -18px rgba(38,37,31,0.3)">
+      <div style="background:#FCF5EC;aspect-ratio:7/5;overflow:hidden;border-bottom:1px solid rgba(38,37,31,0.07)">
+        <img src="/assets/icon-research.png" alt="A magnifying glass over a document next to a verified checkmark" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 44%"></div>
+      <div style="padding:24px 26px 28px">
+        <h3 style="margin:0 0 8px;font-weight:700;font-size:19px;color:#262521">Research Assistant</h3>
+        <p style="margin:0;font-size:15px;color:#57544B">Learn how to investigate, compare sources, ask follow-up questions, and avoid confident nonsense.</p></div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(38,37,31,0.1);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 30px -18px rgba(38,37,31,0.3)">
+      <div style="background:#FCF5EC;aspect-ratio:7/5;overflow:hidden;border-bottom:1px solid rgba(38,37,31,0.07)">
+        <img src="/assets/icon-builder.png" alt="A figure fitting puzzle blocks together beside a gear and code symbol" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 50%"></div>
+      <div style="padding:24px 26px 28px">
+        <h3 style="margin:0 0 8px;font-weight:700;font-size:19px;color:#262521">Builder Partner</h3>
+        <p style="margin:0;font-size:15px;color:#57544B">Move beyond chat into prototypes, websites, automations, agents, and simple software-assisted workflows.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT STUDENTS LEARN ============ -->
+<section data-screen-label="What students learn" style="background:#EDE7D7;border-top:1px solid rgba(38,37,31,0.07);border-bottom:1px solid rgba(38,37,31,0.07)">
+  <div style="max-width:1000px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px)">
+      <div style="flex:1 1 320px;min-width:280px">
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#8C9B6E">Beyond chat</p>
+        <h2 style="margin:0 0 18px;font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.2vw,42px);color:#262521">What teens will explore</h2>
+        <p style="margin:0 0 24px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">This is not a prompt engineering class. <br>It is a builder lab.</p>
+        <div style="position:relative;color:#fff;padding:30px 34px">
+          <img src="/assets/btn-brush.svg" aria-hidden="true" style="position:absolute;left:-10px;top:-7px;width:calc(100% + 20px);height:calc(100% + 14px);z-index:0;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(58,94,134,0.28))">
+          <p style="position:relative;z-index:1;margin:0;font-weight:600;font-size:16.5px;line-height:1.4">The goal is not to make every teen a programmer. The goal is to help them see themselves as <span style="color:#C7D2AE">builders</span>.</p>
+        </div>
+      </div>
+      <ul style="flex:1 1 360px;min-width:280px;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0">
+        <li style="display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(38,37,31,0.12);font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How to turn a personal interest into a project</span></li>
+        <li style="display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(38,37,31,0.12);font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How to use AI for brainstorming, research, writing, design, and critique</span></li>
+        <li style="display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(38,37,31,0.12);font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How to check facts and avoid blindly trusting AI output</span></li>
+        <li style="display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(38,37,31,0.12);font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How image, video, coding, and automation tools are changing creative work</span></li>
+        <li style="display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(38,37,31,0.12);font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How tools like Claude, ChatGPT, video models, coding assistants, and workflow automations fit together</span></li>
+        <li style="display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(38,37,31,0.12);font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How to present a project clearly at Demo Day</span></li>
+        <li style="display:flex;gap:14px;padding:15px 0;font-size:16px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">→</span><span>How to use AI responsibly, creatively, and with their own voice</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FREE WORKSHOP ============ -->
+<section id="workshop" data-screen-label="Free workshop" style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+  <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,56px);align-items:flex-start">
+    <div style="flex:1 1 340px;min-width:290px">
+      <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#8C9B6E">Start here — it's free</p>
+      <h2 style="margin:0 0 20px;font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.6vw,46px);color:#262521">Start with the free parent workshop</h2>
+      <p style="margin:0 0 28px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C;max-width:480px">Before launching the full cohort, we're hosting a free workshop for South Bay homeschool and worldschool parents who are trying to make sense of AI, future work, screen safety, and self-directed learning.</p>
+      <a href="#interest" style="text-decoration:none;display:inline-block;background:#3A5E86;color:#fff;font-weight:600;font-size:16px;padding:16px 26px;border-radius:11px;box-shadow:0 8px 20px -10px rgba(58,94,134,0.7)">Save My Spot for the Free Parent Workshop</a>
+      <p style="margin:18px 0 0;font-size:13.5px;color:#7C7969;max-width:440px">Date, location, and final format coming soon. We're currently gathering interest from South Bay families.</p>
+    </div>
+    <div style="flex:1 1 380px;min-width:290px;background:#fff;border:1px solid rgba(38,37,31,0.1);border-radius:16px;padding:clamp(28px,3.5vw,38px)">
+      <p style="margin:0 0 6px;font-size:12.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8C9B6E">Workshop</p>
+      <h3 style="margin:0 0 22px;font-weight:700;font-size:clamp(20px,2.6vw,25px);line-height:1.2;color:#262521">How Homeschool Families Can Prepare Kids for the AI Future Without Losing Their Humanity</h3>
+      <p style="margin:0 0 14px;font-weight:600;font-size:14px;color:#57544B">What we'll cover</p>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px">
+        <li style="display:flex;gap:12px;font-size:15.5px;color:#33322C"><span style="color:#3A5E86;font-weight:800">·</span><span>What AI can and cannot do right now</span></li>
+        <li style="display:flex;gap:12px;font-size:15.5px;color:#33322C"><span style="color:#3A5E86;font-weight:800">·</span><span>Why "just ban it" and "just use it for everything" are both incomplete answers</span></li>
+        <li style="display:flex;gap:12px;font-size:15.5px;color:#33322C"><span style="color:#3A5E86;font-weight:800">·</span><span>How to think about AI safety, media safety, and parent guardrails</span></li>
+        <li style="display:flex;gap:12px;font-size:15.5px;color:#33322C"><span style="color:#3A5E86;font-weight:800">·</span><span>How AI can support child-led learning</span></li>
+        <li style="display:flex;gap:12px;font-size:15.5px;color:#33322C"><span style="color:#3A5E86;font-weight:800">·</span><span>What a responsible teen AI builder path might look like</span></li>
+        <li style="display:flex;gap:12px;font-size:15.5px;color:#33322C"><span style="color:#3A5E86;font-weight:800">·</span><span>How the 4-week founding cohort will work</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COHORT ============ -->
+<section id="cohort" data-screen-label="Cohort" style="background:#262521;color:#F7F3E9">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,56px);align-items:flex-start">
+      <div style="flex:1 1 360px;min-width:290px">
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#B9C29C">Go deeper</p>
+        <h2 style="margin:0 0 22px;font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.6vw,46px);color:#F7F3E9">The 4-week AI Builder Lab founding cohort</h2>
+        <p style="margin:0 0 16px;font-size:clamp(16px,1.8vw,18.5px);color:#D8D2C2;max-width:500px">After the free parent workshop, we'll invite a small group of families into our first 4-week pilot cohort for teens 13+.</p>
+        <p style="margin:0 0 28px;font-size:clamp(16px,1.8vw,18.5px);color:#D8D2C2;max-width:500px">This founding cohort will be intentionally small so we can work closely with each student, learn what families need, and build the program with the community instead of guessing from the outside.</p>
+        <a href="#interest" style="text-decoration:none;display:inline-block;background:#8C9B6E;color:#1c1b17;font-weight:700;font-size:16px;padding:16px 26px;border-radius:11px">I'm Interested in the Founding Cohort</a>
+      </div>
+      <div style="flex:1 1 320px;min-width:280px;background:rgba(247,243,233,0.06);border:1px solid rgba(247,243,233,0.16);border-radius:16px;padding:clamp(26px,3.5vw,34px)">
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(247,243,233,0.14)"><span style="color:#B9C29C;font-size:14.5px">Format</span><span style="font-weight:600;font-size:15px;text-align:right">4 weekly sessions</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(247,243,233,0.14)"><span style="color:#B9C29C;font-size:14.5px">Length</span><span style="font-weight:600;font-size:15px;text-align:right">1–2 hours per session</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(247,243,233,0.14)"><span style="color:#B9C29C;font-size:14.5px">Audience</span><span style="font-weight:600;font-size:15px;text-align:right">Teens 13+</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(247,243,233,0.14)"><span style="color:#B9C29C;font-size:14.5px">Location</span><span style="font-weight:600;font-size:15px;text-align:right">South Bay / venue TBD</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(247,243,233,0.14)"><span style="color:#B9C29C;font-size:14.5px">Includes</span><span style="font-weight:600;font-size:15px;text-align:right">1:1 onboarding conversation</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(247,243,233,0.14)"><span style="color:#B9C29C;font-size:14.5px">Culminates in</span><span style="font-weight:600;font-size:15px;text-align:right">Demo Day</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0 4px;align-items:baseline"><span style="color:#B9C29C;font-size:14.5px">Founding price</span><span style="font-weight:800;font-size:26px;letter-spacing:-0.02em">$500</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CURRICULUM ============ -->
+<section data-screen-label="Curriculum" style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+  <div style="max-width:680px;margin-bottom:clamp(36px,5vw,52px)">
+    <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#8C9B6E">The path</p>
+    <h2 style="margin: 0; font-weight: 800; letter-spacing: -0.025em; line-height: 1.07; font-size: clamp(28px,4.6vw,46px); color: #262521; width: 864px; height: 63px">A simple path from curiosity to demo</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)">
+    <div style="background: #fff; border: 1px solid rgba(38,37,31,0.1); border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15)">
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#8C9B6E">Week 1</span>
+      <h3 style="margin: 6px 0 12px; font-weight: 700; font-size: 18px; color: #262521">AI as Thinking Partner</h3>
+      <p style="margin:0 0 18px;font-size:14.5px;color:#57544B;flex:1">Students choose an interest, question, or problem and learn how to turn it into a project direction using AI as a brainstorming and planning partner.</p>
+      <span style="font-size:13px;color:#3A5E86;font-weight:600;padding-top:14px;border-top:1px solid rgba(38,37,31,0.1)">Output → Personal Builder Map</span>
+    </div>
+    <div style="background: #fff; border: 1px solid rgba(38,37,31,0.1); border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15)">
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#8C9B6E">Week 2</span>
+      <h3 style="margin:6px 0 12px;font-weight:700;font-size:19px;color:#262521">AI as Creative Studio</h3>
+      <p style="margin:0 0 18px;font-size:14.5px;color:#57544B;flex:1">Students explore creative tools for images, video, storytelling, design, and presentation. The focus is on expression, not slop.</p>
+      <span style="font-size:13px;color:#3A5E86;font-weight:600;padding-top:14px;border-top:1px solid rgba(38,37,31,0.1)">Output → Visual concept, storyboard, or media artifact</span>
+    </div>
+    <div style="background: #fff; border: 1px solid rgba(38,37,31,0.1); border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15)">
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#8C9B6E">Week 3</span>
+      <h3 style="margin:6px 0 12px;font-weight:700;font-size:19px;color:#262521">AI as Builder Partner</h3>
+      <p style="margin:0 0 18px;font-size:14.5px;color:#57544B;flex:1">Students move beyond chat into simple prototypes, coding assistants, workflow tools, automations, and agent-like systems.</p>
+      <span style="font-size:13px;color:#3A5E86;font-weight:600;padding-top:14px;border-top:1px solid rgba(38,37,31,0.1)">Output → Prototype, workflow, mini-site, or build plan</span>
+    </div>
+    <div style="background: #3A5E86; border: 1px solid #3A5E86; border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15)">
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#C7D2AE">Week 4</span>
+      <h3 style="margin:6px 0 12px;font-weight:700;font-size:19px;color:#fff">Demo Day</h3>
+      <p style="margin:0 0 18px;font-size:14.5px;color:#D9E2F0;flex:1">Students refine and present what they built. Parents see the work, the process, and the new capabilities their teen is developing.</p>
+      <span style="font-size:13px;color:#C7D2AE;font-weight:600;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2)">Output → Demo Day presentation</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO DAY ============ -->
+<section data-screen-label="Demo Day" style="background: #EDE7D7; border-top: 1px solid rgba(38,37,31,0.07); border-bottom: 1px solid rgba(38,37,31,0.07); display: block; height: 761px">
+  <div style="max-width: 1080px; margin: 0 auto; padding: clamp(56px,8vw,100px) clamp(20px,5vw,40px); width: 1091px; height: 760px">
+    <div style="display: flex; flex-wrap: wrap; gap: 65px; align-items: center; height: 595px">
+    <div style="flex:1 1 420px;min-width:300px">
+    <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#8C9B6E">Where it leads</p>
+    <h2 style="margin:0 0 26px;font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.6vw,46px);color:#262521">Demo Day turns learning into community.</h2>
+    <p style="margin:0 0 18px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">The cohort ends with a small Demo Day where students share what they built, what they learned, and what they want to explore next.</p>
+    <p style="margin:0 0 18px;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">This is not about polished perfection. It is about agency, confidence, and showing families what becomes possible when teens learn to use powerful tools responsibly.</p>
+    <p style="margin:0;font-size:clamp(16px,1.8vw,18.5px);color:#46443C">Our hope is that Demo Day becomes the beginning of a local builder community for homeschool and worldschool families in the South Bay.</p>
+    </div>
+    <div style="flex:0 1 360px;min-width:230px;display:flex;justify-content:center">
+      <img src="/assets/community-map.png" alt="A torn map being pieced back together by many hands, the path leading up from the schoolhouse to a thriving community gathering in a park" style="display: block; width: 396px; max-width: 392px; height: 645px; filter: drop-shadow(0 16px 32px rgba(38,37,31,0.18))">
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section data-screen-label="Who it's for" style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+  <h2 style="margin:0 0 clamp(32px,4vw,46px);font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.6vw,46px);color:#262521">Who this is for</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:24px">
+    <div style="flex:1 1 320px;min-width:280px;background:#fff;border:1px solid rgba(140,155,110,0.5);border-radius:16px;padding:clamp(26px,3.4vw,34px)">
+      <p style="margin:0 0 18px;font-weight:700;font-size:17px;color:#5e6b43;display:flex;align-items:center;gap:9px"><span style="width:22px;height:22px;border-radius:50%;background:#8C9B6E;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px">✓</span>A good fit if you are…</p>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">·</span><span>Homeschool or worldschool families</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">·</span><span>Parents of curious, creative, gifted, entrepreneurial, or self-directed teens</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">·</span><span>Families who are excited about AI but want thoughtful guardrails</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">·</span><span>Parents worried about future work and unsure what skills matter now</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#33322C"><span style="color:#8C9B6E;font-weight:800">·</span><span>Teens who like making things, asking questions, experimenting, designing, coding, writing, filming, or imagining new projects</span></li>
+      </ul>
+    </div>
+    <div style="flex:1 1 320px;min-width:280px;background:#F2EEE3;border:1px solid rgba(38,37,31,0.12);border-radius:16px;padding:clamp(26px,3.4vw,34px)">
+      <p style="margin:0 0 18px;font-weight:700;font-size:17px;color:#7C7969;display:flex;align-items:center;gap:9px"><span style="width:22px;height:22px;border-radius:50%;background:#C4BDA9;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px">–</span>Probably not for…</p>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#57544B"><span style="color:#A89F8A;font-weight:800">·</span><span>Families looking for a traditional test-prep class</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#57544B"><span style="color:#A89F8A;font-weight:800">·</span><span>Parents who want AI to do the work for their child</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#57544B"><span style="color:#A89F8A;font-weight:800">·</span><span>Students who only want passive screen time</span></li>
+        <li style="display:flex;gap:11px;font-size:15.5px;color:#57544B"><span style="color:#A89F8A;font-weight:800">·</span><span>Anyone looking for hype, shortcuts, or "get rich with AI" promises</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER NOTE ============ -->
+<section data-screen-label="Founder note" style="background:#3A5E86;color:#F7F3E9">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(40px,5vw,72px)">
+    <div style="flex: 1 1 400px; min-width: 300px; width: 522px; height: 613px">
+    <p style="margin:0 0 18px;font-size:12.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:#C7D2AE">From the founders</p>
+    <h2 style="margin:0 0 28px;font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.4vw,44px);color:#fff">Why we're building this</h2>
+    <p style="margin:0 0 20px;font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,19.5px);line-height:1.55;color:#EAEFF5">We're building AI Builder Lab because we're asking these questions in our own family.</p>
+    <p style="margin:0 0 20px;font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,19.5px);line-height:1.55;color:#EAEFF5">We want our children to be prepared for a world that is changing quickly — but not at the cost of their creativity, judgment, relationships, or sense of self.</p>
+    <p style="margin:0 0 20px;font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,19.5px);line-height:1.55;color:#EAEFF5">We also know many homeschool and worldschool families are trying to solve the same puzzle. How do we prepare our kids for uncertain future work? How do we help them use powerful tools safely? How do we build community around learning instead of leaving every family to figure it out alone?</p>
+    <p style="margin:0 0 28px;font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,19.5px);line-height:1.55;color:#EAEFF5">This first workshop and founding cohort are our attempt to start answering those questions together.</p>
+    <p style="margin:0;font-weight:700;font-size:19px;color:#C7D2AE">— Adam + Irina</p>
+    </div>
+    <figure style="flex: 1 1 440px; min-width: 300px; margin: 0; width: 494px; height: 407px">
+      <div style="background: #F2EEE3; padding: 10px; border-radius: 14px; box-shadow: 0 30px 60px -26px rgba(8,18,34,0.75); width: 439px; height: 333px">
+        
+      <img src="/assets/founders-family.jpg" alt="Our three kids watching a family of ducks at an alpine lake, snow-capped peaks behind" style="display: block; width: 419px; aspect-ratio: 4/3; object-fit: cover; object-position: center 42%; border-radius: 6px; height: 314px"></div>
+      <figcaption style="margin: 14px 4px 0; font-family: 'Newsreader',Georgia,serif; font-style: italic; font-size: 15px; line-height: 1.5; color: #C7D2AE; width: 420px; height: 43px">Our kids at the lake this summer — the curiosity we want to protect as the tools around them change.</figcaption>
+    </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" data-screen-label="FAQ" style="max-width:820px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(20px,5vw,40px)">
+  <h2 style="margin:0 0 clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.025em;line-height:1.07;font-size:clamp(28px,4.6vw,46px);color:#262521">Questions parents ask</h2>
+  <div style="display:flex;flex-direction:column">
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">Is this a coding class?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">No. Coding may be part of what we explore, but this is broader than coding. AI Builder Lab is about helping teens become capable builders: people who can think, create, research, prototype, and present using modern AI tools.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">Is this just ChatGPT?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">No. ChatGPT and Claude may be starting points, but the course goes beyond chat into creative tools, video models, coding assistants, automation workflows, and agent-like systems.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">Is AI safe for kids?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">Parents are right to ask this. We do not treat AI as a toy or babysitter. The program emphasizes parent awareness, age-appropriate use, safety boundaries, fact-checking, authorship, and responsible creative practice.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">Do parents attend?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">The free workshop is for parents. The 4-week cohort is designed for teens 13+, with parent involvement during onboarding and Demo Day. We may also offer a parent-focused cohort later if there is interest.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">What age is this for?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">The first cohort is designed for teens 13+. If you have younger children, you can still join the interest list because we may create younger family workshops later.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">Where will it happen?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">We are currently gathering interest from South Bay families and exploring local venue options. The first cohort will be local to the South Bay if enough families sign up.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">How much is the founding cohort?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">The founding cohort price is $500. It includes four weekly sessions, a 1:1 onboarding conversation, and Demo Day.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">What will my teen make?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">Each student will choose a project direction based on their interests. Possible outputs include a visual concept, presentation, story, video prototype, mini-site, automation idea, research project, or simple software-assisted build.</p>
+    </details>
+    <details style="border-bottom:1px solid rgba(38,37,31,0.14)">
+      <summary style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0;font-weight:600;font-size:clamp(16px,1.9vw,18.5px);color:#262521">Is this an accredited school program?<span class="faq-plus" style="flex:none;color:#3A5E86;font-size:22px;line-height:1;transition:transform .2s">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;color:#57544B">No. AI Builder Lab is an enrichment workshop and project-based learning cohort. It is not an accredited school and does not replace your family's homeschool, charter, or independent study requirements.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA + FORM ============ -->
+<section id="interest" data-screen-label="Final CTA + form" style="background:#262521;color:#F7F3E9">
+  <div style="max-width:1000px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(20px,5vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,64px);align-items:flex-start">
+      <div style="flex:1 1 320px;min-width:290px">
+        <h2 style="margin:0 0 22px;font-weight:800;letter-spacing:-0.025em;line-height:1.08;font-size:clamp(28px,4.2vw,42px);color:#fff">Want to help your teen move from AI anxiety to builder confidence?</h2>
+        <p style="margin:0 0 28px;font-size:clamp(16px,1.8vw,18.5px);color:#D8D2C2;max-width:440px">Join the free parent workshop and help us shape the first South Bay AI Builder Lab cohort for homeschool and worldschool families.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:13px;margin-bottom:28px">
+          <a href="#interest-form" style="text-decoration:none;background:#8C9B6E;color:#1c1b17;font-weight:700;font-size:15.5px;padding:15px 24px;border-radius:11px">Save My Spot for the Free Workshop</a>
+          <a href="#interest-form" style="text-decoration:none;color:#F7F3E9;font-weight:600;font-size:15.5px;padding:14px 22px;border-radius:11px;border:1.5px solid rgba(247,243,233,0.3)">Ask About the Founding Cohort</a>
+        </div>
+        <p style="margin:0;font-size:13.5px;color:#9C9888;letter-spacing:0.02em">For South Bay homeschool + worldschool families &nbsp;•&nbsp; Teens 13+ &nbsp;•&nbsp; Founding cohort forming now</p>
+      </div>
+
+      <div id="interest-form" style="flex: 1 1 380px; min-width: 290px; background: #F7F3E9; color: #262521; border-radius: 18px; padding: clamp(26px,3.5vw,38px); scroll-margin-top: 90px; box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15)">
+        <div data-form-state="empty">
+            <h3 style="margin:0 0 6px;font-weight:800;font-size:24px;letter-spacing:-0.02em;color:#262521">Join the interest list</h3>
+            <p style="margin:0 0 24px;font-size:15px;color:#57544B">Tell us a little about your family and we'll follow up with workshop details.</p>
+            <form id="interest-list-form" style="display:flex;flex-direction:column;gap:16px">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#46443C">Parent name
+                <input name="parent_name" type="text" required="" placeholder="Your name" style="font-family:inherit;font-size:15px;padding:11px 13px;border:1px solid rgba(38,37,31,0.2);border-radius:9px;background:#fff;color:#262521;font-weight:400">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#46443C">Email
+                <input name="email" type="email" required="" placeholder="you@email.com" style="font-family:inherit;font-size:15px;padding:11px 13px;border:1px solid rgba(38,37,31,0.2);border-radius:9px;background:#fff;color:#262521;font-weight:400">
+              </label>
+              <div style="display:flex;gap:14px;flex-wrap:wrap">
+                <label style="flex:1 1 140px;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#46443C">Phone <span style="font-weight:400;color:#9C9888">(optional)</span>
+                  <input name="phone" type="tel" placeholder="(000) 000-0000" style="font-family:inherit;font-size:15px;padding:11px 13px;border:1px solid rgba(38,37,31,0.2);border-radius:9px;background:#fff;color:#262521;font-weight:400">
+                </label>
+                <label style="flex:1 1 140px;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#46443C">City / neighborhood
+                  <input name="city" type="text" placeholder="e.g. Palos Verdes" style="font-family:inherit;font-size:15px;padding:11px 13px;border:1px solid rgba(38,37,31,0.2);border-radius:9px;background:#fff;color:#262521;font-weight:400">
+                </label>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#46443C">Child age(s)
+                <input name="child_ages" type="text" placeholder="e.g. 13, 15" style="font-family:inherit;font-size:15px;padding:11px 13px;border:1px solid rgba(38,37,31,0.2);border-radius:9px;background:#fff;color:#262521;font-weight:400">
+              </label>
+              <div style="display:flex;flex-direction:column;gap:10px;padding:14px 0 2px;border-top:1px solid rgba(38,37,31,0.12)">
+                <label style="display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:#33322C;cursor:pointer">
+                  <input name="free_workshop_interest" type="checkbox" value="yes" style="margin-top:3px;width:17px;height:17px;accent-color:#3A5E86">
+                  <span>I'm interested in the free parent workshop</span>
+                </label>
+                <label style="display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:#33322C;cursor:pointer">
+                  <input name="founding_cohort_interest" type="checkbox" value="yes" style="margin-top:3px;width:17px;height:17px;accent-color:#3A5E86">
+                  <span>I'm interested in the 4-week founding cohort</span>
+                </label>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#46443C">What is your biggest question or concern about AI and your child's future?
+                <textarea name="ai_question" rows="3" placeholder="Optional — share anything on your mind." style="font-family:inherit;font-size:15px;padding:11px 13px;border:1px solid rgba(38,37,31,0.2);border-radius:9px;background:#fff;color:#262521;font-weight:400;resize:vertical"></textarea>
+              </label>
+              <button type="submit" style="margin-top:4px;background:#3A5E86;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border:none;border-radius:11px;cursor:pointer">Send Me Workshop Details</button>
+            </form>
+          </div>
+        <div data-form-state="submitted" style="min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 10px">
+            <div style="width:56px;height:56px;border-radius:50%;background:#8C9B6E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:22px">✓</div>
+            <h3 style="margin:0 0 12px;font-weight:800;font-size:24px;letter-spacing:-0.02em;color:#262521">You're on the list</h3>
+            <p style="margin:0 0 24px;font-size:16px;color:#57544B;max-width:340px">Thank you — you're on the list. We'll follow up with workshop details and founding cohort information soon.</p>
+            <button type="button" data-reset-form style="background:none;border:1.5px solid rgba(38,37,31,0.22);color:#262521;font-family:inherit;font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:10px;cursor:pointer">Submit another response</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#262521;border-top:1px solid rgba(247,243,233,0.1)">
+  <div style="max-width:1120px;margin:0 auto;padding:26px clamp(20px,5vw,40px);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:#8C9B6E;display:inline-block"></span><span style="font-weight:700;font-size:15px;color:#F7F3E9">AI Builder Lab</span></div>
+    <p style="margin:0;font-size:13px;color:#8B8779">An enrichment workshop &amp; project-based learning cohort. Not an accredited school.</p>
+  </div>
+</footer>
+
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const journey = document.querySelector('.jrny');
+    if (journey) {
+      fetch('/assets/builder-journey.svg')
+        .then((response) => response.ok ? response.text() : '')
+        .then((svg) => {
+          if (svg) journey.innerHTML = svg.replace(/<\?xml[^>]*\?>/, '');
+        })
+        .catch(() => {});
+    }
+
+    const formShell = document.getElementById('interest-form');
+    const form = document.getElementById('interest-list-form');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      formShell?.classList.add('is-submitted');
+      formShell?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+
+    document.querySelector('[data-reset-form]')?.addEventListener('click', () => {
+      form?.reset();
+      formShell?.classList.remove('is-submitted');
+    });
+  });
+</script>
+</body>
+</html>
