@@ -102,9 +102,10 @@
   .leisure-section{position:relative;overflow:hidden;background:linear-gradient(135deg,#06182e 0%,#08213f 56%,#123e66 100%)}
   .leisure-section::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,197,66,.18) 0 1px,transparent 1px 100%) 0 0/86px 100%;opacity:.28;pointer-events:none}
   .leisure-section .wrap{position:relative;z-index:1}
-  .leisure-layout{display:grid;grid-template-columns:minmax(0,.86fr) minmax(340px,1fr);gap:clamp(34px,5vw,64px);align-items:end}
-  .leisure-copy{display:grid;gap:18px;max-width:620px}
-  .leisure-copy .section-title{max-width:none;color:var(--white);white-space:nowrap;font-size:clamp(34px,4vw,54px)}
+  .leisure-layout{display:grid;grid-template-columns:minmax(0,500px) minmax(420px,1fr);gap:clamp(42px,6vw,76px);align-items:end}
+  .leisure-copy{display:grid;gap:18px;max-width:500px;min-width:0}
+  .leisure-copy .section-title{max-width:500px;color:var(--white);font-size:clamp(34px,4vw,54px)}
+  .leisure-copy .lead{max-width:25ch}
   .afternoon-strip{display:grid;grid-template-columns:102px minmax(0,1fr);gap:0;margin-top:8px;border-top:1px solid rgba(245,197,66,.58);border-bottom:1px solid rgba(245,197,66,.58)}
   .afternoon-strip span,.afternoon-strip strong{padding:12px 0;font-size:16px;line-height:1.2;border-top:1px solid rgba(248,250,247,.14)}
   .afternoon-strip span:nth-child(1),.afternoon-strip strong:nth-child(2){border-top:0}
@@ -181,7 +182,7 @@
     .learning-layout .media-frame{min-height:auto}
     .leisure-layout{grid-template-columns:1fr}
     .leisure-copy{max-width:none}
-    .leisure-copy .section-title{font-size:clamp(31px,5.5vw,46px)}
+    .leisure-copy .section-title{max-width:12ch;font-size:clamp(31px,5.5vw,46px)}
     .route-map{position:relative;top:auto}
   }
   @media (max-width: 640px){
@@ -218,7 +219,8 @@
     .media-frame.pool,.vacation-photos,.imagine-photo{width:100%;max-width:none;margin-left:0}
     .leisure-section::before{background-size:48px 100%;opacity:.18}
     .leisure-layout{gap:24px}
-    .leisure-copy .section-title{font-size:clamp(22px,6.2vw,29px)}
+    .leisure-copy .section-title{max-width:none;white-space:nowrap;font-size:clamp(22px,6.2vw,29px)}
+    .leisure-copy .lead{max-width:none}
     .afternoon-strip{grid-template-columns:94px minmax(0,1fr)}
     .afternoon-strip span,.afternoon-strip strong{padding:10px 0;font-size:14px}
     .afternoon-strip strong{padding-left:10px}
