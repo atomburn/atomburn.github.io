@@ -76,6 +76,11 @@
   .chip{background:var(--blue);color:var(--white);padding:12px 16px;font-size:18px;font-weight:900}
   .card{background:var(--white);color:var(--ink);padding:34px}
   .card.mist{background:var(--mist)}
+  .customer-card{border-top:6px solid var(--sun)}
+  .customer-card .body{color:var(--ink);font-weight:900}
+  .partner-card{display:flex;flex-direction:column}
+  .partner-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .partner-mark{display:block;width:clamp(72px,7vw,96px);height:auto;flex:0 0 auto}
   .model{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
   .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
   .stat{padding:24px;background:var(--ink);color:var(--white)}
@@ -91,8 +96,9 @@
   .day h3{font-size:38px;color:var(--blue)}
   .day:nth-child(4) h3{color:var(--sun)}
   .day p{margin-top:18px;font-size:20px;line-height:1.35;font-weight:900}
-  .economics{margin-top:34px;background:var(--mist);padding:34px}
-  .line{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid rgba(8,33,63,.18);font-size:22px;color:var(--slate)}
+  .economics{margin-top:34px;background:var(--white);padding:34px;border-top:6px solid var(--sun);color:var(--ink)}
+  .economics h3{color:var(--ink)}
+  .line{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid rgba(8,33,63,.24);font-size:22px;color:var(--ink);font-weight:900}
   .line:last-child{border-bottom:0}
   .line strong{color:var(--ink)}
   .channels{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
@@ -193,7 +199,7 @@
           <h2>Families already in the buying moment.</h2>
           <p class="body">The program does not need to create SAT demand. It reframes spend families already expect: tutoring plus a vacation.</p>
         </div>
-        <div class="card">
+        <div class="card customer-card">
           <h3>Ideal household</h3>
           <p class="body">Sophomore or junior students, premium tutoring budget, family travel habit, and appetite for high-touch educational experiences.</p>
           <div class="markets">
@@ -214,8 +220,8 @@
           <p class="body" style="color:rgba(248,250,247,.82)">Website, marketing, cruise negotiations, registration, scheduling, customer support, event operations, and partnerships.</p>
           <p class="body" style="color:var(--sun);font-weight:900">Adam does not teach SAT.</p>
         </article>
-        <article class="card mist">
-          <h3>Academic partner</h3>
+        <article class="card mist partner-card">
+          <h3 class="partner-heading"><span>Academic partner</span><img class="partner-mark" src="/assets/study-hut-logo.svg" alt="Study Hut"></h3>
           <p class="body">Potentially Study Hut: SAT instructors, curriculum, testing materials, and academic credibility.</p>
           <p class="body" style="font-weight:900">Revenue share, fixed fee, or hybrid.</p>
         </article>
