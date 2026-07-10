@@ -99,8 +99,28 @@
   .dark .check{background:var(--cream)}
   .vacation-band{background:var(--ink);color:var(--white)}
   .vacation-band .lead,.vacation-band .body{color:rgba(248,250,247,.86)}
-  .love-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
-  .love-item{background:var(--white);color:var(--ink);padding:16px;font-weight:850;font-size:16px;line-height:1.34}
+  .leisure-section{position:relative;overflow:hidden;background:linear-gradient(135deg,#06182e 0%,#08213f 56%,#123e66 100%)}
+  .leisure-section::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,197,66,.18) 0 1px,transparent 1px 100%) 0 0/86px 100%;opacity:.28;pointer-events:none}
+  .leisure-section .wrap{position:relative;z-index:1}
+  .leisure-layout{display:grid;grid-template-columns:minmax(0,.88fr) minmax(380px,1fr);gap:clamp(34px,5vw,64px);align-items:center}
+  .leisure-copy{display:grid;gap:18px;max-width:620px}
+  .leisure-copy .section-title{max-width:10ch;color:var(--white)}
+  .afternoon-strip{display:grid;grid-template-columns:102px minmax(0,1fr);gap:0;margin-top:8px;border-top:1px solid rgba(245,197,66,.58);border-bottom:1px solid rgba(245,197,66,.58)}
+  .afternoon-strip span,.afternoon-strip strong{padding:12px 0;font-size:16px;line-height:1.2;border-top:1px solid rgba(248,250,247,.14)}
+  .afternoon-strip span:nth-child(1),.afternoon-strip strong:nth-child(2){border-top:0}
+  .afternoon-strip span{font-family:"Oswald",sans-serif;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .afternoon-strip strong{color:var(--white);font-weight:850;padding-left:12px}
+  .leisure-visual{display:grid;grid-template-columns:.74fr .42fr;grid-template-rows:auto auto;gap:14px;align-items:end}
+  .leisure-photo{margin:0;position:relative;overflow:hidden;background:#102f51}
+  .leisure-photo img{display:block;width:100%;height:100%;object-fit:cover}
+  .leisure-photo.main{grid-column:1/3;aspect-ratio:16/9}
+  .leisure-photo.main img{object-position:center}
+  .leisure-photo.inset{grid-column:2;grid-row:1/3;align-self:end;aspect-ratio:4/5;border:10px solid var(--gold);box-shadow:0 22px 60px rgba(0,0,0,.28);transform:translateY(28px)}
+  .leisure-photo.inset img{object-position:center}
+  .leisure-caption{grid-column:1;align-self:start;color:rgba(248,250,247,.72);font-size:15px;line-height:1.35;font-weight:750}
+  .love-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:clamp(42px,5vw,64px);background:rgba(245,197,66,.38);border:1px solid rgba(245,197,66,.38)}
+  .love-item{background:rgba(248,250,247,.96);color:var(--ink);padding:18px 16px;font-weight:850;font-size:16px;line-height:1.3}
+  .love-item::before{content:"";display:block;width:28px;height:3px;background:var(--gold);margin-bottom:12px}
   .partner{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);gap:28px;align-items:center;background:var(--white);border-top:5px solid var(--gold);padding:30px;margin-top:28px}
   .partner > .media-frame{min-height:0}
   .schedule{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px}
@@ -135,6 +155,9 @@
     .love-grid{grid-template-columns:1fr 1fr}
     .schedule{grid-template-columns:1fr 1fr}
     .learning-layout .media-frame{min-height:auto}
+    .leisure-layout{grid-template-columns:1fr}
+    .leisure-copy{max-width:none}
+    .leisure-copy .section-title{max-width:12ch}
   }
   @media (max-width: 640px){
     .wrap{width:min(100% - 28px,1180px)}
@@ -168,7 +191,18 @@
     .partner-head{align-items:flex-start;flex-direction:column;gap:14px}
     .partner-head img{width:96px}
     .media-frame.pool,.vacation-photos,.imagine-photo{width:100%;max-width:none;margin-left:0}
+    .leisure-section::before{background-size:48px 100%;opacity:.18}
+    .leisure-layout{gap:28px}
+    .leisure-copy .section-title{max-width:none}
+    .afternoon-strip{grid-template-columns:94px minmax(0,1fr)}
+    .afternoon-strip span,.afternoon-strip strong{padding:10px 0;font-size:14px}
+    .afternoon-strip strong{padding-left:10px}
+    .leisure-visual{grid-template-columns:1fr 1fr;gap:10px}
+    .leisure-photo.main{grid-column:1/3;aspect-ratio:16/9}
+    .leisure-photo.inset{grid-column:1;grid-row:auto;aspect-ratio:4/3;border:5px solid var(--gold);transform:none}
+    .leisure-caption{grid-column:2;align-self:center;font-size:14px}
     .love-grid{gap:10px;margin-top:22px}
+    .love-grid{background:transparent;border:0}
     .love-item{padding:14px;font-size:15px}
     .schedule{gap:10px;margin-top:24px}
     .day{display:grid;grid-template-columns:86px minmax(0,1fr);gap:14px;padding:16px;min-height:auto}
@@ -298,22 +332,29 @@
     </div>
   </section>
 
-  <section class="section vacation-band">
+  <section class="section vacation-band leisure-section">
     <div class="wrap">
-      <div class="split">
-        <div class="stack">
+      <div class="leisure-layout">
+        <div class="leisure-copy">
           <p class="eyebrow gold">The Best Part?</p>
           <h2 class="section-title">The classroom ends at lunch.</h2>
-        </div>
-        <div class="stack">
           <p class="lead">Spend the afternoon together exploring the ship, relaxing by the pool, enjoying family dinners, watching shows, or visiting port.</p>
           <p class="body">Learning and vacation do not have to compete.</p>
+          <div class="afternoon-strip" aria-label="Afternoon cruise rhythm">
+            <span>Noon</span><strong>Class dismisses</strong>
+            <span>Afternoon</span><strong>Pool, port, shows, and ship time</strong>
+            <span>Evening</span><strong>Family dinner and connection</strong>
+          </div>
         </div>
-      </div>
-      <div class="vacation-photos">
-        <figure class="media-frame landscape">
-          <img src="/assets/sat-at-sea-family-dinner.jpg" alt="A family sharing dinner together during the cruise" loading="lazy" decoding="async">
-        </figure>
+        <div class="leisure-visual">
+          <figure class="leisure-photo main">
+            <img src="/assets/sat-at-sea-sunset-social.jpg" alt="Students watching the sunset together from a cruise ship deck" loading="lazy" decoding="async">
+          </figure>
+          <figure class="leisure-photo inset">
+            <img src="/assets/sat-at-sea-family-dinner.jpg" alt="A family sharing dinner together during the cruise" loading="lazy" decoding="async">
+          </figure>
+          <p class="leisure-caption">Structured mornings give the rest of the day back to the family.</p>
+        </div>
       </div>
       <div class="love-grid">
         <div class="love-item">Students stay focused because they are immersed in the experience.</div>
