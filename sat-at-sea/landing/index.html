@@ -102,22 +102,20 @@
   .leisure-section{position:relative;overflow:hidden;background:linear-gradient(135deg,#06182e 0%,#08213f 56%,#123e66 100%)}
   .leisure-section::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,197,66,.18) 0 1px,transparent 1px 100%) 0 0/86px 100%;opacity:.28;pointer-events:none}
   .leisure-section .wrap{position:relative;z-index:1}
-  .leisure-layout{display:grid;grid-template-columns:minmax(0,.88fr) minmax(380px,1fr);gap:clamp(34px,5vw,64px);align-items:center}
+  .leisure-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(380px,1fr);gap:clamp(34px,5vw,64px);align-items:center}
   .leisure-copy{display:grid;gap:18px;max-width:620px}
-  .leisure-copy .section-title{max-width:10ch;color:var(--white)}
+  .leisure-copy .section-title{max-width:none;color:var(--white);white-space:nowrap;font-size:clamp(34px,4vw,54px)}
   .afternoon-strip{display:grid;grid-template-columns:102px minmax(0,1fr);gap:0;margin-top:8px;border-top:1px solid rgba(245,197,66,.58);border-bottom:1px solid rgba(245,197,66,.58)}
   .afternoon-strip span,.afternoon-strip strong{padding:12px 0;font-size:16px;line-height:1.2;border-top:1px solid rgba(248,250,247,.14)}
   .afternoon-strip span:nth-child(1),.afternoon-strip strong:nth-child(2){border-top:0}
   .afternoon-strip span{font-family:"Oswald",sans-serif;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
   .afternoon-strip strong{color:var(--white);font-weight:850;padding-left:12px}
-  .leisure-visual{display:grid;grid-template-columns:.74fr .42fr;grid-template-rows:auto auto;gap:14px;align-items:end}
+  .leisure-visual{display:grid;gap:12px;align-items:end}
   .leisure-photo{margin:0;position:relative;overflow:hidden;background:#102f51}
   .leisure-photo img{display:block;width:100%;height:100%;object-fit:cover}
-  .leisure-photo.main{grid-column:1/3;aspect-ratio:16/9}
+  .leisure-photo.main{aspect-ratio:16/9}
   .leisure-photo.main img{object-position:center}
-  .leisure-photo.inset{grid-column:2;grid-row:1/3;align-self:end;aspect-ratio:4/5;border:10px solid var(--gold);box-shadow:0 22px 60px rgba(0,0,0,.28);transform:translateY(28px)}
-  .leisure-photo.inset img{object-position:center}
-  .leisure-caption{grid-column:1;align-self:start;color:rgba(248,250,247,.72);font-size:15px;line-height:1.35;font-weight:750}
+  .leisure-caption{max-width:420px;color:rgba(248,250,247,.72);font-size:15px;line-height:1.35;font-weight:750}
   .love-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:clamp(42px,5vw,64px);background:rgba(245,197,66,.38);border:1px solid rgba(245,197,66,.38)}
   .love-item{background:rgba(248,250,247,.96);color:var(--ink);padding:18px 16px;font-weight:850;font-size:16px;line-height:1.3}
   .love-item::before{content:"";display:block;width:28px;height:3px;background:var(--gold);margin-bottom:12px}
@@ -129,6 +127,23 @@
   .day:nth-child(3){background:var(--gold);color:var(--ink)}
   .day:nth-child(4){background:var(--mist)}
   .day p{margin-top:14px;font-size:17px;line-height:1.38;font-weight:850}
+  .itinerary-section{background:var(--white)}
+  .itinerary-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.72fr);gap:clamp(28px,4vw,48px);align-items:start;margin-top:28px}
+  .ship-card{background:var(--ink);color:var(--white)}
+  .ship-card img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover}
+  .ship-card-body{padding:22px}
+  .ship-card h3{font-family:"Oswald",sans-serif;font-size:clamp(26px,2.7vw,38px);line-height:1;text-transform:uppercase;margin:0 0 10px}
+  .ship-card p{font-size:16px;line-height:1.45;font-weight:700;color:rgba(248,250,247,.82);margin:0}
+  .highlight-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 0;padding:0;list-style:none}
+  .highlight-list li{background:var(--mist);padding:14px 16px;font-size:16px;line-height:1.32;font-weight:850;color:var(--ink)}
+  .route-map{background:var(--mist);padding:22px;position:sticky;top:92px}
+  .route-map h3{font-family:"Oswald",sans-serif;font-size:30px;line-height:1;text-transform:uppercase;margin:0 0 12px}
+  .map-card{background:#dcecf4;border:1px solid rgba(8,33,63,.12)}
+  .map-card svg{display:block;width:100%;height:auto}
+  .port-list{display:grid;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+  .port-list li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;font-size:16px;line-height:1.35;font-weight:800;color:var(--ink)}
+  .port-list span{font-family:"Oswald",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+  .source-note{margin-top:14px;font-size:14px;line-height:1.35;font-weight:700;color:rgba(39,57,76,.78)}
   .faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(340px,1.1fr);gap:34px;align-items:start}
   .faq-list{display:grid;gap:12px}
   details{background:var(--white);color:var(--ink);padding:18px 20px}
@@ -142,6 +157,19 @@
   .imagine-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
   .imagine-photo{width:min(760px,100%);margin-top:28px}
   .imagine-item{background:var(--ink);color:var(--white);padding:18px;font-family:"Oswald",sans-serif;font-size:clamp(22px,2.4vw,28px);line-height:1.08;text-transform:uppercase;font-weight:700;min-height:110px}
+  .webinar-section{background:var(--gold);color:var(--ink)}
+  .webinar-panel{display:grid;grid-template-columns:minmax(0,.78fr) minmax(360px,1fr);gap:clamp(28px,4vw,48px);align-items:start}
+  .signup-form{display:grid;gap:12px;background:var(--white);padding:24px;color:var(--ink)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .signup-form label{display:grid;gap:6px;font-size:14px;line-height:1.2;font-weight:900;color:var(--ink);text-transform:uppercase;letter-spacing:.08em}
+  .signup-form input,.signup-form select,.signup-form textarea{width:100%;border:2px solid rgba(8,33,63,.18);background:#fff;color:var(--ink);font:700 17px/1.25 "Source Sans 3",system-ui,sans-serif;padding:12px}
+  .signup-form textarea{min-height:96px;resize:vertical}
+  .signup-form input:focus,.signup-form select:focus,.signup-form textarea:focus{outline:3px solid rgba(47,127,189,.22);border-color:var(--blue)}
+  .signup-form .hidden-field{position:absolute;left:-9999px}
+  .form-note{font-size:15px;line-height:1.35;font-weight:800;color:rgba(8,33,63,.72)}
+  .form-status{min-height:22px;font-size:16px;line-height:1.35;font-weight:900;color:var(--ink)}
+  .form-status[data-state="error"]{color:#8f1e13}
+  .signup-form.is-sending button{opacity:.72;pointer-events:none}
   .cta{position:relative;overflow:hidden;background:var(--ink);color:var(--white)}
   .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,33,63,.97),rgba(8,33,63,.84) 58%,rgba(8,33,63,.24)),url('/assets/sat-at-sea-hero-20260709.jpg') center/cover no-repeat}
   .cta .wrap{position:relative;z-index:1}
@@ -150,14 +178,15 @@
   footer{padding:28px 0;background:#06182e;color:rgba(248,250,247,.72);font-size:14px}
   @media (max-width: 980px){
     .nav-links{display:none}
-    .split,.faq-grid,.learning-layout,.partner{grid-template-columns:1fr}
+    .split,.faq-grid,.learning-layout,.partner,.itinerary-layout,.webinar-panel{grid-template-columns:1fr}
     .benefit-grid,.early .check-list,.imagine-grid{grid-template-columns:1fr 1fr}
     .love-grid{grid-template-columns:1fr 1fr}
     .schedule{grid-template-columns:1fr 1fr}
     .learning-layout .media-frame{min-height:auto}
     .leisure-layout{grid-template-columns:1fr}
     .leisure-copy{max-width:none}
-    .leisure-copy .section-title{max-width:12ch}
+    .leisure-copy .section-title{font-size:clamp(31px,5.5vw,46px)}
+    .route-map{position:relative;top:auto}
   }
   @media (max-width: 640px){
     .wrap{width:min(100% - 28px,1180px)}
@@ -193,20 +222,22 @@
     .media-frame.pool,.vacation-photos,.imagine-photo{width:100%;max-width:none;margin-left:0}
     .leisure-section::before{background-size:48px 100%;opacity:.18}
     .leisure-layout{gap:28px}
-    .leisure-copy .section-title{max-width:none}
+    .leisure-copy .section-title{font-size:clamp(22px,6.2vw,29px)}
     .afternoon-strip{grid-template-columns:94px minmax(0,1fr)}
     .afternoon-strip span,.afternoon-strip strong{padding:10px 0;font-size:14px}
     .afternoon-strip strong{padding-left:10px}
-    .leisure-visual{grid-template-columns:1fr 1fr;gap:10px}
-    .leisure-photo.main{grid-column:1/3;aspect-ratio:16/9}
-    .leisure-photo.inset{grid-column:1;grid-row:auto;aspect-ratio:4/3;border:5px solid var(--gold);transform:none}
-    .leisure-caption{grid-column:2;align-self:center;font-size:14px}
+    .leisure-visual{gap:10px}
+    .leisure-photo.main{aspect-ratio:16/10}
+    .leisure-caption{font-size:14px}
     .love-grid{gap:10px;margin-top:22px}
     .love-grid{background:transparent;border:0}
     .love-item{padding:14px;font-size:15px}
     .schedule{gap:10px;margin-top:24px}
     .day{display:grid;grid-template-columns:86px minmax(0,1fr);gap:14px;padding:16px;min-height:auto}
     .day p{margin-top:0}
+    .ship-card-body,.route-map,.signup-form{padding:18px}
+    .highlight-list,.form-row{grid-template-columns:1fr}
+    .port-list li{grid-template-columns:60px minmax(0,1fr)}
     details{padding:16px 18px}
     summary{font-size:18px}
     .early .check-list{gap:10px;margin-top:18px}
@@ -273,7 +304,7 @@
         <span class="webinar-title">Learn the itinerary</span>
         <span class="webinar-detail">Cruise flow, student class blocks, parent workshops, and what happens before registration opens.</span>
       </div>
-      <a class="webinar-btn" href="mailto:adam@adambyrne.com?subject=SAT%20at%20Sea%20Free%20Parent%20Webinar">Save My Seat</a>
+      <a class="webinar-btn" href="#webinar">Save My Seat</a>
     </div>
   </section>
 
@@ -350,9 +381,6 @@
           <figure class="leisure-photo main">
             <img src="/assets/sat-at-sea-sunset-social.jpg" alt="Students watching the sunset together from a cruise ship deck" loading="lazy" decoding="async">
           </figure>
-          <figure class="leisure-photo inset">
-            <img src="/assets/sat-at-sea-family-dinner.jpg" alt="A family sharing dinner together during the cruise" loading="lazy" decoding="async">
-          </figure>
           <p class="leisure-caption">Structured mornings give the rest of the day back to the family.</p>
         </div>
       </div>
@@ -403,6 +431,60 @@
     </div>
   </section>
 
+  <section id="itinerary" class="section itinerary-section">
+    <div class="wrap">
+      <p class="eyebrow">First Itinerary</p>
+      <h2 class="section-title">5 day / 4 night Baja California cruise.</h2>
+      <div class="itinerary-layout">
+        <div>
+          <article class="ship-card">
+            <img src="/assets/ncl-norwegian-bliss-hero.jpg" alt="Norwegian Bliss cruise ship at sea" loading="lazy" decoding="async">
+            <div class="ship-card-body">
+              <h3>Norwegian Bliss from Long Beach</h3>
+              <p>Embarking and disembarking in Long Beach on Norwegian Cruise Line, this first sailing keeps the logistics simple for Southern California families while still feeling like a real getaway.</p>
+            </div>
+          </article>
+          <ul class="highlight-list">
+            <li>Freestyle dining, casual meals, and specialty restaurants including Cagney's Steakhouse and La Cucina.</li>
+            <li>The Waterfront oceanfront promenade for family walks, sunset views, and outdoor dining.</li>
+            <li>Pool deck, mini golf, Ocean Loops, Bliss Speedway, and ship activities between class blocks.</li>
+            <li>Entertainment including The Choir of Man, lounges, shows, and evening family time.</li>
+            <li>Shore time in Baja California with optional excursions, local food, and coastal exploring.</li>
+            <li>At-sea hours that protect the SAT bootcamp rhythm without sacrificing vacation time.</li>
+          </ul>
+          <p class="source-note">Ship highlights and imagery sourced from Norwegian Cruise Line's official Norwegian Bliss page. Final sailing dates, port order, excursions, and ship assignment are subject to group booking confirmation.</p>
+        </div>
+        <aside class="route-map" aria-label="Sample Baja California itinerary map">
+          <h3>Route at a glance</h3>
+          <div class="map-card">
+            <svg viewBox="0 0 520 420" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">Long Beach to Baja California cruise route map</title>
+              <desc id="map-desc">A stylized map showing the cruise route from Long Beach to Baja California and back.</desc>
+              <rect width="520" height="420" fill="#dcecf4"/>
+              <path d="M0 0h255c-34 48-56 92-58 141-3 63 29 104 14 158-11 38-50 69-76 121H0z" fill="#f8faf7"/>
+              <path d="M192 124c29 33 43 71 38 112-5 42-29 74-51 107" fill="none" stroke="#c79a2d" stroke-width="6" stroke-linecap="round" stroke-dasharray="14 12"/>
+              <path d="M178 118c-20 44-13 91 20 140 22 33 26 66 5 103" fill="none" stroke="#2f7fbd" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="182" cy="110" r="10" fill="#08213f"/>
+              <circle cx="205" cy="260" r="10" fill="#08213f"/>
+              <circle cx="188" cy="350" r="10" fill="#08213f"/>
+              <text x="202" y="99" fill="#08213f" font-family="Oswald, sans-serif" font-size="24" font-weight="700">LONG BEACH</text>
+              <text x="226" y="265" fill="#08213f" font-family="Oswald, sans-serif" font-size="22" font-weight="700">BAJA CALIFORNIA</text>
+              <text x="208" y="365" fill="#08213f" font-family="Oswald, sans-serif" font-size="20" font-weight="700">RETURN</text>
+              <text x="330" y="62" fill="#2f7fbd" font-family="Source Sans 3, sans-serif" font-size="17" font-weight="900">PACIFIC OCEAN</text>
+              <path d="M338 96c26-10 55-10 86 0" fill="none" stroke="#2f7fbd" stroke-width="3" opacity=".6"/>
+              <path d="M350 120c20-8 42-8 68 0" fill="none" stroke="#2f7fbd" stroke-width="3" opacity=".45"/>
+            </svg>
+          </div>
+          <ol class="port-list">
+            <li><span>Day 1</span><strong>Embark Long Beach</strong></li>
+            <li><span>Days 2-4</span><strong>Baja cruise rhythm: class blocks, ship activities, meals, shows, and shore excursion window.</strong></li>
+            <li><span>Day 5</span><strong>Return to Long Beach</strong></li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <section id="faq" class="section">
     <div class="wrap faq-grid">
       <div class="stack">
@@ -425,7 +507,7 @@
         <span class="webinar-title">Walk through the sailing plan</span>
         <span class="webinar-detail">Ask questions about itinerary, cabins, classroom schedule, and parent admissions programming.</span>
       </div>
-      <a class="webinar-btn" href="mailto:adam@adambyrne.com?subject=SAT%20at%20Sea%20Free%20Parent%20Webinar">Join the Webinar</a>
+      <a class="webinar-btn" href="#webinar">Join the Webinar</a>
     </div>
   </section>
 
@@ -458,13 +540,50 @@
     </div>
   </section>
 
+  <section id="webinar" class="section webinar-section">
+    <div class="wrap webinar-panel">
+      <div class="stack">
+        <p class="eyebrow">Free Parent Webinar</p>
+        <h2 class="section-title">Learn the itinerary before registration opens.</h2>
+        <p class="lead">Get the cruise flow, classroom schedule, parent workshop plan, cabin booking process, and early enrollment details in one live walkthrough.</p>
+        <p class="body">Submit your info and Adam will send the webinar details directly. No obligation, just a chance to see whether SAT at Sea fits your family.</p>
+      </div>
+      <form class="signup-form" id="sat-at-sea-form">
+        <label class="hidden-field">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="form-row">
+          <label>Parent name <input name="parent_name" autocomplete="name" required></label>
+          <label>Email <input type="email" name="email" autocomplete="email" required></label>
+        </div>
+        <div class="form-row">
+          <label>Phone <input name="phone" autocomplete="tel"></label>
+          <label>Student year
+            <select name="student_year">
+              <option value="">Select one</option>
+              <option>Sophomore</option>
+              <option>Junior</option>
+              <option>Freshman</option>
+              <option>Senior</option>
+              <option>Multiple students</option>
+            </select>
+          </label>
+        </div>
+        <label>City / neighborhood <input name="city" autocomplete="address-level2" placeholder="South Bay, Pasadena, OC..."></label>
+        <label>Biggest question <textarea name="question" placeholder="Dates, pricing, cabins, SAT level, parent workshops..."></textarea></label>
+        <input type="hidden" name="interest" value="Free parent webinar">
+        <button class="btn dark" type="submit">Request Webinar Details</button>
+        <p class="form-note">Your message goes directly to adam@adambyrne.com.</p>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <section id="reserve" class="cta">
     <div class="wrap cta-panel">
       <p class="eyebrow gold">Reserve Your Spot</p>
       <h2 class="section-title">Enrollment is intentionally limited for our inaugural sailing.</h2>
       <p class="body" style="margin-top:24px">Join the interest list to receive sailing dates, pricing, and early registration access.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="mailto:adam@adambyrne.com?subject=SAT%20at%20Sea%20Priority%20List">Join the Priority List</a>
+        <a class="btn primary" href="#webinar">Join the Priority List</a>
         <p class="fine">No obligation. Limited enrollment. Be the first to know when registration opens.</p>
       </div>
     </div>
@@ -474,5 +593,43 @@
 <footer>
   <div class="wrap">SAT at Sea &bull; A family educational cruise concept departing Long Beach.</div>
 </footer>
+<script>
+  const satAtSeaForm = document.querySelector('#sat-at-sea-form');
+  if (satAtSeaForm) {
+    const status = satAtSeaForm.querySelector('.form-status');
+    const productionEndpoint = 'https://www.adambyrne.com/api/sat-at-sea-interest';
+    const localLike = location.protocol === 'file:' || location.hostname.endsWith('github.io') || location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+    const endpoint = localLike ? productionEndpoint : '/api/sat-at-sea-interest';
+
+    satAtSeaForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = 'Sending...';
+      status.dataset.state = '';
+      satAtSeaForm.classList.add('is-sending');
+
+      const formData = new FormData(satAtSeaForm);
+      const payload = Object.fromEntries(formData.entries());
+      payload.source_url = location.href;
+      payload.referrer = document.referrer;
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) throw new Error(result.error || 'submission_failed');
+        satAtSeaForm.reset();
+        status.textContent = 'You are on the webinar list. Adam will follow up with details.';
+      } catch {
+        status.dataset.state = 'error';
+        status.textContent = 'Something did not send. Please email adam@adambyrne.com and I will fix it.';
+      } finally {
+        satAtSeaForm.classList.remove('is-sending');
+      }
+    });
+  }
+</script>
 </body>
 </html>
