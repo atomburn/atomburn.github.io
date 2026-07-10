@@ -64,9 +64,26 @@
   .hero-actions{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
   .fine{font-size:16px;line-height:1.35;color:rgba(248,250,247,.82);font-weight:700}
   .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.82fr);gap:clamp(42px,7vw,92px);align-items:start}
+  .split > *,.learning-layout > *,.partner > *,.faq-grid > *{min-width:0}
+  .split.center{align-items:center;gap:clamp(32px,5vw,64px)}
   .stack{display:grid;gap:22px}
   .statement{font-size:clamp(24px,2.4vw,34px);line-height:1.23;font-weight:900;color:var(--ink)}
   .rule{height:4px;width:min(520px,82vw);background:var(--gold)}
+  .media-frame{position:relative;overflow:hidden;background:var(--mist);min-height:220px;margin:0}
+  .media-frame img{display:block;width:100%;height:100%;object-fit:cover}
+  .media-frame.landscape{aspect-ratio:3/2}
+  .media-frame.wide{aspect-ratio:16/9}
+  .media-frame.portrait{aspect-ratio:4/5}
+  .media-frame.panorama{aspect-ratio:21/9}
+  .media-frame.rail img{object-position:center}
+  .media-frame.pool img{object-position:54% center}
+  .learning-layout{display:grid;grid-template-columns:minmax(0,.98fr) minmax(390px,.82fr);gap:22px;margin-top:44px;align-items:start}
+  .learning-layout .benefit-grid{grid-template-columns:1fr;margin-top:0}
+  .learning-layout .media-frame{min-height:0}
+  .vacation-photos{margin-top:42px}
+  .vacation-photos .media-frame{aspect-ratio:16/7}
+  .partner-head{display:flex;align-items:center;gap:24px}
+  .partner-head img{width:clamp(86px,9vw,128px);flex:0 0 auto}
   .webinar-banner{background:var(--gold);color:var(--ink);padding:24px 0}
   .webinar-inner{display:flex;align-items:center;justify-content:space-between;gap:26px}
   .webinar-copy{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
@@ -88,8 +105,8 @@
   .vacation-band .lead,.vacation-band .body{color:rgba(248,250,247,.86)}
   .love-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:42px}
   .love-item{background:var(--white);color:var(--ink);padding:20px 18px;font-weight:900;font-size:18px;line-height:1.35}
-  .partner{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:34px;align-items:center;background:var(--white);border-top:6px solid var(--gold);padding:38px;margin-top:36px}
-  .partner img{width:130px;justify-self:end}
+  .partner{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.92fr);gap:34px;align-items:center;background:var(--white);border-top:6px solid var(--gold);padding:38px;margin-top:36px}
+  .partner > .media-frame{min-height:0}
   .schedule{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:44px}
   .day{padding:24px 20px;min-height:300px;background:var(--white);color:var(--ink)}
   .day:nth-child(2){background:var(--blue);color:var(--white)}
@@ -107,6 +124,7 @@
   .early .check-list li{background:var(--white);padding:17px 18px;font-size:20px;line-height:1.35;font-weight:900;color:var(--ink)}
   .imagine{background:var(--white)}
   .imagine-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+  .imagine-photo{margin-top:38px}
   .imagine-item{background:var(--ink);color:var(--white);padding:22px;font-family:"Oswald",sans-serif;font-size:30px;line-height:1.05;text-transform:uppercase;font-weight:700;min-height:140px}
   .cta{position:relative;overflow:hidden;background:var(--ink);color:var(--white)}
   .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,33,63,.97),rgba(8,33,63,.84) 58%,rgba(8,33,63,.24)),url('/assets/sat-at-sea-hero-20260709.jpg') center/cover no-repeat}
@@ -116,10 +134,11 @@
   footer{padding:28px 0;background:#06182e;color:rgba(248,250,247,.72);font-size:14px}
   @media (max-width: 980px){
     .nav-links{display:none}
-    .split,.faq-grid{grid-template-columns:1fr}
+    .split,.faq-grid,.learning-layout,.partner{grid-template-columns:1fr}
     .benefit-grid,.early .check-list,.imagine-grid{grid-template-columns:1fr 1fr}
     .love-grid{grid-template-columns:1fr 1fr}
     .schedule{grid-template-columns:1fr 1fr}
+    .learning-layout .media-frame{min-height:auto}
   }
   @media (max-width: 640px){
     .wrap{width:min(100% - 28px,1180px)}
@@ -137,8 +156,11 @@
     .webinar-btn{width:100%}
     .benefit-grid,.love-grid,.schedule,.early .check-list,.imagine-grid{grid-template-columns:1fr}
     .panel,.partner{padding:26px 22px}
-    .partner{grid-template-columns:1fr;gap:18px}
-    .partner img{justify-self:start;width:92px}
+    .partner{gap:18px}
+    .partner-head{align-items:flex-start;flex-direction:column;gap:14px}
+    .partner-head img{width:96px}
+    .vacation-photos .media-frame{aspect-ratio:4/3}
+    .media-frame.panorama{aspect-ratio:4/3}
     .day{min-height:auto}
   }
 </style>
@@ -175,10 +197,13 @@
   </section>
 
   <section class="section">
-    <div class="wrap split">
+    <div class="wrap split center">
       <div class="stack">
         <p class="eyebrow">Why combine a cruise with SAT prep?</p>
         <h2 class="section-title">Focused mornings. Relaxing afternoons.</h2>
+        <figure class="media-frame landscape rail">
+          <img src="/assets/sat-at-sea-family-rail.jpg" alt="A family looking out from a cruise ship balcony toward the coastline" loading="lazy" decoding="async">
+        </figure>
       </div>
       <div class="stack">
         <p class="statement">Families already invest thousands in vacations. Families already invest thousands more in SAT tutoring.</p>
@@ -204,34 +229,42 @@
     <div class="wrap">
       <p class="eyebrow">What Students Receive</p>
       <h2 class="section-title">Professional SAT instruction with a clear next step.</h2>
-      <div class="benefit-grid">
-        <article class="panel dark">
-          <h3>Instruction Blocks</h3>
-          <ul>
-            <li><span class="check">✓</span><span>Math strategy</span></li>
-            <li><span class="check">✓</span><span>Reading &amp; Writing strategy</span></li>
-            <li><span class="check">✓</span><span>Time management</span></li>
-            <li><span class="check">✓</span><span>Test-day techniques</span></li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Measured Progress</h3>
-          <ul>
-            <li><span class="check">✓</span><span>Full-length diagnostic exam</span></li>
-            <li><span class="check">✓</span><span>Practice materials</span></li>
-            <li><span class="check">✓</span><span>Individual score review</span></li>
-            <li><span class="check">✓</span><span>Personalized improvement plan</span></li>
-          </ul>
-        </article>
+      <div class="learning-layout">
+        <figure class="media-frame landscape">
+          <img src="/assets/sat-at-sea-deck-study.jpg" alt="Students working through SAT practice materials together on a cruise ship deck" loading="lazy" decoding="async">
+        </figure>
+        <div class="benefit-grid">
+          <article class="panel dark">
+            <h3>Instruction Blocks</h3>
+            <ul>
+              <li><span class="check">✓</span><span>Math strategy</span></li>
+              <li><span class="check">✓</span><span>Reading &amp; Writing strategy</span></li>
+              <li><span class="check">✓</span><span>Time management</span></li>
+              <li><span class="check">✓</span><span>Test-day techniques</span></li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Measured Progress</h3>
+            <ul>
+              <li><span class="check">✓</span><span>Full-length diagnostic exam</span></li>
+              <li><span class="check">✓</span><span>Practice materials</span></li>
+              <li><span class="check">✓</span><span>Individual score review</span></li>
+              <li><span class="check">✓</span><span>Personalized improvement plan</span></li>
+            </ul>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="parents" class="section early">
-    <div class="wrap split">
+    <div class="wrap split center">
       <div class="stack">
         <p class="eyebrow">What Parents Receive</p>
         <h2 class="section-title">Complimentary college admissions workshops.</h2>
+        <figure class="media-frame portrait pool">
+          <img src="/assets/sat-at-sea-pool-reading.jpg" alt="Students reading a college planning book by the pool on a cruise ship" loading="lazy" decoding="async">
+        </figure>
       </div>
       <div class="stack">
         <p class="lead">While students attend morning sessions, parents are invited to optional workshops led for families navigating the admissions process.</p>
@@ -259,6 +292,11 @@
           <p class="body">Learning and vacation do not have to compete.</p>
         </div>
       </div>
+      <div class="vacation-photos">
+        <figure class="media-frame landscape">
+          <img src="/assets/sat-at-sea-family-dinner.jpg" alt="A family sharing dinner together during the cruise" loading="lazy" decoding="async">
+        </figure>
+      </div>
       <div class="love-grid">
         <div class="love-item">Students stay focused because they are immersed in the experience.</div>
         <div class="love-item">Parents do not sacrifice family vacation time.</div>
@@ -274,10 +312,15 @@
       <p class="eyebrow">Trusted Academic Partner</p>
       <div class="partner">
         <div class="stack">
-          <h2 class="section-title">SAT instruction provided by Study Hut.</h2>
+          <div class="partner-head">
+            <h2 class="section-title">SAT instruction provided by Study Hut.</h2>
+            <img src="/assets/study-hut-logo.svg" alt="Study Hut">
+          </div>
           <p class="body">For more than two decades, Study Hut has helped thousands of Southern California students prepare for standardized tests and college admissions. SAT at Sea handles the event experience, logistics, and hospitality.</p>
         </div>
-        <img src="/assets/study-hut-logo.svg" alt="Study Hut">
+        <figure class="media-frame wide">
+          <img src="/assets/sat-at-sea-classroom.jpg" alt="A Study Hut instructor leading a small SAT math strategy class" loading="lazy" decoding="async">
+        </figure>
       </div>
     </div>
   </section>
@@ -344,6 +387,9 @@
     <div class="wrap">
       <p class="eyebrow">Imagine Returning Home With...</p>
       <h2 class="section-title">More than vacation photos.</h2>
+      <figure class="media-frame panorama imagine-photo">
+        <img src="/assets/sat-at-sea-sunset-social.jpg" alt="Students watching the sunset together from the cruise ship deck" loading="lazy" decoding="async">
+      </figure>
       <div class="imagine-grid">
         <div class="imagine-item">A relaxing family vacation.</div>
         <div class="imagine-item">A stronger SAT foundation.</div>
