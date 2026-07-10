@@ -623,7 +623,7 @@
         <p class="eyebrow">Free Parent Webinar</p>
         <h2 class="section-title webinar-heading">Learn the itinerary <br class="desktop-break">before registration opens.</h2>
         <p class="lead">Get the 7 day / 6 night cruise flow, classroom schedule, parent workshop plan, cabin booking process, and early enrollment details in one live walkthrough.</p>
-        <p class="body">Submit your info and Adam will send the webinar details directly. No obligation, just a chance to see whether SAT at Sea fits your family.</p>
+        <p class="body">Submit your info and the SAT at Sea team will send the webinar details directly. No obligation, just a chance to see whether SAT at Sea fits your family.</p>
       </div>
       <form class="signup-form" id="sat-at-sea-form">
         <label class="hidden-field">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
@@ -697,10 +697,10 @@
         const result = await response.json().catch(() => ({}));
         if (!response.ok || !result.ok) throw new Error(result.error || 'submission_failed');
         satAtSeaForm.reset();
-        status.textContent = 'You are on the webinar list. Adam will follow up with details.';
+        status.textContent = 'You are on the webinar list. We will follow up with details.';
       } catch {
         status.dataset.state = 'error';
-        status.textContent = 'Something did not send. Please email adam@adambyrne.com and I will fix it.';
+        status.textContent = 'Something did not send. Please refresh and try again.';
       } finally {
         satAtSeaForm.classList.remove('is-sending');
       }
@@ -852,7 +852,7 @@
         });
         const result = await response.json().catch(() => ({}));
         if (!response.ok || !result.ok) throw new Error(result.error || 'send_failed');
-        updateStatus('Comments sent to Adam.');
+        updateStatus('Comments sent.');
       } catch {
         updateStatus('Could not send. Notes are still saved here.');
       } finally {
