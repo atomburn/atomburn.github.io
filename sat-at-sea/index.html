@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAT at Sea | Family Educational Cruise from Southern California</title>
+<link rel="canonical" href="https://www.adambyrne.com/sat-at-sea/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="SAT at Sea is a premium 4-5 day educational cruise concept combining professional SAT instruction, college admissions guidance, family travel, and community.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.adambyrne.com/sat-at-sea/">
+<meta property="og:title" content="SAT at Sea: A Family Educational Cruise">
+<meta property="og:description" content="A premium SAT preparation and college planning cruise departing from Long Beach or San Pedro.">
+<meta property="og:image" content="https://www.adambyrne.com/assets/sat-at-sea-hero.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#08213f;
+    --blue:#2b79b8;
+    --brass:#c79a2d;
+    --sun:#f7e3b5;
+    --white:#f8faf7;
+    --mist:#eaf2f7;
+    --slate:#33465b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--white);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;height:auto}
+  a{color:inherit}
+  ::selection{background:var(--sun);color:var(--ink)}
+  .wrap{width:min(1160px,calc(100% - 40px));margin:0 auto}
+  .eyebrow{margin:0 0 14px;font-family:"Oswald",sans-serif;font-size:15px;line-height:1.2;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .eyebrow.gold{color:var(--brass)}
+  h1,h2,h3{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:0;margin:0}
+  h1{font-size:clamp(76px,15vw,172px);line-height:.9;font-weight:700;color:var(--white)}
+  h2{font-size:clamp(44px,7vw,86px);line-height:.95;font-weight:700}
+  h3{font-size:clamp(26px,3.2vw,44px);line-height:1.04;font-weight:700}
+  p{margin:0}
+  .nav{position:sticky;top:0;z-index:40;background:rgba(8,33,63,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(248,250,247,.14)}
+  .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:22px;color:var(--white)}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+  .brand-mark{width:34px;height:34px;border:2px solid var(--brass);display:grid;place-items:center;border-radius:50%;font-family:"Oswald",sans-serif;font-size:17px;color:var(--sun)}
+  .nav-links{display:flex;gap:24px;align-items:center;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  .nav-links a{text-decoration:none;color:rgba(248,250,247,.78)}
+  .nav-links a:last-child{color:var(--ink);background:var(--sun);padding:10px 14px}
+  .hero{min-height:86vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#08213f 0%,rgba(8,33,63,.99) 42%,rgba(8,33,63,.74) 68%,rgba(8,33,63,.18) 100%),linear-gradient(0deg,rgba(8,33,63,.82),rgba(8,33,63,0) 46%)}
+  .hero-img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
+  .hero-content{position:relative;z-index:2;padding:clamp(72px,10vw,116px) 0 64px}
+  .hero-copy{max-width:760px}
+  .hero-sub{margin-top:24px;max-width:620px;color:var(--white);font-size:clamp(21px,2.4vw,32px);line-height:1.2;font-weight:800}
+  .hero-line{width:min(520px,80vw);height:3px;background:var(--brass);margin:30px 0 22px}
+  .hero-thesis{max-width:720px;color:var(--sun);font-size:clamp(18px,1.8vw,24px);line-height:1.38;font-weight:700}
+  .hero-actions{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 18px;text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:14px;border:1px solid rgba(248,250,247,.55)}
+  .btn.primary{background:var(--sun);color:var(--ink);border-color:var(--sun)}
+  .btn.secondary{color:var(--white)}
+  .section{padding:clamp(72px,10vw,124px) 0}
+  .split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.75fr);gap:clamp(38px,6vw,86px);align-items:start}
+  .lead{font-size:clamp(22px,2.5vw,32px);line-height:1.25;font-weight:800;color:var(--slate)}
+  .body{margin-top:24px;font-size:19px;line-height:1.7;color:var(--slate)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
+  .tile{padding:28px 24px;min-height:208px;display:flex;flex-direction:column;gap:13px;background:var(--mist)}
+  .tile.dark{background:var(--ink);color:var(--white)}
+  .tile.gold{background:var(--sun)}
+  .tile.blue{background:var(--blue);color:var(--white)}
+  .tile p{font-size:17px;line-height:1.48;color:inherit;opacity:.86}
+  .band{background:var(--ink);color:var(--white)}
+  .band .lead,.band .body{color:rgba(248,250,247,.82)}
+  .markets{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .chip{background:var(--blue);color:var(--white);padding:12px 16px;font-size:18px;font-weight:900}
+  .card{background:var(--white);color:var(--ink);padding:34px}
+  .card.mist{background:var(--mist)}
+  .model{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  .stat{padding:24px;background:var(--ink);color:var(--white)}
+  .stat:nth-child(2){background:var(--blue)}
+  .stat:nth-child(3){background:var(--sun);color:var(--ink)}
+  .stat strong{display:block;font-family:"Oswald",sans-serif;font-size:clamp(52px,6vw,76px);line-height:1;font-weight:700}
+  .stat span{display:block;margin-top:8px;font-size:18px;font-weight:900}
+  .schedule{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:44px}
+  .day{min-height:300px;padding:24px 20px;background:var(--white);color:var(--ink)}
+  .day:nth-child(2){background:var(--mist)}
+  .day:nth-child(3){background:var(--sun)}
+  .day:nth-child(4){background:var(--blue);color:var(--white)}
+  .day h3{font-size:38px;color:var(--blue)}
+  .day:nth-child(4) h3{color:var(--sun)}
+  .day p{margin-top:18px;font-size:20px;line-height:1.35;font-weight:900}
+  .economics{margin-top:34px;background:var(--mist);padding:34px}
+  .line{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid rgba(8,33,63,.18);font-size:22px;color:var(--slate)}
+  .line:last-child{border-bottom:0}
+  .line strong{color:var(--ink)}
+  .channels{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
+  .tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  .tag{background:var(--ink);color:var(--white);padding:11px 14px;font-size:17px;font-weight:900}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:26px}
+  .compare small{display:block;margin-bottom:12px;color:var(--sun);font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+  .compare strong{font-family:"Oswald",sans-serif;font-size:48px;line-height:1.05;text-transform:uppercase}
+  .metrics{display:grid;gap:14px;margin-top:36px}
+  .metric{display:flex;gap:20px;align-items:center;padding:20px 24px;background:var(--mist);font-size:23px;font-weight:900}
+  .metric b{width:42px;flex:0 0 42px;font-family:"Oswald",sans-serif;font-size:36px;line-height:1;color:var(--blue)}
+  .cta{position:relative;overflow:hidden;background:var(--ink);color:var(--white)}
+  .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,33,63,.96),rgba(8,33,63,.82) 52%,rgba(8,33,63,.18)),url('/assets/sat-at-sea-hero.jpg') center/cover no-repeat;opacity:1}
+  .cta .wrap{position:relative;z-index:1}
+  .next-steps{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .step{background:var(--white);color:var(--ink);padding:15px 18px;font-weight:900;font-size:18px}
+  .step:nth-child(2){background:var(--blue);color:var(--white)}
+  .step:nth-child(3){background:var(--sun)}
+  footer{padding:28px 0;background:#06182e;color:rgba(248,250,247,.72);font-size:14px}
+  @media (max-width: 920px){
+    .nav-links{display:none}
+    .split,.model,.channels{grid-template-columns:1fr}
+    .tiles{grid-template-columns:repeat(2,1fr)}
+    .schedule{grid-template-columns:1fr 1fr}
+    .stat-row{grid-template-columns:1fr}
+    .hero{min-height:82vh}
+  }
+  @media (max-width: 620px){
+    .wrap{width:min(100% - 28px,1160px)}
+    .hero-content{padding:62px 0 42px}
+    .tiles,.schedule,.compare{grid-template-columns:1fr}
+    .day{min-height:auto}
+    .card,.economics{padding:26px 22px}
+    .line{display:block}
+    .line strong{display:block;margin-top:4px}
+    .hero::before{background:linear-gradient(90deg,rgba(8,33,63,.96),rgba(8,33,63,.72)),linear-gradient(0deg,rgba(8,33,63,.88),rgba(8,33,63,.2) 56%)}
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="brand-mark">S</span><span>SAT at Sea</span></a>
+    <nav class="nav-links" aria-label="Page navigation">
+      <a href="#model">Model</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#economics">Economics</a>
+      <a href="https://app.paper.design/file/01KX2TSFG46NT406FXMQYCMNN4/1-0">Deck</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <img class="hero-img" src="/assets/sat-at-sea-hero.jpg" alt="Students studying SAT materials on a cruise ship deck at sunset">
+    <div class="wrap hero-content">
+      <div class="hero-copy">
+        <p class="eyebrow gold">Long Beach / San Pedro - 4-5 Day Educational Cruise</p>
+        <h1>SAT<br>at Sea</h1>
+        <p class="hero-sub">A premium family educational cruise for college-bound students.</p>
+        <div class="hero-line"></div>
+        <p class="hero-thesis">Parents are already buying vacations and SAT prep. Packaging them into a single, memorable experience creates value beyond either purchase alone.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#pilot">View the pilot plan</a>
+          <a class="btn secondary" href="https://app.paper.design/file/01KX2TSFG46NT406FXMQYCMNN4/1-0">Open the deck</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">The Idea</p>
+          <h2>A vacation that produces progress.</h2>
+        </div>
+        <div>
+          <p class="lead">SAT at Sea combines professional SAT instruction, college admissions guidance, family vacation, and community with other college-bound families.</p>
+          <p class="body">Families return from vacation with memories, a clearer college plan, and a concrete academic benchmark.</p>
+        </div>
+      </div>
+      <div class="tiles">
+        <article class="tile dark"><h3>Expert SAT instruction</h3><p>Bootcamp blocks, practice testing, score review, and study recommendations.</p></article>
+        <article class="tile"><h3>College planning</h3><p>Admissions strategy, essay guidance, parent workshops, and office hours.</p></article>
+        <article class="tile gold"><h3>Family vacation</h3><p>Parents keep the vacation while students work in focused learning sessions.</p></article>
+        <article class="tile blue"><h3>Peer community</h3><p>Families meet other ambitious families navigating the college process.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow gold">The Customer</p>
+          <h2>Families already in the buying moment.</h2>
+          <p class="body">The program does not need to create SAT demand. It reframes spend families already expect: tutoring plus a vacation.</p>
+        </div>
+        <div class="card">
+          <h3>Ideal household</h3>
+          <p class="body">Sophomore or junior students, premium tutoring budget, family travel habit, and appetite for high-touch educational experiences.</p>
+          <div class="markets">
+            <span class="chip">South Bay</span><span class="chip">Palos Verdes</span><span class="chip">Orange County</span><span class="chip">Pasadena</span><span class="chip">San Gabriel Valley</span><span class="chip">Greater Los Angeles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="model" class="section">
+    <div class="wrap">
+      <p class="eyebrow">Operating Model</p>
+      <h2>Two purchases. One integrated experience.</h2>
+      <div class="model">
+        <article class="card" style="background:var(--ink);color:var(--white)">
+          <h3>Executive producer</h3>
+          <p class="body" style="color:rgba(248,250,247,.82)">Website, marketing, cruise negotiations, registration, scheduling, customer support, event operations, and partnerships.</p>
+          <p class="body" style="color:var(--sun);font-weight:900">Adam does not teach SAT.</p>
+        </article>
+        <article class="card mist">
+          <h3>Academic partner</h3>
+          <p class="body">Potentially Study Hut: SAT instructors, curriculum, testing materials, and academic credibility.</p>
+          <p class="body" style="font-weight:900">Revenue share, fixed fee, or hybrid.</p>
+        </article>
+        <article class="card" style="background:var(--sun)">
+          <h3>College counselor</h3>
+          <p class="body">Admissions strategy, essay guidance, parent workshops, office hours, and individual consultations.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pilot" class="section band">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow gold">Initial Scale</p>
+          <h2>Start small enough to execute flawlessly.</h2>
+        </div>
+        <div>
+          <p class="lead">Pilot with 8-12 students, one instructor, and one classroom. Big enough to prove demand; small enough to protect the guest experience.</p>
+        </div>
+      </div>
+      <div id="economics" class="stat-row">
+        <div class="stat"><strong>10</strong><span>students</span></div>
+        <div class="stat"><strong>$1.5k</strong><span>program fee</span></div>
+        <div class="stat"><strong>$15k</strong><span>gross revenue</span></div>
+      </div>
+      <div class="economics">
+        <h3>Illustrative operating result</h3>
+        <div class="line"><span>Estimated operating costs</span><strong>$5k-$7k</strong></div>
+        <div class="line"><span>Estimated operating profit</span><strong>$8k-$10k</strong></div>
+        <div class="line"><span>Additional upside</span><strong>Cruise credits + referrals</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Sample Schedule</p>
+          <h2>Vacation rhythm, academic spine.</h2>
+        </div>
+        <p class="lead">Students study in high-energy blocks. Parents keep the vacation.</p>
+      </div>
+      <div class="schedule">
+        <article class="day"><h3>Day 1</h3><p>Boarding<br>Welcome dinner<br>Diagnostic SAT</p></article>
+        <article class="day"><h3>Day 2</h3><p>Morning SAT Math<br>Parents enjoy cruise<br>Admissions seminar</p></article>
+        <article class="day"><h3>Day 3</h3><p>Reading &amp; Writing<br>Small-group tutoring<br>Family networking</p></article>
+        <article class="day"><h3>Day 4</h3><p>Practice SAT<br>Score review<br>Recommendations</p></article>
+        <article class="day"><h3>Day 5</h3><p>Return to Long Beach<br>Follow-up plan<br>Referral loop</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="eyebrow gold">Go To Market</p>
+      <h2>The channel is trust, not ads first.</h2>
+      <div class="channels">
+        <article class="card">
+          <h3>Marketing channels</h3>
+          <div class="tags">
+            <span class="tag">Study Hut</span><span class="tag">Existing families</span><span class="tag">Email lists</span><span class="tag">Counselor referrals</span><span class="tag">Private schools</span><span class="tag">Homeschool groups</span><span class="tag">Facebook parent groups</span><span class="tag">Local high schools</span>
+          </div>
+        </article>
+        <article class="card" style="background:#06182e;color:var(--white)">
+          <h3 style="color:var(--sun)">Competitive advantage</h3>
+          <div class="compare">
+            <div><small>Traditional SAT prep</small><strong>Classroom.</strong></div>
+            <div><small>SAT at Sea</small><strong>Destination experience.</strong></div>
+          </div>
+          <p class="body" style="color:rgba(248,250,247,.82);font-weight:800">Family vacation + accountability + community + college counseling = premium positioning.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Expansion Opportunities</p>
+          <h2>The category is educational travel.</h2>
+        </div>
+        <p class="lead">SAT is the beachhead, not the ceiling. The long-term business is premium family educational travel with repeatable topic modules and partner-led instruction.</p>
+      </div>
+      <div class="markets">
+        <span class="chip">ACT at Sea</span><span class="chip">PSAT Weekend</span><span class="chip">AP Exam Cruise</span><span class="chip">College Essay Retreat</span><span class="chip">STEM Cruise</span><span class="chip">Entrepreneurship Cruise</span><span class="chip">AI for Students Cruise</span><span class="chip">Homeschool Family Cruise</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow gold">Pilot Success Metrics</p>
+          <h2>Proof is demand, outcomes, and content.</h2>
+        </div>
+        <div class="metrics">
+          <div class="metric"><b>01</b><span>Sell 8-12 student seats.</span></div>
+          <div class="metric"><b>02</b><span>Deliver measurable score improvements.</span></div>
+          <div class="metric"><b>03</b><span>Generate enthusiastic testimonials.</span></div>
+          <div class="metric"><b>04</b><span>Produce professional photo and video content.</span></div>
+          <div class="metric"><b>05</b><span>Secure repeat bookings and an operating playbook.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="wrap">
+      <p class="eyebrow gold">Core Thesis</p>
+      <h2>This is not competing with Kaplan.</h2>
+      <p class="hero-thesis" style="margin-top:24px;max-width:840px;color:var(--white)">SAT at Sea combines professional instruction, admissions expertise, family travel, and high-touch event production into a premium experience Southern California does not currently have.</p>
+      <div class="next-steps">
+        <span class="step">Confirm partner interest</span>
+        <span class="step">Negotiate pilot cruise</span>
+        <span class="step">Pre-sell 8-12 seats</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">SAT at Sea concept by Adam Byrne. Southern California pilot concept, July 2026.</div>
+</footer>
+</body>
+</html>
