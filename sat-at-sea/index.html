@@ -42,8 +42,8 @@
   p{margin:0}
   .nav{position:sticky;top:0;z-index:40;background:rgba(8,33,63,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(248,250,247,.14)}
   .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:22px;color:var(--white)}
-  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
-  .brand-mark{width:34px;height:34px;border:2px solid var(--brass);display:grid;place-items:center;border-radius:50%;font-family:"Oswald",sans-serif;font-size:17px;color:var(--sun)}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .brand-logo{display:block;width:clamp(156px,18vw,220px);height:auto}
   .nav-links{display:flex;gap:24px;align-items:center;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
   .nav-links a{text-decoration:none;color:rgba(248,250,247,.78)}
   .hero{min-height:86vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
@@ -51,6 +51,7 @@
   .hero-img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:42% center}
   .hero-content{position:relative;z-index:2;padding:clamp(72px,10vw,116px) 0 64px}
   .hero-copy{max-width:760px}
+  .hero-wordmark{display:block;width:min(640px,92vw);height:auto;margin-top:18px}
   .hero-sub{margin-top:24px;max-width:620px;color:var(--white);font-size:clamp(21px,2.4vw,32px);line-height:1.2;font-weight:800}
   .hero-line{width:min(520px,80vw);height:3px;background:var(--brass);margin:30px 0 22px}
   .hero-thesis{max-width:720px;color:var(--sun);font-size:clamp(18px,1.8vw,24px);line-height:1.38;font-weight:700}
@@ -121,6 +122,8 @@
   @media (max-width: 620px){
     .wrap{width:min(100% - 28px,1160px)}
     .hero-content{padding:62px 0 42px}
+    .brand-logo{width:150px}
+    .hero-wordmark{width:min(330px,92vw);margin-top:14px}
     .tiles,.schedule,.compare{grid-template-columns:1fr}
     .day{min-height:auto}
     .card,.economics{padding:26px 22px}
@@ -134,7 +137,7 @@
 <body>
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top"><span class="brand-mark">S</span><span>SAT at Sea</span></a>
+    <a class="brand" href="#top" aria-label="SAT at Sea home"><img class="brand-logo" src="/assets/sat-at-sea-header-logo.svg" alt="SAT at Sea"></a>
     <nav class="nav-links" aria-label="Page navigation">
       <a href="#model">Model</a>
       <a href="#schedule">Schedule</a>
@@ -149,7 +152,7 @@
     <div class="wrap hero-content">
       <div class="hero-copy">
         <p class="eyebrow gold">Long Beach / San Pedro - 4-5 Day Educational Cruise</p>
-        <h1>SAT<br>at Sea</h1>
+        <img class="hero-wordmark" src="/assets/sat-at-sea-headline.svg" alt="SAT at Sea">
         <p class="hero-sub">A premium family educational cruise for college-bound students.</p>
         <div class="hero-line"></div>
         <p class="hero-thesis">Parents are already buying vacations and SAT prep. Packaging them into a single, memorable experience creates value beyond either purchase alone.</p>
