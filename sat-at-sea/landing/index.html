@@ -71,10 +71,11 @@
   .rule{height:4px;width:min(520px,82vw);background:var(--gold)}
   .media-frame{position:relative;overflow:hidden;background:var(--mist);min-height:0;margin:0}
   .media-frame img{display:block;width:100%;height:auto}
+  .media-frame.pool{width:min(500px,100%)}
   .learning-layout{display:grid;grid-template-columns:minmax(0,.98fr) minmax(390px,.82fr);gap:22px;margin-top:44px;align-items:start}
   .learning-layout .benefit-grid{grid-template-columns:1fr;margin-top:0}
   .learning-layout .media-frame{min-height:0}
-  .vacation-photos{margin-top:42px}
+  .vacation-photos{width:min(620px,100%);margin:36px 0 0 auto}
   .partner-head{display:flex;align-items:center;gap:24px}
   .partner-head img{width:clamp(86px,9vw,128px);flex:0 0 auto}
   .webinar-banner{background:var(--gold);color:var(--ink);padding:24px 0}
@@ -117,7 +118,7 @@
   .early .check-list li{background:var(--white);padding:17px 18px;font-size:20px;line-height:1.35;font-weight:900;color:var(--ink)}
   .imagine{background:var(--white)}
   .imagine-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
-  .imagine-photo{margin-top:38px}
+  .imagine-photo{width:min(920px,100%);margin-top:34px}
   .imagine-item{background:var(--ink);color:var(--white);padding:22px;font-family:"Oswald",sans-serif;font-size:30px;line-height:1.05;text-transform:uppercase;font-weight:700;min-height:140px}
   .cta{position:relative;overflow:hidden;background:var(--ink);color:var(--white)}
   .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,33,63,.97),rgba(8,33,63,.84) 58%,rgba(8,33,63,.24)),url('/assets/sat-at-sea-hero-20260709.jpg') center/cover no-repeat}
@@ -152,6 +153,7 @@
     .partner{gap:18px}
     .partner-head{align-items:flex-start;flex-direction:column;gap:14px}
     .partner-head img{width:96px}
+    .media-frame.pool,.vacation-photos,.imagine-photo{width:100%;max-width:none;margin-left:0}
     .day{min-height:auto}
   }
 </style>
