@@ -141,8 +141,10 @@
   .faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(340px,1.1fr);gap:34px;align-items:start}
   .faq-list{display:grid;gap:12px}
   details{background:var(--white);color:var(--ink);padding:18px 20px}
-  summary{cursor:pointer;font-size:20px;line-height:1.25;font-weight:850;list-style:none}
+  summary{cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:16px;align-items:center;font-size:20px;line-height:1.25;font-weight:850;list-style:none}
   summary::-webkit-details-marker{display:none}
+  summary::after{content:"";width:12px;height:12px;border-right:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(45deg);justify-self:center;transition:transform .18s ease-out}
+  details[open] summary::after{transform:rotate(225deg)}
   details p{margin-top:10px;font-size:17px;line-height:1.55;color:var(--slate);font-weight:650}
   .early{background:var(--mist)}
   .early .check-list{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
