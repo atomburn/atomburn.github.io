@@ -67,6 +67,13 @@
   .stack{display:grid;gap:22px}
   .statement{font-size:clamp(24px,2.4vw,34px);line-height:1.23;font-weight:900;color:var(--ink)}
   .rule{height:4px;width:min(520px,82vw);background:var(--gold)}
+  .webinar-banner{background:var(--gold);color:var(--ink);padding:24px 0}
+  .webinar-inner{display:flex;align-items:center;justify-content:space-between;gap:26px}
+  .webinar-copy{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+  .webinar-kicker{font-family:"Oswald",sans-serif;font-size:16px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue)}
+  .webinar-title{font-family:"Oswald",sans-serif;font-size:clamp(28px,3vw,42px);line-height:1;text-transform:uppercase;font-weight:700;color:var(--ink)}
+  .webinar-detail{font-size:19px;line-height:1.35;font-weight:900;color:var(--ink)}
+  .webinar-btn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border:2px solid var(--ink);text-decoration:none;font-family:"Oswald",sans-serif;font-size:15px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink)}
   .benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:44px}
   .panel{padding:34px;background:var(--mist);color:var(--ink)}
   .panel.dark{background:var(--ink);color:var(--white)}
@@ -125,6 +132,9 @@
     .hero-sub{font-size:23px}
     .hero-proof{font-size:16px}
     .btn{width:100%}
+    .webinar-inner{align-items:flex-start;flex-direction:column}
+    .webinar-copy{display:grid;gap:8px}
+    .webinar-btn{width:100%}
     .benefit-grid,.love-grid,.schedule,.early .check-list,.imagine-grid{grid-template-columns:1fr}
     .panel,.partner{padding:26px 22px}
     .partner{grid-template-columns:1fr;gap:18px}
@@ -176,6 +186,17 @@
         <div class="rule"></div>
         <p class="body"><strong>No commuting. No weekend traffic. No trying to convince your teenager to attend another prep class.</strong> Just focused mornings, relaxing afternoons, and quality family time.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="webinar-banner" aria-label="Free parent webinar">
+    <div class="wrap webinar-inner">
+      <div class="webinar-copy">
+        <span class="webinar-kicker">Free parent webinar</span>
+        <span class="webinar-title">Learn the itinerary</span>
+        <span class="webinar-detail">Cruise flow, student class blocks, parent workshops, and what happens before registration opens.</span>
+      </div>
+      <a class="webinar-btn" href="mailto:adam@adambyrne.com?subject=SAT%20at%20Sea%20Free%20Parent%20Webinar">Save My Seat</a>
     </div>
   </section>
 
@@ -292,6 +313,17 @@
         <details><summary>How many students are accepted?</summary><p>Enrollment is intentionally limited to maintain a low student-to-instructor ratio.</p></details>
         <details><summary>Is the cruise included?</summary><p>Families reserve cruise accommodations through our group booking. Educational tuition is purchased separately.</p></details>
       </div>
+    </div>
+  </section>
+
+  <section class="webinar-banner" aria-label="Free parent webinar">
+    <div class="wrap webinar-inner">
+      <div class="webinar-copy">
+        <span class="webinar-kicker">Free parent webinar</span>
+        <span class="webinar-title">Walk through the sailing plan</span>
+        <span class="webinar-detail">Ask questions about itinerary, cabins, classroom schedule, and parent admissions programming.</span>
+      </div>
+      <a class="webinar-btn" href="mailto:adam@adambyrne.com?subject=SAT%20at%20Sea%20Free%20Parent%20Webinar">Join the Webinar</a>
     </div>
   </section>
 
