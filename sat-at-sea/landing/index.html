@@ -43,7 +43,20 @@
   .brand img{display:block;width:clamp(154px,18vw,220px)}
   .nav-links{display:flex;align-items:center;gap:22px;font-family:"Oswald",sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
   .nav-links a{text-decoration:none;color:rgba(248,250,247,.82)}
+  .nav-comment{appearance:none;border:1px solid rgba(248,250,247,.34);background:transparent;color:rgba(248,250,247,.9);padding:9px 11px;font-family:"Oswald",sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;cursor:pointer}
+  .nav-comment[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--ink)}
   .nav-cta{background:var(--gold);color:var(--ink);padding:10px 13px}
+  .comment-bar{position:fixed;z-index:80;top:74px;right:20px;display:none;align-items:center;gap:10px;padding:10px;background:var(--ink);color:var(--white);box-shadow:0 14px 40px rgba(6,24,46,.24)}
+  body.comment-mode .comment-bar{display:flex}
+  .comment-status{font-size:14px;line-height:1.2;font-weight:850;color:rgba(248,250,247,.82);min-width:120px}
+  .comment-action{appearance:none;border:1px solid rgba(248,250,247,.32);background:transparent;color:var(--white);padding:8px 10px;font-family:"Oswald",sans-serif;font-size:13px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;cursor:pointer}
+  .comment-action.primary{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  body.comment-mode main{cursor:crosshair}
+  .sticky-note{position:absolute;z-index:70;width:230px;min-height:152px;background:#ffe36e;color:var(--ink);box-shadow:0 14px 32px rgba(8,33,63,.22);border:2px solid rgba(8,33,63,.16);padding:28px 12px 12px;cursor:default}
+  .sticky-note::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,0) 44%);pointer-events:none}
+  .sticky-remove{position:absolute;z-index:2;top:6px;left:6px;width:22px;height:22px;border:0;background:var(--ink);color:var(--white);font:900 15px/1 "Source Sans 3",system-ui,sans-serif;cursor:pointer}
+  .sticky-text{position:relative;z-index:1;width:100%;min-height:106px;border:0;background:transparent;color:var(--ink);resize:vertical;font:800 16px/1.35 "Source Sans 3",system-ui,sans-serif;outline:none}
+  .sticky-text::placeholder{color:rgba(8,33,63,.58)}
   .eyebrow{font-family:"Oswald",sans-serif;font-size:14px;line-height:1.2;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}
   .eyebrow.gold{color:var(--gold)}
   .display{font-family:"Oswald",sans-serif;font-size:clamp(48px,6.8vw,92px);line-height:.98;text-transform:uppercase;font-weight:700;letter-spacing:0}
@@ -239,6 +252,9 @@
     .hero-proof{font-size:14px}
     .btn{width:100%}
     .webinar-inner{align-items:flex-start;flex-direction:column}
+    .comment-bar{left:14px;right:14px;top:70px;flex-wrap:wrap}
+    .comment-status{width:100%;min-width:0}
+    .sticky-note{width:min(230px,calc(100vw - 28px))}
     .webinar-copy{display:grid;gap:8px}
     .webinar-btn{width:100%}
     .benefit-grid,.love-grid,.schedule,.early .check-list,.imagine-grid{grid-template-columns:1fr}
@@ -291,10 +307,16 @@
       <a href="#parents">Parents</a>
       <a href="#schedule">Schedule</a>
       <a href="#faq">FAQ</a>
+      <button class="nav-comment" type="button" aria-pressed="false">Comment</button>
       <a class="nav-cta" href="#reserve">Reserve</a>
     </nav>
   </div>
 </header>
+<div class="comment-bar" aria-label="Comment tools">
+  <span class="comment-status" role="status" aria-live="polite">Click page to add note.</span>
+  <button class="comment-action primary" type="button" data-comment-send>Send Comments</button>
+  <button class="comment-action" type="button" data-comment-clear>Clear All</button>
+</div>
 
 <main id="top">
   <section class="hero">
@@ -664,6 +686,172 @@
       }
     });
   }
+
+  (() => {
+    const toggle = document.querySelector('.nav-comment');
+    const main = document.querySelector('main');
+    const toolbar = document.querySelector('.comment-bar');
+    if (!toggle || !main || !toolbar) return;
+
+    const status = toolbar.querySelector('.comment-status');
+    const clearButton = toolbar.querySelector('[data-comment-clear]');
+    const sendButton = toolbar.querySelector('[data-comment-send]');
+    const storageKey = `sat-at-sea-comments:${location.pathname}`;
+    const productionEndpoint = 'https://www.adambyrne.com/api/sat-at-sea-comments';
+    const localLike = location.protocol === 'file:' || location.hostname.endsWith('github.io') || location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+    const endpoint = localLike ? productionEndpoint : '/api/sat-at-sea-comments';
+    let active = false;
+    let notes = readNotes();
+
+    function readNotes() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveNotes() {
+      localStorage.setItem(storageKey, JSON.stringify(notes));
+      updateStatus();
+    }
+
+    function updateStatus(message) {
+      if (message) {
+        status.textContent = message;
+        return;
+      }
+      const count = notes.length;
+      status.textContent = active
+        ? `${count} ${count === 1 ? 'note' : 'notes'} saved. Click page to add note.`
+        : `${count} ${count === 1 ? 'note' : 'notes'} saved.`;
+    }
+
+    function clampNoteX(x) {
+      const max = Math.max(14, document.documentElement.scrollWidth - 260);
+      return Math.max(14, Math.min(x, max));
+    }
+
+    function createNote(pageX, pageY) {
+      const note = {
+        id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        x: clampNoteX(pageX - 24),
+        y: Math.max(72, pageY - 18),
+        text: '',
+        created_at: new Date().toISOString(),
+      };
+      notes.push(note);
+      saveNotes();
+      renderNote(note, true);
+    }
+
+    function removeNote(id) {
+      notes = notes.filter((note) => note.id !== id);
+      saveNotes();
+      document.querySelector(`[data-note-id="${CSS.escape(id)}"]`)?.remove();
+    }
+
+    function clearNotes() {
+      if (!notes.length) {
+        updateStatus('No comments to clear.');
+        return;
+      }
+      if (!confirm('Clear all saved comments on this page?')) return;
+      notes = [];
+      saveNotes();
+      document.querySelectorAll('.sticky-note').forEach((note) => note.remove());
+      updateStatus('All comments cleared.');
+    }
+
+    function renderNote(note, focus = false) {
+      document.querySelector(`[data-note-id="${CSS.escape(note.id)}"]`)?.remove();
+      const wrapper = document.createElement('article');
+      wrapper.className = 'sticky-note';
+      wrapper.dataset.noteId = note.id;
+      wrapper.style.left = `${clampNoteX(note.x)}px`;
+      wrapper.style.top = `${Math.max(72, note.y)}px`;
+
+      const remove = document.createElement('button');
+      remove.className = 'sticky-remove';
+      remove.type = 'button';
+      remove.setAttribute('aria-label', 'Remove comment');
+      remove.textContent = '×';
+      remove.addEventListener('click', () => removeNote(note.id));
+
+      const textarea = document.createElement('textarea');
+      textarea.className = 'sticky-text';
+      textarea.placeholder = 'Type comment...';
+      textarea.value = note.text || '';
+      textarea.addEventListener('input', () => {
+        note.text = textarea.value;
+        note.updated_at = new Date().toISOString();
+        saveNotes();
+      });
+
+      wrapper.addEventListener('click', (event) => event.stopPropagation());
+      wrapper.append(remove, textarea);
+      document.body.append(wrapper);
+      if (focus) textarea.focus();
+    }
+
+    function renderNotes() {
+      document.querySelectorAll('.sticky-note').forEach((note) => note.remove());
+      notes.forEach((note) => renderNote(note));
+      updateStatus();
+    }
+
+    function setActive(nextActive) {
+      active = nextActive;
+      document.body.classList.toggle('comment-mode', active);
+      toggle.setAttribute('aria-pressed', String(active));
+      toggle.textContent = active ? 'Done' : 'Comment';
+      updateStatus();
+    }
+
+    async function sendComments() {
+      const filledNotes = notes
+        .map((note, index) => ({ ...note, number: index + 1, text: String(note.text || '').trim() }))
+        .filter((note) => note.text);
+      if (!filledNotes.length) {
+        updateStatus('Add a note before sending.');
+        return;
+      }
+      sendButton.disabled = true;
+      updateStatus('Sending comments...');
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            notes: filledNotes,
+            source_url: location.href,
+            page_path: location.pathname,
+            viewport: `${window.innerWidth}x${window.innerHeight}`,
+          }),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) throw new Error(result.error || 'send_failed');
+        updateStatus('Comments sent to Adam.');
+      } catch {
+        updateStatus('Could not send. Notes are still saved here.');
+      } finally {
+        sendButton.disabled = false;
+      }
+    }
+
+    toggle.addEventListener('click', () => setActive(!active));
+    clearButton.addEventListener('click', clearNotes);
+    sendButton.addEventListener('click', sendComments);
+    main.addEventListener('click', (event) => {
+      if (!active) return;
+      if (event.target.closest('a,button,input,textarea,select,summary,details,.sticky-note,.comment-bar,.nav')) return;
+      event.preventDefault();
+      createNote(event.pageX, event.pageY);
+    });
+
+    renderNotes();
+  })();
 </script>
 </body>
 </html>
