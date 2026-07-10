@@ -69,19 +69,12 @@
   .stack{display:grid;gap:22px}
   .statement{font-size:clamp(24px,2.4vw,34px);line-height:1.23;font-weight:900;color:var(--ink)}
   .rule{height:4px;width:min(520px,82vw);background:var(--gold)}
-  .media-frame{position:relative;overflow:hidden;background:var(--mist);min-height:220px;margin:0}
-  .media-frame img{display:block;width:100%;height:100%;object-fit:cover}
-  .media-frame.landscape{aspect-ratio:3/2}
-  .media-frame.wide{aspect-ratio:16/9}
-  .media-frame.portrait{aspect-ratio:4/5}
-  .media-frame.panorama{aspect-ratio:21/9}
-  .media-frame.rail img{object-position:center}
-  .media-frame.pool img{object-position:54% center}
+  .media-frame{position:relative;overflow:hidden;background:var(--mist);min-height:0;margin:0}
+  .media-frame img{display:block;width:100%;height:auto}
   .learning-layout{display:grid;grid-template-columns:minmax(0,.98fr) minmax(390px,.82fr);gap:22px;margin-top:44px;align-items:start}
   .learning-layout .benefit-grid{grid-template-columns:1fr;margin-top:0}
   .learning-layout .media-frame{min-height:0}
   .vacation-photos{margin-top:42px}
-  .vacation-photos .media-frame{aspect-ratio:16/7}
   .partner-head{display:flex;align-items:center;gap:24px}
   .partner-head img{width:clamp(86px,9vw,128px);flex:0 0 auto}
   .webinar-banner{background:var(--gold);color:var(--ink);padding:24px 0}
@@ -159,8 +152,6 @@
     .partner{gap:18px}
     .partner-head{align-items:flex-start;flex-direction:column;gap:14px}
     .partner-head img{width:96px}
-    .vacation-photos .media-frame{aspect-ratio:4/3}
-    .media-frame.panorama{aspect-ratio:4/3}
     .day{min-height:auto}
   }
 </style>
