@@ -128,6 +128,16 @@
   .love-item::before{content:"";display:block;width:28px;height:3px;background:var(--gold);margin-bottom:12px}
   .partner{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);gap:28px;align-items:center;background:var(--white);border-top:5px solid var(--gold);padding:30px;margin-top:28px}
   .partner > .media-frame{min-height:0}
+  .proof-band{margin-top:18px;background:var(--ink);color:var(--white);padding:22px}
+  .proof-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+  .proof-head h3{font-family:"Oswald",sans-serif;font-size:clamp(25px,2.4vw,34px);line-height:1;text-transform:uppercase;margin:0}
+  .proof-source{font-size:15px;line-height:1.35;font-weight:850;color:rgba(248,250,247,.72)}
+  .proof-source a{color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor}
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,197,66,.42);border:1px solid rgba(245,197,66,.42)}
+  .review-card{background:var(--white);color:var(--ink);padding:18px;display:grid;gap:12px;min-height:190px}
+  .stars{font-size:18px;letter-spacing:.08em;color:var(--gold);line-height:1}
+  .review-card blockquote{margin:0;font-size:18px;line-height:1.32;font-weight:850;color:var(--ink)}
+  .review-card cite{font-style:normal;font-size:15px;line-height:1.2;font-weight:900;color:var(--blue)}
   .schedule{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px}
   .day{padding:20px 16px;min-height:230px;background:var(--white);color:var(--ink)}
   .day:nth-child(2){background:var(--blue);color:var(--white)}
@@ -202,6 +212,8 @@
     .split,.faq-grid,.learning-layout,.partner,.itinerary-layout,.webinar-panel{grid-template-columns:1fr}
     .benefit-grid,.early .check-list,.imagine-grid{grid-template-columns:1fr 1fr}
     .love-grid{grid-template-columns:1fr 1fr}
+    .review-grid{grid-template-columns:1fr}
+    .proof-head{align-items:flex-start;flex-direction:column}
     .schedule{grid-template-columns:1fr 1fr}
     .learning-layout .media-frame{min-height:auto}
     .leisure-layout{grid-template-columns:1fr}
@@ -233,6 +245,9 @@
     .benefit-grid{gap:14px;margin-top:24px}
     .body{font-size:17px}
     .panel,.partner{padding:18px}
+    .proof-band{padding:18px}
+    .review-card{min-height:auto;padding:16px}
+    .review-card blockquote{font-size:16px}
     .panel h3,.day h3,.faq h3{font-size:28px}
     .panel p,.panel li,.day p,details p{font-size:16px}
     .panel ul,.check-list{margin-top:14px;gap:8px}
@@ -421,6 +436,29 @@
         <figure class="media-frame wide">
           <img src="/assets/sat-at-sea-classroom.jpg" alt="A Study Hut instructor leading a small SAT math strategy class" loading="lazy" decoding="async">
         </figure>
+      </div>
+      <div class="proof-band" aria-label="Study Hut Yelp reviews">
+        <div class="proof-head">
+          <h3>Families already trust Study Hut.</h3>
+          <p class="proof-source"><a href="https://www.yelp.com/biz/study-hut-tutoring-el-segundo?osq=Study+Hut">Read on Yelp</a></p>
+        </div>
+        <div class="review-grid">
+          <article class="review-card">
+            <div class="stars" aria-label="5 star review">★★★★★</div>
+            <blockquote>“Daughter gained admission to many top universities and represented her class as valedictorian.”</blockquote>
+            <cite>Eno E., Inglewood</cite>
+          </article>
+          <article class="review-card">
+            <div class="stars" aria-label="5 star review">★★★★★</div>
+            <blockquote>“Wonderful tutors and Alex as a great counselor helped my daughter get her grades up.”</blockquote>
+            <cite>Elke M., Playa del Rey</cite>
+          </article>
+          <article class="review-card">
+            <div class="stars" aria-label="5 star review">★★★★★</div>
+            <blockquote>“His tutor helped him focus and practice. We’ll probably be back for the SAT.”</blockquote>
+            <cite>Ja F., Los Angeles</cite>
+          </article>
+        </div>
       </div>
     </div>
   </section>
