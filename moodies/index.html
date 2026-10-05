@@ -1945,30 +1945,63 @@
             h += uPointer.z * 0.28 * exp(-dot(p - pp, p - pp) * 9.0);
             return h;
           }
-          void main() {
-            float t = uTime;
-            vec2 p = (gl_FragCoord.xy - uCenter) / uRes.y;
-            float hy = (uHorizon * uRes.y - uCenter.y) / uRes.y; // horizon, relative to center
-            // wall: round rings, floor: rings flattened toward the viewer, soft cove between
+          // The ring field: distance from the product on a curved wall + floor, bent by the landscape
+          float field(vec2 p, float hy, float t) {
             float floorAmt = smoothstep(hy + 0.07, hy - 0.06, p.y);
             float dWall = length(p * vec2(0.92, 1.0));
             float dFloor = length(vec2(p.x * 0.75, (p.y - hy) * 3.0)) + abs(hy) * 0.9;
             float d = mix(dWall, dFloor, floorAmt);
-            float h = height(p, t);
-            d += h * 0.75;
+            d += height(p, t) * 0.75;
             d += 0.035 * sin(atan(p.y, p.x) * 3.0 + t * 0.15);
-            vec3 col = spectrum(d * 1.12 - t * 0.045 + 0.12);
+            return d * 1.12 - t * 0.045 + 0.12;
+          }
+          // Out-of-focus discs drifting through the frame, brighter at the rim like real bokeh
+          vec3 bokeh(vec2 uv, float aspect, float t, float x) {
+            vec3 acc = vec3(0.0);
+            for (int i = 0; i < 14; i++) {
+              float fi = float(i);
+              vec2 seed = vec2(hash(vec2(fi, 1.3)), hash(vec2(fi, 7.1)));
+              float size = mix(0.035, 0.11, hash(vec2(fi, 3.7)));
+              vec2 c = vec2(fract(seed.x + t * 0.006 * (seed.y - 0.5)), fract(seed.y + t * (0.008 + 0.012 * seed.x)));
+              vec2 dv = (uv - c) * vec2(aspect, 1.0);
+              float r = length(dv) / size;
+              float disc = smoothstep(1.0, 0.86, r);
+              float rim = smoothstep(0.62, 0.95, r) * disc;
+              float tw = 0.55 + 0.45 * sin(t * (0.3 + seed.x) + fi);
+              vec3 tint = spectrum(x + fi * 0.13);
+              acc += (disc * 0.55 + rim * 0.45) * tw * mix(tint, vec3(1.0), 0.35);
+            }
+            return acc;
+          }
+          void main() {
+            float t = uTime;
+            vec2 p = (gl_FragCoord.xy - uCenter) / uRes.y;
+            float hy = (uHorizon * uRes.y - uCenter.y) / uRes.y; // horizon, relative to center
+            vec2 uv = gl_FragCoord.xy / uRes;
+            // chromatic aberration: red and blue sample the field slightly apart, more toward the edges
+            vec2 fromMid = uv - 0.5;
+            float ca = 0.012 + 0.07 * dot(fromMid, fromMid);
+            vec2 off = normalize(fromMid + 1e-4) * ca;
+            float x = field(p, hy, t);
+            vec3 col = vec3(spectrum(field(p + off, hy, t)).r, spectrum(x).g, spectrum(field(p - off, hy, t)).b);
             // a hint of the landscape's slope, kept subtle so the shape stays invisible
             vec2 e = vec2(0.004, 0.0);
             vec2 g = vec2(height(p + e.xy, t) - height(p - e.xy, t), height(p + e.yx, t) - height(p - e.yx, t)) / 0.008;
             col *= 0.94 + 0.08 * clamp(dot(normalize(vec3(-g, 1.4)), normalize(vec3(-0.4, 0.6, 0.7))), 0.0, 1.0);
             // glow behind the product, glossy line where floor meets wall
-            col = mix(col, vec3(1.0, 0.97, 1.0), exp(-length(p * vec2(1.0, 0.75)) * 3.6) * 0.62);
+            float r = length(p * vec2(1.0, 0.75));
+            col = mix(col, vec3(1.0, 0.97, 1.0), exp(-r * 3.6) * 0.62);
             col += 0.16 * exp(-abs(p.y - hy) * 22.0) * (1.0 - smoothstep(0.0, 1.4, abs(p.x)));
+            // halo ring + anamorphic streak through the glow
+            col += vec3(1.0, 0.92, 0.98) * 0.13 * exp(-pow((r - 0.42) * 7.0, 2.0));
+            col += vec3(0.75, 0.88, 1.0) * 0.3 * exp(-abs(p.y) * 48.0) * exp(-abs(p.x) * 1.2);
+            // bokeh, screened on top
+            vec3 bk = bokeh(uv, uRes.x / uRes.y, t, x) * 0.3;
+            col = 1.0 - (1.0 - col) * (1.0 - clamp(bk, 0.0, 1.0));
             col = mix(col, vec3(1.0), 0.05);
-            vec2 uv = gl_FragCoord.xy / uRes;
-            col *= 1.0 - 0.28 * dot(uv - 0.5, uv - 0.5);
-            col += (hash(gl_FragCoord.xy + t) - 0.5) / 255.0;
+            col *= 1.0 - 0.3 * dot(fromMid, fromMid);
+            // film grain
+            col += (hash(gl_FragCoord.xy + fract(t * 7.0) * 100.0) - 0.5) * 0.035;
             gl_FragColor = vec4(col, 1.0);
           }`;
         const VERT = 'attribute vec2 a; void main() { gl_Position = vec4(a, 0.0, 1.0); }';
