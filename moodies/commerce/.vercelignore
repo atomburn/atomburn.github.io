@@ -1,0 +1,9 @@
+.env*
+!.env.example
+.vercel/
+.next/
+node_modules/
+*.tsbuildinfo
+supabase/.temp/
+supabase/.branches/
+public/commerce-test.html
