@@ -1955,24 +1955,6 @@
             d += 0.035 * sin(atan(p.y, p.x) * 3.0 + t * 0.15);
             return d * 1.12 - t * 0.045 + 0.12;
           }
-          // Out-of-focus discs drifting through the frame, brighter at the rim like real bokeh
-          vec3 bokeh(vec2 uv, float aspect, float t, float x) {
-            vec3 acc = vec3(0.0);
-            for (int i = 0; i < 14; i++) {
-              float fi = float(i);
-              vec2 seed = vec2(hash(vec2(fi, 1.3)), hash(vec2(fi, 7.1)));
-              float size = mix(0.035, 0.11, hash(vec2(fi, 3.7)));
-              vec2 c = vec2(fract(seed.x + t * 0.006 * (seed.y - 0.5)), fract(seed.y + t * (0.008 + 0.012 * seed.x)));
-              vec2 dv = (uv - c) * vec2(aspect, 1.0);
-              float r = length(dv) / size;
-              float disc = smoothstep(1.0, 0.86, r);
-              float rim = smoothstep(0.62, 0.95, r) * disc;
-              float tw = 0.55 + 0.45 * sin(t * (0.3 + seed.x) + fi);
-              vec3 tint = spectrum(x + fi * 0.13);
-              acc += (disc * 0.55 + rim * 0.45) * tw * mix(tint, vec3(1.0), 0.35);
-            }
-            return acc;
-          }
           void main() {
             float t = uTime;
             vec2 p = (gl_FragCoord.xy - uCenter) / uRes.y;
@@ -1992,12 +1974,6 @@
             float r = length(p * vec2(1.0, 0.75));
             col = mix(col, vec3(1.0, 0.97, 1.0), exp(-r * 3.6) * 0.62);
             col += 0.16 * exp(-abs(p.y - hy) * 22.0) * (1.0 - smoothstep(0.0, 1.4, abs(p.x)));
-            // halo ring + anamorphic streak through the glow
-            col += vec3(1.0, 0.92, 0.98) * 0.13 * exp(-pow((r - 0.42) * 7.0, 2.0));
-            col += vec3(0.75, 0.88, 1.0) * 0.3 * exp(-abs(p.y) * 48.0) * exp(-abs(p.x) * 1.2);
-            // bokeh, screened on top
-            vec3 bk = bokeh(uv, uRes.x / uRes.y, t, x) * 0.3;
-            col = 1.0 - (1.0 - col) * (1.0 - clamp(bk, 0.0, 1.0));
             col = mix(col, vec3(1.0), 0.05);
             col *= 1.0 - 0.3 * dot(fromMid, fromMid);
             // film grain
