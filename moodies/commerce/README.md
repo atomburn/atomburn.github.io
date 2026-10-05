@@ -68,7 +68,7 @@ Generate `ORDER_TOKEN_SECRET` using a cryptographically random generator (e.g. `
 
 1. Loopmuse migrations, test credentials, Product/Price, free-shipping rate, and test catalog are configured locally. The existing synthetic stock is **9** after the successful test purchase; its refund intentionally did not restock. Do not run the initial seed again. A fresh target needs one initial test seed; production needs the actual physical stock count.
 2. Start `stripe listen --latest --events checkout.session.completed,checkout.session.async_payment_succeeded,checkout.session.async_payment_failed,checkout.session.expired,charge.refunded --forward-to localhost:3197/api/stripe/webhook`. The official CLI is also available through `npx @stripe/cli`. Use the existing test key through `STRIPE_API_KEY` or your existing CLI sign-in. Save its `whsec_…` privately as `STRIPE_WEBHOOK_SECRET`; do not paste keys into chat or commit them. The current local configuration uses port **3197**.
-3. Run `npm run storefront:stage`, then `npm run dev -- --hostname 127.0.0.1 --port 3197`. Until Opus connects the cart, create a session with:
+3. Run `npm run storefront:stage`, then `npm run dev -- --hostname 127.0.0.1 --port 3197`. Open the root storefront and use its Rainbow Pack cart. For a direct API check instead, create a session with:
 
 ```sh
 curl http://localhost:3197/api/checkout \
@@ -85,11 +85,13 @@ curl http://localhost:3197/api/checkout \
 
 ## Frontend and deployment handoff
 
-See `docs/FRONTEND-HANDOFF.md`. Opus owns `index.html`; this branch changes none of it.
+See `docs/FRONTEND-HANDOFF.md`. Opus's storefront wiring, commit `b4a5f0e`, is merged into this branch. The custom storefront design and assets are preserved.
 
-Deploy from `moodies/commerce`, not a static-only copy. `vercel.json` selects Next.js and stages the current `../index.html`/assets into ignored `public/` during the build. `/` rewrites to that unchanged HTML. The generated public files are copies, not a second source of truth. The existing `buymoodies` project remains the deployment target. No DNS/MX/TXT change is necessary.
+Deploy from `moodies/commerce`, not a static-only copy. **Run `npm run storefront:stage` before each CLI deployment**: Vercel uploads only this app directory, so the sibling HTML/assets must be copied into ignored `public/` first. `.vercelignore` includes those copies and excludes local settings, build output, and the local test harness. The remote build validates the staged entry/asset when sibling source is absent. `vercel.json` selects Next.js; `/` rewrites to the unchanged staged HTML. Generated public files remain copies of the canonical source. The existing `buymoodies` project remains the deployment target. No DNS/MX/TXT change is necessary.
 
-Add environment values to Vercel Preview (test Stripe mode, `moodies_test` tables) and Production (live Stripe mode, `public` Moodies tables) separately. Both can use the selected Loopmuse project. Catalog seeding and internal operations automatically use the matching schema. Stage/test the cart hooks in a Preview first. Register the production webhook and confirm a real test-mode lifecycle before promoting. `vercel deploy` creates a preview; `vercel deploy --prod` publishes. This task has not deployed either; the local app is linked to `atomburns-projects/buymoodies`.
+Preview is deployed at https://buymoodies-commerce-test-atomburns-projects.vercel.app with Vercel Authentication retained. All required Preview settings are configured in Stripe test mode against Loopmuse's `moodies_test` tables. A dedicated Stripe test webhook uses a privately stored Vercel automation bypass for delivery. Production settings/deployment are untouched. Do not promote this test-mode deployment: create a separate live-configured deployment after resolving the prerequisites below.
+
+On October 5, 2026 (Pacific), Safari completed the integrated Preview cart → Stripe test card → hosted webhook → paid order M-1004 → confirmation flow. One item cost $15.98 with $0 shipping/tax/discount; test stock changed 8 → 7 once. Twenty concurrent signed replays preserved one order and stock 7. The test payment was refunded; the hosted refund webhook put M-1004 on hold without restocking. See `docs/VALIDATION.md`.
 
 ## Operations and Shippo boundary
 
@@ -113,6 +115,6 @@ Run `npm run lint`, `npm run typecheck`, `npm test`, `npm run test:database`, an
 
 Small inventory race: two open Stripe Sessions can both pass the stock check. Payment is recorded even if stock was consumed first, stock is clamped at zero, and a shortage order is held for operator resolution. Outstanding Sessions retain their trusted snapshots when catalog flags/prices change. No reservations or warehouse system is introduced.
 
-Production prerequisites: resolve the classic Stripe account payout banking task; confirm the live price and physical stock; configure the live zero-dollar shipping rate, Vercel secrets and webhook destination; connect the frontend; repeat the test-mode acceptance through the integrated storefront in Preview. Backend test-mode acceptance has passed using an ignored local test cart, without editing Opus's source. Add a Vercel Firewall rate limit to the public checkout/catalog routes and monitor failed webhook deliveries; CORS alone is not bot protection. Bearer order tokens include shipping destination, so avoid logging/sharing URLs and exclude the order routes from third-party analytics. Replay missed Stripe events after outages. Keep processed event IDs and operational order history.
+Production prerequisites: resolve the classic Stripe account payout banking task; confirm the live price and physical stock; configure live tax/payment behavior, the zero-dollar shipping rate, Vercel secrets and webhook destination; seed only the actual stock count; validate the separately live-configured deployment before promotion. Frontend integration and test-mode Preview acceptance have passed. Add a Vercel Firewall rate limit to the public checkout/catalog routes and monitor failed webhook deliveries; CORS alone is not bot protection. Bearer order tokens include shipping destination, so avoid logging/sharing URLs and exclude the order routes from third-party analytics. Replay missed Stripe events after outages. Keep processed event IDs and operational order history.
 
 No new platform subscription is introduced. Existing infrastructure limits and Stripe payment/Tax/fulfillment usage costs still apply. Shippo labels, owner email notifications and a browser admin are genuinely deferred.

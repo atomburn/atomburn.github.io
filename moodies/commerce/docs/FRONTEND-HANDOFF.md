@@ -1,8 +1,10 @@
 # Hooks for Opus
 
-Backend lives in `moodies/commerce` on `codex/moodies-commerce`, initially based on `1d3edd1`, with Opus's subsequent storefront commits through `b0cf1ba` included unchanged. This backend branch does not modify `moodies/index.html` or any asset.
+Backend lives in `moodies/commerce` on `codex/moodies-commerce`. Opus's completed wiring commit `b4a5f0e` is merged here. No merge to `main` or GitHub Pages publication was performed.
 
-Backend acceptance passed against the classic Stripe account in test mode and Loopmuse's `moodies_test` schema: a browser cart sent one real SKU, hosted Checkout charged the test card $15.98 with free shipping, its webhook created order M-1001 and reduced synthetic stock from 10 to 9, and 20 signed replays left both counts unchanged. A separate expired checkout did not consume stock. The test purchase was then refunded; its order is refunded/on hold and stock remains 9. This used an ignored local test cart; the source storefront hooks below still need wiring and Preview verification.
+The combined storefront/backend is deployed to https://buymoodies-commerce-test-atomburns-projects.vercel.app with Vercel Authentication retained. Preview credentials use the classic Stripe test account and Loopmuse's isolated `moodies_test` schema. Safari completed the real storefront cart and hosted test payment; the hosted webhook created one order M-1004 at $15.98 with free shipping, stock 8 → 7, and a paid confirmation. Twenty concurrent signed replays left counts unchanged. The test payment was refunded; its hosted webhook set refunded/on hold without restocking. Production remains on the earlier email-checkout build; do not promote the test deployment.
+
+The hook contract below documents the now-implemented behavior.
 
 ## Checkout
 
@@ -51,4 +53,4 @@ Hosted Stripe returns to `/order/<secure-token>`. A simple server-rendered confi
 
 ## Deploy together
 
-Deploy the `moodies/commerce` app to the existing `buymoodies` Vercel project. Its build copies Opus's latest unchanged HTML/assets into `public/` and includes Next.js API/order routes. The prior static-only folder deployment would omit the backend. Keep Preview Stripe credentials/data in test mode and live production credentials/data separate. Both use Loopmuse: the backend selects isolated `moodies_test` tables for test mode and `public.moodies_*` tables for live mode. No domain/email record edits are needed.
+Deploy the `moodies/commerce` app to the existing `buymoodies` Vercel project. Run `npm run storefront:stage` before the CLI upload to include the sibling HTML/assets; the remote build uses those staged copies and includes Next.js API/order routes. The prior static-only folder deployment would omit the backend. Keep Preview Stripe credentials/data in test mode and live production credentials/data separate. Both use Loopmuse: the backend selects isolated `moodies_test` tables for test mode and `public.moodies_*` tables for live mode. No domain/email record edits are needed.

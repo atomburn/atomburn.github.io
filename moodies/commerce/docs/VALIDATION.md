@@ -1,6 +1,6 @@
 # Verification and remaining launch work
 
-Verified October 4, 2026 (Pacific). Implementation is isolated in `moodies/commerce` on `codex/moodies-commerce`. Initial storefront baseline was `1d3edd1`; Opus continues to own and update the source HTML separately; commits through `b0cf1ba` are included unchanged in the backend branch.
+Updated October 5, 2026 (Pacific). Implementation is isolated in `moodies/commerce` on `codex/moodies-commerce`. Opus's storefront wiring `b4a5f0e` is merged into this branch; source assets/design are preserved. No merge to main or GitHub Pages publication was performed.
 
 ## Passed locally
 
@@ -26,7 +26,7 @@ The checks above use local fixtures and an isolated database. The real Stripe/Su
 - Created and verified the classic account's **test-mode** shipping rate `shr_1UN4AT26QnS1lsztvhcG8PiL`: **Free shipping, USD 0.00, Active**. Local test settings use it with `FREE_SHIPPING_THRESHOLD_MINOR=0`.
 - Opened the correct private settings file in TextEdit; the owner saved the existing test secret. Verified the key against `acct_103i1t26QnS1lszt` without displaying its value. Created test Product `prod_VNq7VY6HxeeRES` and Price `price_1UN4Qw26QnS1lsztSWjpvDjL`: USD 1598, one-time, exclusive tax behavior. This is the current storefront price for testing; the live price decision remains open.
 - Five redacted 2024–2025 Gmail receipts support the historical 99-cent economy/399-cent tracked options, now superseded by the owner's free-shipping instruction. They also show the historical $19.99 selling price, versus the rebuilt storefront's $15.98.
-- Local Vercel link targets the existing `atomburns-projects/buymoodies` project. No Preview or Production deployment was created.
+- Vercel link targets the existing `atomburns-projects/buymoodies` project. A protected test Preview is now deployed; Production deployment/settings remain unchanged.
 
 ## Real backend acceptance passed
 
@@ -40,8 +40,21 @@ The checks above use local fixtures and an isolated database. The real Stripe/Su
 - Fully refunded the test payment through Stripe. The real `charge.refunded` webhook returned **200**. M-1001 now shows **refunded / on hold**, refunded amount **1598**, stock **9**. The confirmation page and API show that state. Replaying the refund and earlier completed event preserved it and did not restock.
 - Actual HTTP checks passed: configured catalog **200**, injected client price **400**, unknown SKU/excess stock **409**, unapproved browser origin **403**, unsigned webhook **400**, sequential order guess **404**. The private order API exposes no customer email, Stripe IDs, checkout attempt ID or token hash, and carries no-store/no-referrer headers.
 
-Final test data therefore contains **one refunded purchase and one distinct cancelled checkout**, not duplicate purchase orders. Private machine-local evidence is in ignored `.vercel/commerce-acceptance.json`. No real card or live charge was used. The source storefront still needs the documented hooks and Preview acceptance; this backend test does not claim the public site's cart is integrated.
+At the end of that local acceptance, test data contained **one refunded purchase and one distinct cancelled checkout**, not duplicate purchase orders. Private machine-local evidence is in ignored `.vercel/commerce-acceptance.json`. No real card or live charge was used. The later integrated Preview acceptance is recorded below.
+
+## Integrated Vercel Preview acceptance passed
+
+- Merged Opus's pushed `b4a5f0e` into the commerce branch as `7499a55`. Re-ran all 26 application/database tests, lint, typecheck, and the production build successfully.
+- Fixed CLI packaging: explicitly include staged storefront/media in `.vercelignore`, while excluding local secrets/build output/test harness; remote staging checks the uploaded storefront when sibling source is absent. Dry-run confirmed 235 files, with `.env.local`, `.vercel/`, local build/dependencies and `public/commerce-test.html` excluded.
+- Vercel Preview deployment `dpl_7JrNXqVkeKVKY7XY8LMmMmMrC5o8` is Ready at https://buymoodies-commerce-test-atomburns-projects.vercel.app. The remote Next.js build passed. Preview root matched merged source byte-for-byte, and its catalog returned the test Rainbow Pack at 1598 cents with synthetic stock 8.
+- Configured 15 Preview-only environment values, storing actual server keys as Vercel Secrets. Classic Stripe test mode and Loopmuse's `moodies_test` schema are enforced. Created a dedicated test webhook; its automation bypass is private. Vercel Authentication remains enabled, and an unauthenticated catalog request redirected to authentication.
+- Stopped the local Stripe listener before purchase, so it could not process these events. Safari opened the protected Preview through its existing authenticated session, added one Rainbow Pack in Opus's cart, and used the page's checkout handler to reach hosted Stripe Sandbox showing $15.98 and free shipping.
+- Completed payment with Stripe's 4242 test card and fictional shipping details. The hosted webhook created **exactly one M-1004 order**, with one correct SKU/item at 1598 cents, shipping/tax/discount zero; synthetic stock changed **8 → 7 once**. Stripe totals, stored order/items, public order API and browser confirmation agreed.
+- Replayed the retrieved actual completed event in 20 concurrent signed requests to the hosted endpoint. All returned 200; M-1004 remained one order and stock remained 7. These were signed test requests, not Stripe Dashboard resends.
+- Fully refunded only this test payment. The hosted refund webhook changed M-1004 to **refunded / on hold**, refund amount 1598, stock 7. Earlier test orders were preserved.
+- Preview browser confirmation and API worked; order tokens/bypass secrets are not published in this document. Private acceptance records are in ignored, mode-0600 `.vercel/preview-private.json`.
+- Production `buymoodies.com` remained HTTP 200 with the previous email-checkout HTML hash `8b394b63b6118e6c93b47c8d31f3f620a0697213f2a4077496b0ba599405c309`; its production deployment ID remained `dpl_9Bkjje38J3NrHfSfLCRy1J9RpArX`. No production environment values were configured.
 
 ## Required before live launch
 
-Resolve Stripe payouts, settle the selling price and actual physical stock count, create the live Product/Price and zero-dollar Shipping Rate, configure live Vercel secrets/webhook destination and tax/payment settings, integrate the frontend, and repeat test-mode acceptance through the integrated storefront in Preview. No live inventory count is guessed; the live catalog remains empty and cannot accept sales. Production Shippo labels, owner email notifications and a browser admin are deferred.
+Resolve Stripe payouts, settle the selling price and actual physical stock count, create the live Product/Price and zero-dollar Shipping Rate, configure live Vercel secrets/webhook destination and tax/payment settings, seed actual physical stock, and validate a separate live-configured deployment before production promotion. Frontend integration and test-mode Preview acceptance are complete. No live inventory count is guessed; the live catalog remains empty and cannot accept sales. Production Shippo labels, owner email notifications and a browser admin are deferred.
