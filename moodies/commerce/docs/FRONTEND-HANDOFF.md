@@ -2,6 +2,8 @@
 
 Backend lives in `moodies/commerce` on `codex/moodies-commerce`, initially based on `1d3edd1`, with Opus's subsequent storefront commits through `b0cf1ba` included unchanged. This backend branch does not modify `moodies/index.html` or any asset.
 
+Backend acceptance passed against the classic Stripe account in test mode and Loopmuse's `moodies_test` schema: a browser cart sent one real SKU, hosted Checkout charged the test card $15.98 with free shipping, its webhook created order M-1001 and reduced synthetic stock from 10 to 9, and 20 signed replays left both counts unchanged. A separate expired checkout did not consume stock. The test purchase was then refunded; its order is refunded/on hold and stock remains 9. This used an ignored local test cart; the source storefront hooks below still need wiring and Preview verification.
+
 ## Checkout
 
 Replace only the existing `#checkout` click handler's mailto/checkoutUrl path with a POST to same-origin `/api/checkout`. Keep the custom cart/drawer and visual design. Convert localStorage cart product ID `rainbow-pack` to backend SKU `MOODIES-RAINBOW-PACK`. Send **no prices/subtotal/names/Stripe IDs**.
