@@ -225,13 +225,25 @@
         filter: blur(70px) saturate(1.25);
         transform: scale(1.2);
       }
+      .hero-shader {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+      }
+      .hero.shader-on .hero-shader {
+        opacity: 1;
+      }
       .hero::after {
         content: '';
         position: absolute;
         inset: 0;
         z-index: -1;
         background:
-          radial-gradient(ellipse 60% 70% at 18% 55%, rgba(42, 13, 63, 0.38), transparent 70%),
+          radial-gradient(ellipse 62% 72% at 16% 55%, rgba(42, 13, 63, 0.5), transparent 72%),
           linear-gradient(to bottom, transparent 70%, var(--ink));
       }
       .hero-grid {
@@ -337,6 +349,10 @@
         }
         .hero .sub {
           font-size: 16px;
+        }
+        .hero::after {
+          background:
+            linear-gradient(to bottom, transparent 40%, rgba(42, 13, 63, 0.5) 62%, rgba(42, 13, 63, 0.55) 85%, var(--ink));
         }
       }
 
@@ -1532,6 +1548,7 @@
       <!-- ============ HERO ============ -->
       <section class="hero" id="hero" aria-label="moodies">
         <div class="hero-bg" aria-hidden="true"></div>
+        <canvas class="hero-shader" id="heroShader" aria-hidden="true"></canvas>
         <div class="wrap hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Heat-safe silicone caps · For CFL &amp; LED bulbs</p>
@@ -1872,6 +1889,159 @@
       $('#mailLink').href = `mailto:${CONFIG.orderEmail}`;
       $$('[data-price]').forEach((el) => (el.textContent = money(PRODUCTS[0].price)));
       const bulbSrc = (c) => `assets/bulb-${c}.webp`;
+
+      /* ---------- Hero shader: rainbow bands that follow an invisible landscape ----------
+         Like the end card of the spot: concentric rainbow rings behind the product on a
+         curved set (wall + glossy floor). A hidden heightfield (drifting bumps + noise,
+         plus one under the pointer) bends the rings. Falls back to the blurred key art. */
+      {
+        const hero = $('#hero');
+        const canvas = $('#heroShader');
+        const gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false, powerPreference: 'low-power' });
+        const FRAG = `
+          precision highp float;
+          uniform vec2 uRes;
+          uniform float uTime;
+          uniform vec2 uCenter;
+          uniform float uHorizon;
+          uniform vec3 uPointer; // xy in px, z = strength
+
+          float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+          float noise(vec2 p) {
+            vec2 i = floor(p), f = fract(p);
+            vec2 u = f * f * (3.0 - 2.0 * f);
+            return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);
+          }
+          float fbm(vec2 p) {
+            float v = 0.0, a = 0.5;
+            for (int i = 0; i < 4; i++) { v += a * noise(p); p = p * 2.03 + 17.1; a *= 0.5; }
+            return v;
+          }
+          // Key-art spectrum: magenta, red, orange, yellow, green, cyan, blue, violet (cyclic)
+          vec3 spectrum(float x) {
+            x = fract(x) * 8.0;
+            float i = floor(x), f = smoothstep(0.0, 1.0, fract(x));
+            vec3 a, b;
+            if (i < 1.0) { a = vec3(1.0, 0.18, 0.58); b = vec3(1.0, 0.23, 0.18); }
+            else if (i < 2.0) { a = vec3(1.0, 0.23, 0.18); b = vec3(1.0, 0.54, 0.11); }
+            else if (i < 3.0) { a = vec3(1.0, 0.54, 0.11); b = vec3(1.0, 0.91, 0.23); }
+            else if (i < 4.0) { a = vec3(1.0, 0.91, 0.23); b = vec3(0.44, 0.89, 0.23); }
+            else if (i < 5.0) { a = vec3(0.44, 0.89, 0.23); b = vec3(0.16, 0.78, 0.96); }
+            else if (i < 6.0) { a = vec3(0.16, 0.78, 0.96); b = vec3(0.18, 0.48, 1.0); }
+            else if (i < 7.0) { a = vec3(0.18, 0.48, 1.0); b = vec3(0.61, 0.24, 1.0); }
+            else { a = vec3(0.61, 0.24, 1.0); b = vec3(1.0, 0.18, 0.58); }
+            return mix(a, b, f);
+          }
+          // The invisible landscape
+          float height(vec2 p, float t) {
+            float h = (fbm(p * 0.9 + vec2(t * 0.03, -t * 0.018)) - 0.5) * 0.26;
+            vec2 b1 = vec2(0.55 * sin(t * 0.13), 0.30 * cos(t * 0.17));
+            vec2 b2 = vec2(-0.70 + 0.25 * cos(t * 0.11), 0.15 * sin(t * 0.19 + 1.0));
+            vec2 b3 = vec2(0.85 * cos(t * 0.07 + 2.0), -0.10 + 0.20 * sin(t * 0.09));
+            h += 0.22 * exp(-dot(p - b1, p - b1) * 5.0);
+            h -= 0.18 * exp(-dot(p - b2, p - b2) * 3.5);
+            h += 0.15 * exp(-dot(p - b3, p - b3) * 6.0);
+            vec2 pp = (uPointer.xy - uCenter) / uRes.y;
+            h += uPointer.z * 0.28 * exp(-dot(p - pp, p - pp) * 9.0);
+            return h;
+          }
+          void main() {
+            float t = uTime;
+            vec2 p = (gl_FragCoord.xy - uCenter) / uRes.y;
+            float hy = (uHorizon * uRes.y - uCenter.y) / uRes.y; // horizon, relative to center
+            // wall: round rings, floor: rings flattened toward the viewer, soft cove between
+            float floorAmt = smoothstep(hy + 0.07, hy - 0.06, p.y);
+            float dWall = length(p * vec2(0.92, 1.0));
+            float dFloor = length(vec2(p.x * 0.75, (p.y - hy) * 3.0)) + abs(hy) * 0.9;
+            float d = mix(dWall, dFloor, floorAmt);
+            float h = height(p, t);
+            d += h * 0.75;
+            d += 0.035 * sin(atan(p.y, p.x) * 3.0 + t * 0.15);
+            vec3 col = spectrum(d * 1.12 - t * 0.045 + 0.12);
+            // a hint of the landscape's slope, kept subtle so the shape stays invisible
+            vec2 e = vec2(0.004, 0.0);
+            vec2 g = vec2(height(p + e.xy, t) - height(p - e.xy, t), height(p + e.yx, t) - height(p - e.yx, t)) / 0.008;
+            col *= 0.94 + 0.08 * clamp(dot(normalize(vec3(-g, 1.4)), normalize(vec3(-0.4, 0.6, 0.7))), 0.0, 1.0);
+            // glow behind the product, glossy line where floor meets wall
+            col = mix(col, vec3(1.0, 0.97, 1.0), exp(-length(p * vec2(1.0, 0.75)) * 3.6) * 0.62);
+            col += 0.16 * exp(-abs(p.y - hy) * 22.0) * (1.0 - smoothstep(0.0, 1.4, abs(p.x)));
+            col = mix(col, vec3(1.0), 0.05);
+            vec2 uv = gl_FragCoord.xy / uRes;
+            col *= 1.0 - 0.28 * dot(uv - 0.5, uv - 0.5);
+            col += (hash(gl_FragCoord.xy + t) - 0.5) / 255.0;
+            gl_FragColor = vec4(col, 1.0);
+          }`;
+        const VERT = 'attribute vec2 a; void main() { gl_Position = vec4(a, 0.0, 1.0); }';
+        const compile = (type, src) => {
+          const sh = gl.createShader(type);
+          gl.shaderSource(sh, src);
+          gl.compileShader(sh);
+          if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh));
+          return sh;
+        };
+        try {
+          if (!gl) throw new Error('no webgl');
+          const prog = gl.createProgram();
+          gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+          gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+          gl.linkProgram(prog);
+          if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+          gl.useProgram(prog);
+          gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+          const loc = gl.getAttribLocation(prog, 'a');
+          gl.enableVertexAttribArray(loc);
+          gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+          const u = Object.fromEntries(['uRes', 'uTime', 'uCenter', 'uHorizon', 'uPointer'].map((n) => [n, gl.getUniformLocation(prog, n)]));
+
+          // Gradients are soft, so render at reduced resolution and let CSS scale it up
+          let scale = 1;
+          const pointer = { x: 0, y: 0, z: 0, tz: 0 };
+          function layout() {
+            const r = hero.getBoundingClientRect();
+            scale = Math.min(devicePixelRatio || 1, 2) * 0.5;
+            canvas.width = Math.max(2, Math.round(r.width * scale));
+            canvas.height = Math.max(2, Math.round(r.height * scale));
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            const art = $('.hero-art', hero).getBoundingClientRect();
+            const cx = art.left + art.width / 2 - r.left;
+            const cy = art.top + art.height * 0.5 - r.top;
+            const horizon = art.top + art.height * 0.8 - r.top;
+            gl.uniform2f(u.uRes, canvas.width, canvas.height);
+            gl.uniform2f(u.uCenter, cx * scale, (r.height - cy) * scale);
+            gl.uniform1f(u.uHorizon, Math.min(0.9, Math.max(0.08, 1 - horizon / r.height)));
+          }
+          hero.addEventListener('pointermove', (e) => {
+            const r = hero.getBoundingClientRect();
+            pointer.x = (e.clientX - r.left) * scale;
+            pointer.y = (r.height - (e.clientY - r.top)) * scale;
+            pointer.tz = 1;
+          });
+          hero.addEventListener('pointerleave', () => (pointer.tz = 0));
+
+          let visible = true;
+          let raf = 0;
+          const t0 = performance.now() - 20000; // start mid-drift
+          function frame(now) {
+            raf = 0;
+            pointer.z += (pointer.tz - pointer.z) * 0.06;
+            gl.uniform1f(u.uTime, reduced ? 20 : (now - t0) / 1000);
+            gl.uniform3f(u.uPointer, pointer.x, pointer.y, pointer.z);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+            if (!reduced && visible && !document.hidden) raf = requestAnimationFrame(frame);
+          }
+          const kick = () => !raf && (raf = requestAnimationFrame(frame));
+          new ResizeObserver(() => (layout(), kick())).observe(hero);
+          new IntersectionObserver(([e]) => ((visible = e.isIntersecting), visible && kick())).observe(hero);
+          document.addEventListener('visibilitychange', kick);
+          if (reduced) hero.addEventListener('pointermove', kick);
+          layout();
+          kick();
+          hero.classList.add('shader-on');
+        } catch (err) {
+          canvas.remove(); // keep the blurred key art
+        }
+      }
 
       /* ---------- Story: scroll-driven pinned scene ---------- */
       const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
