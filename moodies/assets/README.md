@@ -4,7 +4,8 @@ Everything here is web-optimized from the source files in `~/Documents/MOODIES`.
 
 | File | Used for | Source |
 | --- | --- | --- |
-| `key-art.jpg` | Hero, shop card, og:image | Hot/Cool 3-pack key art (the Moodies still on adambyrne.com) |
+| `key-art.jpg` | Hero background blur, shop card, og:image | Hot/Cool 3-pack key art (the Moodies still on adambyrne.com) |
+| `pack-hot.webp`, `pack-cool.webp` | Floating 3-packs in the hero | Cut out of the key art (background removed) |
 | `legal-review.mp4` | Full commercial in the Legal Review section (H.264, 1080p, ~21 MB) | `!NEW VIDEO/VIDEO REF/MOODIES LEGAL REVIEW.mp4` |
 | `legal-review-poster.jpg` | Video poster | Frame at 0:33 of the spot |
 | `frames/000–174.webp` | Scroll-scrubbed scene (0:13–0:38 of the spot, 7 fps, 1280 px) | Same |

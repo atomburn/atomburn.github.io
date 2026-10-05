@@ -274,21 +274,46 @@
         flex-wrap: wrap;
         gap: 12px;
       }
+      /* The two 3-packs, cut out of the key art, each drifting on its own clock */
       .hero-art {
         position: relative;
         justify-self: center;
         width: min(100%, 620px);
         aspect-ratio: 1;
-        animation: floaty 7s ease-in-out infinite alternate;
       }
-      .hero-art img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(transparent, #000 5%, #000 95%, transparent);
-        -webkit-mask-composite: source-in;
-        mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(transparent, #000 5%, #000 95%, transparent);
-        mask-composite: intersect;
+      .hero-art .float-pack {
+        position: absolute;
+        height: var(--h);
+        width: auto;
+        left: var(--x);
+        top: var(--y);
+        filter: drop-shadow(0 28px 34px rgba(42, 13, 63, 0.45)) drop-shadow(0 6px 10px rgba(42, 13, 63, 0.25));
+        transform-origin: 50% 30%;
+        animation: drift var(--t) ease-in-out var(--delay) infinite alternate;
+        will-change: transform;
+      }
+      .hero-art .float-pack.hot {
+        --x: 6%;
+        --y: 9%;
+        --h: 84%;
+        --r: -8deg;
+        --r2: -3.5deg;
+        --dy: 14px;
+        --dx: -6px;
+        --t: 6.2s;
+        --delay: -1.3s;
+      }
+      .hero-art .float-pack.cool {
+        --x: 47%;
+        --y: 0%;
+        --h: 92%;
+        --r: 5deg;
+        --r2: 9.5deg;
+        --dy: -18px;
+        --dx: 8px;
+        --t: 7.9s;
+        --delay: -4.1s;
+        z-index: 1;
       }
       .keyart-missing .hero-art {
         display: none;
@@ -307,8 +332,8 @@
         }
         .hero-art {
           order: -1;
-          width: min(88vw, 460px);
-          margin-bottom: -6px;
+          width: min(80vw, 420px);
+          margin: 0 auto 8px;
         }
         .hero .sub {
           font-size: 16px;
@@ -1445,9 +1470,10 @@
       }
 
       /* ---------- Keyframes ---------- */
-      @keyframes floaty {
-        from { transform: translateY(-6px) rotate(-0.6deg); }
-        to { transform: translateY(8px) rotate(0.6deg); }
+      @keyframes drift {
+        0% { transform: translate(0, 0) rotate(var(--r)); }
+        45% { transform: translate(var(--dx), calc(var(--dy) * 0.6)) rotate(calc((var(--r) + var(--r2)) / 2)); }
+        100% { transform: translate(calc(var(--dx) * -0.5), var(--dy)) rotate(var(--r2)); }
       }
       @keyframes sway {
         from { rotate: -1.4deg; }
@@ -1518,7 +1544,8 @@
             </div>
           </div>
           <div class="hero-art">
-            <img src="assets/key-art.jpg" width="1254" height="1254" alt="Moodies Hot Color 3-pack (red, pink, orange) and Cool Color 3-pack (purple, green, blue)" onerror="document.getElementById('hero').classList.add('keyart-missing')" />
+            <img class="float-pack hot" src="assets/pack-hot.webp" width="362" height="1089" alt="Moodies Hot Color 3-pack: red, pink and orange" onerror="document.getElementById('hero').classList.add('keyart-missing')" />
+            <img class="float-pack cool" src="assets/pack-cool.webp" width="355" height="1090" alt="Moodies Cool Color 3-pack: purple, green and blue" />
           </div>
         </div>
       </section>
