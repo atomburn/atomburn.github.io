@@ -1465,6 +1465,20 @@
       .line small {
         color: var(--muted);
       }
+      .cart-msg {
+        margin: 0;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(255, 90, 74, 0.12);
+        border: 1px solid rgba(255, 90, 74, 0.35);
+        color: #ffd9d4;
+        font-size: 14px;
+      }
+      .cart-msg.info {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--line);
+        color: var(--muted);
+      }
       .toast {
         position: fixed;
         left: 50%;
@@ -1833,8 +1847,9 @@
       <div class="items" id="cartItems"></div>
       <div class="foot">
         <div class="total"><span>Subtotal</span><span id="cartTotal">$0.00</span></div>
+        <p class="cart-msg" id="cartMsg" role="alert" hidden></p>
         <button class="btn" id="checkout">Checkout</button>
-        <small style="color: var(--muted); text-align: center">Shipping and tax calculated at checkout.</small>
+        <small style="color: var(--muted); text-align: center">Free shipping · Tax calculated at checkout.</small>
       </div>
     </aside>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1842,9 +1857,8 @@
     <script>
       /* ================= CONFIG: edit these ================= */
       const CONFIG = {
-        // Checkout: paste a Shopify / Stripe Payment Link / Square URL here and the cart button will send people there.
-        // Leave blank and checkout opens a pre-filled order email instead.
-        checkoutUrl: '',
+        // Commerce backend (moodies/commerce): '' = same origin. Prices, stock and checkout all come from it.
+        commerceApi: '',
         orderEmail: 'sales@buymoodies.com',
         // Set to a YouTube video ID to embed Legal Review from YouTube instead of assets/legal-review.mp4
         legalReviewYouTubeId: '',
@@ -1860,15 +1874,17 @@
         blue: '#2f7bff',
       };
 
-      // Inventory. The Rainbow Pack is the only product: a Hot 3-pack + a Cool 3-pack.
-      // Set soldOut: true to show it as sold out. Add a buyUrl (e.g. a Stripe Payment Link) to skip the cart.
+      // The Rainbow Pack is the only product: a Hot 3-pack + a Cool 3-pack.
+      // price / soldOut / maxQuantity are display defaults; /api/catalog overwrites them on load.
       const PRODUCTS = [
         {
           id: 'rainbow-pack',
+          sku: 'MOODIES-RAINBOW-PACK',
           name: 'Rainbow Pack',
           desc: 'Six heat-safe silicone Moodies for CFL and LED bulbs, in two pouches.',
           price: 15.98,
           soldOut: false,
+          maxQuantity: 20,
           image: 'assets/key-art.jpg',
           packs: [
             { name: 'Hot 3-pack', colors: ['red', 'pink', 'orange'] },
@@ -1887,7 +1903,8 @@
       const setAccent = (c) => root.style.setProperty('--accent', c);
       $('#year').textContent = new Date().getFullYear();
       $('#mailLink').href = `mailto:${CONFIG.orderEmail}`;
-      $$('[data-price]').forEach((el) => (el.textContent = money(PRODUCTS[0].price)));
+      const showPrices = () => $$('[data-price]').forEach((el) => (el.textContent = money(PRODUCTS[0].price)));
+      showPrices();
       const bulbSrc = (c) => `assets/bulb-${c}.webp`;
 
       /* ---------- Hero shader: rainbow bands that follow an invisible landscape ----------
@@ -2297,29 +2314,62 @@
       };
       const byId = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
       const qtyPick = {};
+      const api = (path) => `${CONFIG.commerceApi}${path}`;
 
+      /* Catalog: live price + stock from the backend. Until it answers, checkout stays off. */
+      let catalog = { status: 'loading', message: '' };
+      async function loadCatalog() {
+        try {
+          const res = await fetch(api('/api/catalog'), { headers: { Accept: 'application/json' }, cache: 'no-store' });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !Array.isArray(data.products)) throw new Error(data.error || 'Catalog unavailable');
+          for (const p of PRODUCTS) {
+            const live = data.products.find((x) => x.sku === p.sku);
+            if (!live) {
+              p.soldOut = true;
+              continue;
+            }
+            p.price = live.unitAmount / 100;
+            p.soldOut = !live.available;
+            p.maxQuantity = Math.max(0, Math.min(20, live.maxQuantity | 0));
+          }
+          catalog = { status: 'ok', message: '' };
+        } catch {
+          catalog = { status: 'error', message: 'Checkout is unavailable right now. Please try again in a minute.' };
+        }
+        showPrices();
+        renderProducts();
+        renderCart();
+        return catalog.status === 'ok';
+      }
+
+      function stockLabel(p) {
+        if (catalog.status === 'loading') return ['Checking stock…', ''];
+        if (catalog.status === 'error') return ['Unavailable right now', ' out'];
+        return p.soldOut ? ['Sold out', ' out'] : ['In stock', ''];
+      }
       function renderProducts() {
+        const wasIn = !!$('#products .product.in');
         $('#products').innerHTML = PRODUCTS.map((p) => {
-          qtyPick[p.id] ||= 1;
+          qtyPick[p.id] = Math.max(1, Math.min(qtyPick[p.id] || 1, p.maxQuantity || 1));
           const packs = p.packs
             .map((k) => `<div class="pack"><strong>${k.name}</strong><span class="dots">${k.colors.map((c) => `<span style="--c:${COLORS[c]}">${c}</span>`).join('')}</span></div>`)
             .join('');
+          const [label, cls] = stockLabel(p);
           const action = p.soldOut
             ? `<button class="btn" disabled>Sold out</button>`
-            : p.buyUrl
-              ? `<a class="btn" href="${p.buyUrl}">Buy now</a>`
-              : `<span class="stepper"><button data-step="-1" data-id="${p.id}" aria-label="One fewer">−</button><output id="qty-${p.id}">${qtyPick[p.id]}</output><button data-step="1" data-id="${p.id}" aria-label="One more">+</button></span>
-                 <button class="btn" data-add="${p.id}">Add to cart</button>`;
-          return `<article class="product reveal" data-id="${p.id}">
+            : `<span class="stepper"><button data-step="-1" data-id="${p.id}" aria-label="One fewer">−</button><output id="qty-${p.id}">${qtyPick[p.id]}</output><button data-step="1" data-id="${p.id}" aria-label="One more">+</button></span>
+               <button class="btn" data-add="${p.id}">Add to cart</button>`;
+          return `<article class="product reveal${wasIn ? ' in' : ''}" data-id="${p.id}">
               <div class="pic"><img src="${p.image}" width="1254" height="1254" alt="${p.name}: ${p.packs.map((k) => `${k.name} (${k.colors.join(', ')})`).join(' and ')}" loading="lazy" /></div>
               <div class="info">
-                <span class="stock${p.soldOut ? ' out' : ''}">${p.soldOut ? 'Sold out' : 'In stock'}</span>
+                <span class="stock${cls}">${label}</span>
                 <h3>${p.name}</h3>
                 <p class="desc">${p.desc}</p>
                 <div class="packs">${packs}</div>
                 <div class="lineup" aria-hidden="true">${p.colors.map((c) => `<img src="${bulbSrc(c)}" alt="" loading="lazy" />`).join('')}</div>
                 <div class="buy"><span class="price">${money(p.price)}</span>${action}</div>
-                <p class="ship-note">Use only with CFL/LED bulbs. Not for incandescents.</p>
+                <p class="ship-note">Free shipping. Use only with CFL/LED bulbs. Not for incandescents.</p>
               </div>
             </article>`;
         }).join('');
@@ -2329,42 +2379,78 @@
         const step = e.target.closest('[data-step]');
         if (step) {
           const id = step.dataset.id;
-          qtyPick[id] = Math.max(1, Math.min(99, qtyPick[id] + Number(step.dataset.step)));
+          qtyPick[id] = Math.max(1, Math.min(byId[id].maxQuantity || 1, qtyPick[id] + Number(step.dataset.step)));
           $(`#qty-${id}`).textContent = qtyPick[id];
           return;
         }
         const id = e.target.closest('[data-add]')?.dataset.add;
         if (!id) return;
-        cart[id] = (cart[id] || 0) + qtyPick[id];
+        const p = byId[id];
+        const before = cart[id] || 0;
+        cart[id] = Math.min(p.maxQuantity || 20, before + qtyPick[id]);
         saveCart();
         renderCart();
-        toast(`${qtyPick[id]} × ${byId[id].name} added`);
+        const added = cart[id] - before;
+        toast(added > 0 ? `${added} × ${p.name} added` : `Max ${p.maxQuantity} per order`);
       });
 
+      /* Cart */
+      let checkoutBusy = false;
+      let checkoutRetry = false;
+      let cartNote = { text: '', info: false, problem: false };
+      const setCartNote = (text, info = false, problem = false) => {
+        cartNote = { text, info, problem };
+        const el = $('#cartMsg');
+        el.textContent = text;
+        el.hidden = !text;
+        el.classList.toggle('info', info);
+      };
+      function cartProblem(ids) {
+        if (!ids.length) return '';
+        if (catalog.status === 'loading') return 'Checking price and stock…';
+        if (catalog.status === 'error') return catalog.message;
+        for (const id of ids) {
+          const p = byId[id];
+          if (p.soldOut) return `${p.name} is sold out right now.`;
+          if (cart[id] > p.maxQuantity) return `Only ${p.maxQuantity} ${p.name}${p.maxQuantity === 1 ? '' : 's'} available. Lower the quantity to continue.`;
+        }
+        return '';
+      }
       function renderCart() {
         const ids = Object.keys(cart).filter((id) => byId[id] && cart[id] > 0);
         const count = ids.reduce((n, id) => n + cart[id], 0);
         const total = ids.reduce((n, id) => n + cart[id] * byId[id].price, 0);
+        const problem = cartProblem(ids);
         $('#cartCount').textContent = count;
         $('#cartTotal').textContent = money(total);
-        $('#checkout').disabled = !count;
+        const btn = $('#checkout');
+        btn.disabled = !count || !!problem || checkoutBusy;
+        btn.textContent = checkoutBusy ? 'Starting checkout…' : checkoutRetry ? 'Try again' : 'Checkout';
+        // problem notes track live state; checkout error notes stay until the cart changes or a retry
+        if (problem) setCartNote(problem, catalog.status === 'loading', true);
+        else if (cartNote.problem || (!checkoutBusy && cartNote.info)) setCartNote('');
         $('#cartItems').innerHTML = ids.length
           ? ids
               .map((id) => {
                 const p = byId[id];
                 const sw = `conic-gradient(${p.colors.map((c) => COLORS[c]).join(',')},${COLORS[p.colors[0]]})`;
+                const atMax = cart[id] >= p.maxQuantity;
                 return `<div class="line"><div class="sw" style="--c:${sw}"></div>
                   <div><div>${p.name}</div><small>${money(p.price)} each</small></div>
-                  <div class="qty"><button data-q="-1" data-id="${id}" aria-label="Remove one">−</button><span>${cart[id]}</span><button data-q="1" data-id="${id}" aria-label="Add one">+</button></div></div>`;
+                  <div class="qty"><button data-q="-1" data-id="${id}" aria-label="Remove one">−</button><span>${cart[id]}</span><button data-q="1" data-id="${id}" aria-label="Add one"${atMax ? ' disabled' : ''}>+</button></div></div>`;
               })
               .join('')
           : `<div class="empty">No Moodies yet. Your room is still lit like a law office.</div>`;
+        if (!ids.length && !checkoutBusy) setCartNote('');
       }
       $('#cartItems').addEventListener('click', (e) => {
         const b = e.target.closest('[data-q]');
-        if (!b) return;
-        cart[b.dataset.id] = Math.max(0, (cart[b.dataset.id] || 0) + Number(b.dataset.q));
-        if (!cart[b.dataset.id]) delete cart[b.dataset.id];
+        if (!b || checkoutBusy) return;
+        const id = b.dataset.id;
+        cart[id] = Math.max(0, Math.min(byId[id].maxQuantity || 20, (cart[id] || 0) + Number(b.dataset.q)));
+        if (!cart[id]) delete cart[id];
+        checkoutRetry = false;
+        setCartNote('');
         saveCart();
         renderCart();
       });
@@ -2372,17 +2458,91 @@
         document.body.classList.toggle('cart-open', open);
         $('#drawer').setAttribute('aria-hidden', !open);
       };
-      $('#cartBtn').addEventListener('click', () => openCart(true));
+      $('#cartBtn').addEventListener('click', () => {
+        openCart(true);
+        if (catalog.status === 'error' && !checkoutBusy) loadCatalog(); // retry a failed catalog
+      });
       $('#closeCart').addEventListener('click', () => openCart(false));
       $('#scrim').addEventListener('click', () => openCart(false));
       addEventListener('keydown', (e) => e.key === 'Escape' && openCart(false));
-      $('#checkout').addEventListener('click', () => {
-        if (CONFIG.checkoutUrl) return (location.href = CONFIG.checkoutUrl);
-        const ids = Object.keys(cart).filter((id) => byId[id]);
-        const lines = ids.map((id) => `${cart[id]} × ${byId[id].name} (${money(byId[id].price)})`);
-        const total = ids.reduce((n, id) => n + cart[id] * byId[id].price, 0);
-        const body = `Hi Moodies! I'd like to order:\n\n${lines.join('\n')}\n\nSubtotal: ${money(total)}\n\nShip to:\n`;
-        location.href = `mailto:${CONFIG.orderEmail}?subject=${encodeURIComponent('Moodies order')}&body=${encodeURIComponent(body)}`;
+
+      /* Checkout: POST the cart (SKUs + quantities only) to the backend, then go to hosted Stripe.
+         One idempotency key per cart, kept across retries and reloads; replaced when the cart changes
+         or the backend says the attempt is finished. */
+      const ATTEMPT_KEY = 'moodies-checkout-attempt';
+      const newKey = () =>
+        crypto.randomUUID ? crypto.randomUUID() : '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) => (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16));
+      function checkoutAttempt(items) {
+        const signature = JSON.stringify(items);
+        let attempt = null;
+        try {
+          attempt = JSON.parse(sessionStorage.getItem(ATTEMPT_KEY));
+        } catch {}
+        if (!attempt || attempt.signature !== signature) {
+          attempt = { signature, key: newKey() };
+          try {
+            sessionStorage.setItem(ATTEMPT_KEY, JSON.stringify(attempt));
+          } catch {}
+        }
+        return attempt;
+      }
+      const dropAttempt = () => {
+        try {
+          sessionStorage.removeItem(ATTEMPT_KEY);
+        } catch {}
+      };
+
+      $('#checkout').addEventListener('click', async () => {
+        if (checkoutBusy) return;
+        checkoutBusy = true;
+        checkoutRetry = false;
+        setCartNote('');
+        renderCart();
+        let leaving = false;
+        try {
+          // Re-check price and stock right before checkout
+          if (!(await loadCatalog())) return;
+          const ids = Object.keys(cart).filter((id) => byId[id] && cart[id] > 0);
+          if (cartProblem(ids)) return;
+          const items = ids.map((id) => ({ sku: byId[id].sku, quantity: cart[id] }));
+          if (!items.length || items.some((i) => !Number.isInteger(i.quantity) || i.quantity < 1)) return;
+          const attempt = checkoutAttempt(items);
+          let response;
+          try {
+            response = await fetch(api('/api/checkout'), {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Idempotency-Key': attempt.key },
+              body: JSON.stringify({ items }),
+            });
+          } catch {
+            checkoutRetry = true; // same key on retry
+            setCartNote('We couldn’t reach checkout. Check your connection and try again.');
+            return;
+          }
+          const result = await response.json().catch(() => ({}));
+          if (response.ok && result.url) {
+            leaving = true;
+            location.assign(result.url);
+            return;
+          }
+          if (response.status === 409) {
+            // changed cart, expired/completed attempt, or stock moved: start fresh
+            dropAttempt();
+            await loadCatalog();
+            setCartNote(result.error || 'Something changed. Please check your cart and try again.');
+          } else if (response.status >= 500) {
+            checkoutRetry = true; // same key on retry
+            setCartNote(result.error || 'Checkout is temporarily unavailable. Please try again.');
+          } else {
+            setCartNote(result.error || 'Checkout couldn’t start. Please try again.');
+          }
+          toast('Checkout didn’t start');
+        } finally {
+          if (!leaving) {
+            checkoutBusy = false;
+            renderCart();
+          }
+        }
       });
 
       let toastTimer;
@@ -2409,6 +2569,7 @@
       renderProducts();
       renderCart();
       observeAll();
+      loadCatalog();
     </script>
   </body>
 </html>

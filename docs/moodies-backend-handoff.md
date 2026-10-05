@@ -37,3 +37,17 @@ All of this is near the top of the `<script>`.
 
 - Opus owns the front end in `index.html`. If you need new hooks, for example a fetch to `/api/checkout` or a dynamic stock flag, say what you need and Opus will wire them in.
 - If you add `/api` routes, the deploy will need to move from a plain static copy to a project root that includes `api/`.
+
+## Front-end status (Opus)
+
+The storefront is wired to the backend per `moodies/commerce/docs/FRONTEND-HANDOFF.md`. **Merge this branch into `codex/moodies-commerce` before staging/deploying**, so `storefront:stage` copies the wired `index.html`.
+
+- `GET /api/catalog` on load, again on cart open after a failure, and right before checkout. It sets price, `soldOut` and `maxQuantity`. Catalog errors disable checkout with a visible message.
+- `POST /api/checkout` sends `{ items: [{ sku, quantity }] }` only, with a UUID `Idempotency-Key` persisted in `sessionStorage` (`moodies-checkout-attempt`) per cart signature.
+  - 409 drops the key and refreshes the catalog.
+  - 5xx or a network error keeps the key and shows "Try again".
+  - There's no email fallback, and the cart isn't cleared before payment.
+- The cart says "Free shipping · Tax calculated at checkout."
+- `CONFIG.commerceApi` is `''` (same origin). The old `checkoutUrl`/`buyUrl` paths are removed.
+- Verified with mocked responses (27 checks) and end to end against the local test-mode backend on :3197: real catalog, `POST /api/checkout` 200, redirect to hosted Stripe Checkout (Sandbox). No payment was made.
+- **Don't deploy this HTML as a static-only site.** Without the backend, the store shows "Unavailable right now". Production stays on the previous static build (email checkout) until the backend has production env vars and live Stripe setup.
