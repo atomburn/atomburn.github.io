@@ -1,0 +1,40 @@
+{
+  "name": "moodies-commerce",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --conditions=react-server --test tests/*.test.ts",
+    "test:database": "node scripts/test-database.mjs",
+    "catalog:seed": "tsx --conditions=react-server scripts/seed-catalog.ts",
+    "ops": "tsx --conditions=react-server scripts/ops.ts",
+    "storefront:stage": "node scripts/stage-storefront.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.117.2",
+    "next": "16.3.8",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "server-only": "0.0.1",
+    "stripe": "23.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.0.0",
+    "pg": "^8.16.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0",
+    "@eslint/js": "^9.39.4"
+  }
+}
