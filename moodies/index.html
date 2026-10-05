@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>moodies™ | Change the mood. Keep the bulb.</title>
+    <meta name="description" content="Moodies are heat-safe silicone covers that turn the CFL or LED bulb you already own into mood lighting. Pink, blue, green, red, or the whole rainbow." />
+    <link rel="canonical" href="https://buymoodies.com/" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='22' y='4' width='20' height='14' rx='3' fill='%23222'/%3E%3Cpath d='M20 16c0 8-12 12-12 26a24 24 0 0 0 48 0c0-14-12-18-12-26z' fill='%23ff4fa3'/%3E%3C/svg%3E" />
+    <meta name="theme-color" content="#08080c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://buymoodies.com/" />
+    <meta property="og:title" content="moodies™ | Change the mood. Keep the bulb." />
+    <meta property="og:description" content="Heat-safe silicone covers that turn any CFL or LED bulb into mood lighting." />
+    <meta property="og:image" content="assets/key-art.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #08080c;
+        --ink-2: #111118;
+        --paper: #f6f1ea;
+        --muted: #a8a3b3;
+        --line: rgba(255, 255, 255, 0.12);
+        --pink: #ff4fa3;
+        --blue: #3d7bff;
+        --green: #3ddc6b;
+        --red: #ff3b30;
+        --amber: #ffb020;
+        --mood: #ff4fa3;
+        --accent: #ff4fa3;
+        --display: 'Fraunces', Georgia, serif;
+        --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--body);
+        font-size: 17px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img,
+      video,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      .wrap {
+        width: min(1200px, 100% - 32px);
+        margin-inline: auto;
+      }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .display {
+        font-family: var(--display);
+        font-variation-settings: 'SOFT' 100, 'opsz' 144;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 0.95;
+        margin: 0;
+      }
+      .tm {
+        font-size: 0.35em;
+        vertical-align: super;
+        font-family: var(--body);
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      /* ---------- Header ---------- */
+      .top {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px max(16px, env(safe-area-inset-left));
+        background: linear-gradient(to bottom, rgba(8, 8, 12, 0.85), rgba(8, 8, 12, 0));
+      }
+      .top.solid {
+        background: rgba(8, 8, 12, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .logo {
+        font-family: var(--display);
+        font-variation-settings: 'SOFT' 100, 'opsz' 72;
+        font-weight: 700;
+        font-size: 26px;
+        letter-spacing: -0.03em;
+        text-decoration: none;
+        display: flex;
+        align-items: baseline;
+        gap: 1px;
+      }
+      .logo .dot {
+        color: var(--accent);
+        transition: color 0.4s;
+      }
+      .top nav {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .top nav a.link {
+        text-decoration: none;
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+      }
+      .top nav a.link:hover {
+        color: var(--paper);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 22px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        background: var(--accent);
+        color: #0b0b10;
+        transition: background 0.4s, transform 0.2s, box-shadow 0.4s;
+        box-shadow: 0 0 0 0 transparent, 0 10px 30px -10px var(--accent);
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--paper);
+        box-shadow: inset 0 0 0 1.5px var(--line);
+      }
+      .btn.small {
+        padding: 9px 16px;
+        font-size: 14px;
+      }
+      .cart-count {
+        background: #0b0b10;
+        color: var(--paper);
+        border-radius: 999px;
+        min-width: 20px;
+        height: 20px;
+        font-size: 12px;
+        display: inline-grid;
+        place-items: center;
+        padding: 0 6px;
+      }
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        background: var(--accent);
+        z-index: 60;
+        transition: background 0.4s;
+      }
+      @media (max-width: 640px) {
+        .top nav a.link {
+          display: none;
+        }
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .keyart {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+      }
+      .keyart img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: slowzoom 18s ease-out both;
+      }
+      .keyart-fallback {
+        display: none;
+        position: absolute;
+        inset: 0;
+      }
+      .keyart.is-missing img {
+        display: none;
+      }
+      .keyart.is-missing .keyart-fallback {
+        display: block;
+      }
+      .keyart-fallback .glow {
+        position: absolute;
+        width: 46vmax;
+        height: 46vmax;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.55;
+        mix-blend-mode: screen;
+        animation: drift 14s ease-in-out infinite alternate;
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(to top, var(--ink) 4%, rgba(8, 8, 12, 0.55) 45%, rgba(8, 8, 12, 0.2) 75%, rgba(8, 8, 12, 0.6));
+      }
+      .hero-bulbs {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        gap: clamp(8px, 3vw, 40px);
+        pointer-events: none;
+      }
+      .hero-bulbs .hb {
+        width: clamp(54px, 9vw, 120px);
+        transform: translateY(calc(var(--k, 40) * -1%));
+        animation: hang 1.6s cubic-bezier(0.2, 0.9, 0.25, 1.15) both, sway 6s ease-in-out 1.6s infinite alternate;
+        transform-origin: 50% 0;
+      }
+      @media (max-width: 640px) {
+        .hero-bulbs .hb {
+          width: 16vw;
+          transform: translateY(calc((var(--k, 40) - 26) * -1%));
+        }
+      }
+      .hero-copy {
+        padding: 0 0 clamp(48px, 10vh, 110px);
+      }
+      .hero h1 {
+        font-size: clamp(64px, 15vw, 210px);
+      }
+      .hero h1 .o {
+        display: inline-block;
+        color: var(--accent);
+        transition: color 0.4s;
+        text-shadow: 0 0 40px var(--accent);
+      }
+      .hero .lede {
+        font-family: var(--display);
+        font-variation-settings: 'SOFT' 100;
+        font-style: italic;
+        font-size: clamp(22px, 3vw, 36px);
+        margin: 18px 0 8px;
+        max-width: 22ch;
+        line-height: 1.15;
+      }
+      .hero .sub {
+        color: var(--muted);
+        max-width: 46ch;
+        margin: 0 0 28px;
+      }
+      .hero .ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .scroll-cue {
+        position: absolute;
+        right: max(16px, 4vw);
+        bottom: clamp(48px, 10vh, 110px);
+        writing-mode: vertical-rl;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .scroll-cue::after {
+        content: '';
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(var(--muted), transparent);
+        animation: cue 2s ease-in-out infinite;
+      }
+      @media (max-width: 640px) {
+        .scroll-cue {
+          display: none;
+        }
+      }
+
+      /* ---------- Story (pinned scrollytelling) ---------- */
+      .story {
+        position: relative;
+        height: 800vh;
+      }
+      .stage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+        --mood: rgb(226 232 255);
+        --lit: 0.5;
+        background:
+          radial-gradient(ellipse 55% 60% at var(--bx, 62%) 40%, color-mix(in srgb, var(--mood) calc(var(--lit) * 42%), transparent), transparent 70%),
+          radial-gradient(ellipse 120% 80% at var(--bx, 62%) 30%, color-mix(in srgb, var(--mood) calc(var(--lit) * 14%), var(--ink)), var(--ink) 80%);
+      }
+      .room-wall {
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 140px);
+        mask-image: linear-gradient(to bottom, black 40%, transparent 85%);
+      }
+      .frame {
+        position: absolute;
+        top: 16%;
+        left: calc(var(--bx, 62%) + 14vw);
+        width: clamp(70px, 9vw, 140px);
+        aspect-ratio: 4 / 5;
+        border: 6px solid #15151c;
+        background: linear-gradient(135deg, color-mix(in srgb, var(--mood) 30%, #1a1a22), #0e0e14);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+      .frame::after {
+        content: '';
+        position: absolute;
+        inset: 22% 22%;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--mood) 55%, #111);
+        filter: blur(1px);
+      }
+      .furniture {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 34%;
+      }
+      .furniture .solid {
+        fill: #0a0a0f;
+      }
+      .furniture .rim {
+        fill: none;
+        stroke: var(--mood);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        opacity: calc(0.25 + var(--lit) * 0.6);
+      }
+      .furniture .pool {
+        fill: var(--mood);
+        opacity: calc(var(--lit) * 0.22);
+        filter: blur(20px);
+      }
+      .bulb-glow {
+        position: absolute;
+        left: var(--bx, 62%);
+        top: 46%;
+        width: 70vmin;
+        height: 70vmin;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, color-mix(in srgb, var(--mood) 90%, white) 0%, color-mix(in srgb, var(--mood) 55%, transparent) 14%, transparent 62%);
+        opacity: var(--lit);
+        pointer-events: none;
+      }
+      .bulb {
+        position: absolute;
+        left: var(--bx, 62%);
+        top: 0;
+        height: 64%;
+        transform: translateX(-50%);
+        overflow: visible;
+        transform-origin: 50% 0;
+        animation: sway 7s ease-in-out infinite alternate;
+      }
+      .bulb .glass {
+        fill: #f3f6ff;
+      }
+      .bulb.flicker .glass {
+        animation: flicker 1.4s steps(1) both;
+      }
+      .cover {
+        transform: translateY(var(--cover-y, 420px));
+        opacity: var(--cover-o, 0);
+      }
+      .cover-fill {
+        fill: var(--mood);
+      }
+      .extra-bulbs .bulb {
+        animation-duration: 5s;
+      }
+      .extra-bulbs .bulb {
+        height: 46%;
+        top: calc(var(--drop-y, -100%));
+      }
+      .extra-bulbs .bulb svg {
+        height: 100%;
+        width: auto;
+      }
+      .extra-bulbs .glow-sm {
+        position: absolute;
+        width: 36vmin;
+        height: 36vmin;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, color-mix(in srgb, var(--mood) 70%, white) 0%, color-mix(in srgb, var(--mood) 40%, transparent) 16%, transparent 64%);
+        pointer-events: none;
+      }
+      .steps {
+        position: absolute;
+        left: max(16px, 6vw);
+        top: 50%;
+        transform: translateY(-50%);
+        width: min(30rem, 40vw);
+      }
+      .step {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(calc(-50% + 24px));
+        opacity: 0;
+        transition: opacity 0.2s, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        pointer-events: none;
+      }
+      .step.on {
+        transition: opacity 0.5s 0.15s, transform 0.6s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+        opacity: 1;
+        transform: translateY(-50%);
+        pointer-events: auto;
+      }
+      .step .num {
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--mood);
+        font-weight: 700;
+      }
+      .step h2 {
+        font-size: clamp(44px, 6vw, 92px);
+        margin: 10px 0 14px;
+      }
+      .step h2 em {
+        color: var(--mood);
+        font-style: italic;
+      }
+      .step p {
+        color: #d9d4e2;
+        font-size: clamp(16px, 1.4vw, 19px);
+        margin: 0;
+        max-width: 34ch;
+      }
+      .swatches {
+        position: absolute;
+        right: max(16px, 4vw);
+        top: 50%;
+        transform: translateY(-50%);
+        display: grid;
+        gap: 10px;
+      }
+      .swatches span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--c);
+        opacity: 0.3;
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      .swatches span.on {
+        opacity: 1;
+        transform: scale(1.5);
+        box-shadow: 0 0 14px var(--c);
+      }
+      @media (max-width: 900px) {
+        .stage {
+          --bx: 50%;
+        }
+        .bulb {
+          height: 54%;
+        }
+        .frame {
+          display: none;
+        }
+        .steps {
+          top: auto;
+          bottom: max(24px, env(safe-area-inset-bottom));
+          left: 16px;
+          right: 16px;
+          width: auto;
+          transform: none;
+          height: 13.5rem;
+        }
+        .step {
+          top: auto;
+          bottom: 0;
+          transform: translateY(24px);
+          padding: 18px 18px 20px;
+          border-radius: 20px;
+          background: rgba(8, 8, 12, 0.62);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid var(--line);
+        }
+        .step.on {
+          transform: none;
+        }
+        .step h2 {
+          font-size: clamp(34px, 10vw, 48px);
+          margin: 6px 0 8px;
+        }
+        .swatches {
+          display: none;
+        }
+        .extra-bulbs .bulb {
+          height: 36%;
+        }
+      }
+
+      /* ---------- Sections ---------- */
+      section.block {
+        padding: clamp(80px, 14vh, 160px) 0;
+        position: relative;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+        transition-delay: var(--d, 0s);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .section-head {
+        display: grid;
+        gap: 14px;
+        margin-bottom: clamp(36px, 6vh, 64px);
+        max-width: 760px;
+      }
+      .section-head h2 {
+        font-size: clamp(42px, 6.4vw, 96px);
+      }
+      .section-head p {
+        color: var(--muted);
+        margin: 0;
+        font-size: 18px;
+        max-width: 54ch;
+      }
+
+      /* How it works */
+      .how-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .how-card {
+        background: var(--ink-2);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 28px;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+      .how-card .art {
+        height: 180px;
+        display: grid;
+        place-items: center;
+        border-radius: 18px;
+        background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--c) 30%, transparent), transparent 70%);
+        overflow: hidden;
+      }
+      .how-card .art svg {
+        height: 150px;
+      }
+      .how-card h3 {
+        font-family: var(--display);
+        font-variation-settings: 'SOFT' 100;
+        font-size: 30px;
+        margin: 6px 0 0;
+        letter-spacing: -0.02em;
+      }
+      .how-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .how-card .n {
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        color: var(--c);
+        font-weight: 700;
+      }
+      .how-card.in .stretch {
+        animation: stretch 2.4s ease-in-out infinite;
+        transform-origin: 50% 50%;
+      }
+      .how-card.in .slip {
+        animation: slip 2.8s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+      }
+      .how-card.in .switch {
+        animation: switchon 2.8s steps(1) infinite;
+      }
+      .specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+      .specs span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: #d9d4e2;
+      }
+      @media (max-width: 900px) {
+        .how-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Math */
+      .math {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: clamp(32px, 6vw, 80px);
+        align-items: center;
+      }
+      .bars {
+        display: grid;
+        gap: 22px;
+      }
+      .bar-row .label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        margin-bottom: 8px;
+        color: #d9d4e2;
+      }
+      .bar {
+        height: 56px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: 16px;
+        transition: width 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .bar-row.old i {
+        background: repeating-linear-gradient(-45deg, #2a2a35 0 10px, #24242e 10px 20px);
+      }
+      .bar-row.new i {
+        background: linear-gradient(90deg, var(--pink), var(--amber), var(--green), var(--blue));
+      }
+      .bars.in .old i {
+        width: 100%;
+      }
+      .bars.in .new i {
+        width: 50%;
+        transition-delay: 0.4s;
+      }
+      .big-stat {
+        font-size: clamp(80px, 13vw, 190px);
+      }
+      .big-stat sup {
+        font-size: 0.3em;
+        color: var(--accent);
+      }
+      .footnote {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 18px;
+      }
+      @media (max-width: 900px) {
+        .math {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Legal Review */
+      .legal {
+        background: #f3ede2;
+        color: #16141a;
+        overflow: hidden;
+      }
+      .legal .eyebrow {
+        color: #6b6474;
+      }
+      .legal .section-head p {
+        color: #4b4553;
+      }
+      .theater {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        background: #0b0b10;
+        aspect-ratio: 16 / 9;
+        box-shadow: 0 40px 80px -30px rgba(22, 20, 26, 0.6);
+      }
+      .theater video,
+      .theater iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 0;
+      }
+      .title-card {
+        position: absolute;
+        inset: 0;
+        display: none;
+        place-items: center;
+        text-align: center;
+        color: var(--paper);
+        background:
+          radial-gradient(circle at 30% 40%, rgba(255, 79, 163, 0.35), transparent 45%),
+          radial-gradient(circle at 70% 60%, rgba(61, 123, 255, 0.35), transparent 45%),
+          #0b0b10;
+        padding: 24px;
+      }
+      .theater.no-video .title-card {
+        display: grid;
+      }
+      .theater.no-video video {
+        display: none;
+      }
+      .title-card .tc-title {
+        font-family: var(--display);
+        font-variation-settings: 'SOFT' 0, 'opsz' 144;
+        font-size: clamp(40px, 8vw, 110px);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .title-card .tc-sub {
+        font-size: 13px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 14px;
+      }
+      .legal-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: clamp(28px, 5vw, 64px);
+        align-items: start;
+      }
+      .fineprint {
+        position: relative;
+        font-family: 'Courier New', ui-monospace, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        border-top: 2px solid #16141a;
+        padding: 20px 0 96px;
+      }
+      .fineprint h3 {
+        font-family: var(--body);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin: 0 0 14px;
+      }
+      .fineprint ol {
+        padding-left: 1.4em;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      .fineprint li {
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: opacity 0.5s, transform 0.5s;
+        transition-delay: calc(var(--i) * 0.18s);
+      }
+      .fineprint.in li {
+        opacity: 1;
+        transform: none;
+      }
+      .stamp {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border: 4px solid #d6262f;
+        color: #d6262f;
+        font-family: var(--body);
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 20px;
+        line-height: 1.05;
+        text-align: center;
+        transform: rotate(-12deg) scale(2.4);
+        opacity: 0;
+        mix-blend-mode: multiply;
+      }
+      .stamp small {
+        display: block;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+      }
+      .fineprint.in .stamp {
+        animation: stamp 0.45s cubic-bezier(0.3, 1.6, 0.6, 1) 1.9s forwards;
+      }
+      @media (max-width: 900px) {
+        .legal-grid {
+          grid-template-columns: 1fr;
+        }
+        .fineprint {
+          padding-bottom: 88px;
+        }
+      }
+
+      /* Shop */
+      .filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+      .filters button {
+        background: transparent;
+        color: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      .filters button[aria-pressed='true'] {
+        background: var(--paper);
+        color: var(--ink);
+        border-color: var(--paper);
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 18px;
+      }
+      .product {
+        --c: var(--pink);
+        position: relative;
+        background: var(--ink-2);
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 18px;
+        display: grid;
+        gap: 12px;
+        transition: border-color 0.3s, transform 0.3s;
+      }
+      .product:hover {
+        border-color: color-mix(in srgb, var(--c) 60%, transparent);
+        transform: translateY(-3px);
+      }
+      .product .pic {
+        height: 220px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 50% 58%, color-mix(in srgb, var(--c) 45%, transparent), transparent 62%),
+          #0c0c12;
+        overflow: hidden;
+      }
+      .product .pic svg {
+        height: 180px;
+        width: auto;
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .product:hover .pic svg {
+        transform: translateY(6px) rotate(-2deg);
+      }
+      .product .badge {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 5px 10px;
+        border-radius: 999px;
+      }
+      .product h3 {
+        margin: 0;
+        font-family: var(--display);
+        font-variation-settings: 'SOFT' 100;
+        font-size: 24px;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .product p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+      .product .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 4px;
+      }
+      .product .price {
+        font-weight: 700;
+        font-size: 20px;
+      }
+      .product .add {
+        background: var(--c);
+        color: #0b0b10;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-weight: 700;
+        font-size: 14px;
+        transition: transform 0.15s;
+      }
+      .product .add:active {
+        transform: scale(0.95);
+      }
+      .amazon {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      /* FAQ */
+      .faq {
+        display: grid;
+        gap: 10px;
+        max-width: 820px;
+      }
+      .faq details {
+        border-bottom: 1px solid var(--line);
+        padding: 18px 0;
+      }
+      .faq summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq summary::after {
+        content: '+';
+        font-size: 26px;
+        line-height: 1;
+        color: var(--accent);
+        transition: transform 0.3s;
+      }
+      .faq details[open] summary::after {
+        transform: rotate(45deg);
+      }
+      .faq details p {
+        color: var(--muted);
+        margin: 12px 0 0;
+        max-width: 64ch;
+      }
+
+      /* Finale + footer */
+      .finale {
+        text-align: center;
+        padding: clamp(100px, 18vh, 200px) 0;
+        background: radial-gradient(ellipse 60% 70% at 50% 100%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%);
+        transition: background 0.4s;
+      }
+      .finale h2 {
+        font-size: clamp(54px, 10vw, 150px);
+      }
+      .finale p {
+        color: var(--muted);
+        margin: 18px auto 32px;
+        max-width: 40ch;
+      }
+      .mood-picker {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      .mood-picker button {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        background: var(--c);
+        box-shadow: 0 0 24px -4px var(--c);
+        transition: transform 0.2s, border-color 0.2s;
+      }
+      .mood-picker button[aria-pressed='true'] {
+        border-color: var(--paper);
+        transform: scale(1.15);
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 40px 0 calc(40px + env(safe-area-inset-bottom));
+        color: var(--muted);
+        font-size: 14px;
+      }
+      footer .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      footer .links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      /* Cart drawer */
+      .scrim {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        z-index: 80;
+      }
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(420px, 100%);
+        background: #111118;
+        border-left: 1px solid var(--line);
+        z-index: 90;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+      body.cart-open .scrim {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      body.cart-open .drawer {
+        transform: none;
+      }
+      .drawer header,
+      .drawer .foot {
+        padding: 20px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .drawer .foot {
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+        display: grid;
+        justify-content: stretch;
+        align-items: stretch;
+        gap: 12px;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+      }
+      .drawer .foot .total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 18px;
+      }
+      .drawer .foot .btn {
+        justify-content: center;
+      }
+      .drawer .items {
+        overflow: auto;
+        padding: 8px 20px;
+      }
+      .drawer .empty {
+        color: var(--muted);
+        padding: 40px 0;
+        text-align: center;
+      }
+      .line {
+        display: grid;
+        grid-template-columns: 44px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .line .sw {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--c);
+      }
+      .line .qty {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .line .qty button,
+      .icon-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--paper);
+        display: grid;
+        place-items: center;
+      }
+      .line small {
+        color: var(--muted);
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: calc(24px + env(safe-area-inset-bottom));
+        transform: translate(-50%, calc(100% + 40px));
+        visibility: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 12px 20px;
+        font-weight: 600;
+        font-size: 14px;
+        z-index: 95;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .toast.show {
+        transform: translate(-50%, 0);
+        visibility: visible;
+      }
+
+      /* ---------- Keyframes ---------- */
+      @keyframes slowzoom {
+        from { transform: scale(1.12); }
+        to { transform: scale(1); }
+      }
+      @keyframes drift {
+        to { transform: translate(6vw, -4vh) scale(1.1); }
+      }
+      @keyframes hang {
+        from { transform: translateY(-110vh); }
+      }
+      @keyframes sway {
+        from { rotate: -1.4deg; }
+        to { rotate: 1.4deg; }
+      }
+      @keyframes cue {
+        0%, 100% { transform: scaleY(0.4); transform-origin: top; }
+        50% { transform: scaleY(1); transform-origin: top; }
+      }
+      @keyframes flicker {
+        0% { fill: #3a3d48; }
+        10% { fill: #f3f6ff; }
+        16% { fill: #3a3d48; }
+        30% { fill: #f3f6ff; }
+        36% { fill: #4a4d58; }
+        44%, 100% { fill: #f3f6ff; }
+      }
+      @keyframes stretch {
+        0%, 100% { transform: scaleX(1); }
+        50% { transform: scaleX(1.18) scaleY(0.94); }
+      }
+      @keyframes slip {
+        0% { transform: translateY(150px); opacity: 0; }
+        15% { opacity: 1; }
+        55%, 100% { transform: translateY(0); opacity: 1; }
+      }
+      @keyframes switchon {
+        0% { opacity: 0.1; }
+        40%, 100% { opacity: 1; }
+      }
+      @keyframes stamp {
+        to { transform: rotate(-12deg) scale(1); opacity: 0.9; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"></div>
+
+    <header class="top">
+      <a href="#top" class="logo" aria-label="moodies home">mood<span class="dot">i</span>es<span class="tm">™</span></a>
+      <nav>
+        <a class="link" href="#how">How it works</a>
+        <a class="link" href="#legal">Legal Review</a>
+        <a class="link" href="#shop">Shop</a>
+        <button class="btn small" id="cartBtn" aria-label="Open cart">Cart <span class="cart-count" id="cartCount">0</span></button>
+      </nav>
+    </header>
+
+    <!-- SVG symbols reused everywhere -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <radialGradient id="shade" cx="38%" cy="40%" r="70%">
+          <stop offset="0" stop-color="#fff" stop-opacity="0.5" />
+          <stop offset="0.45" stop-color="#fff" stop-opacity="0" />
+          <stop offset="1" stop-color="#000" stop-opacity="0.35" />
+        </radialGradient>
+        <linearGradient id="metal" x1="0" x2="1">
+          <stop offset="0" stop-color="#6d6f78" />
+          <stop offset="0.45" stop-color="#d9dbe2" />
+          <stop offset="1" stop-color="#55575f" />
+        </linearGradient>
+        <!-- bulb hardware: socket + screw base + glass (pendant, base up) -->
+        <g id="bulb-hw">
+          <rect x="62" y="28" width="76" height="54" rx="10" fill="#1b1b22" />
+          <rect x="62" y="28" width="76" height="8" rx="4" fill="#2a2a33" />
+          <path d="M70 82h60v8c0 4-4 6-4 6s4 2 4 6-4 6-4 6 4 2 4 6v6H70v-6c0-4 4-6 4-6s-4-2-4-6 4-6 4-6-4-2-4-6z" fill="url(#metal)" />
+        </g>
+        <path id="glass-path" d="M66 120C66 152 22 170 22 225A78 78 0 0 0 178 225C178 170 134 152 134 120Z" />
+        <!-- the Moodie: silicone sleeve that slips over the glass -->
+        <g id="moodie">
+          <path class="cover-fill" d="M58 110C58 148 12 166 12 226A88 88 0 0 0 188 226C188 166 142 148 142 110Z" />
+          <rect class="cover-fill" x="54" y="102" width="92" height="18" rx="9" />
+          <path d="M58 110C58 148 12 166 12 226A88 88 0 0 0 188 226C188 166 142 148 142 110Z" fill="url(#shade)" />
+          <rect x="54" y="102" width="92" height="18" rx="9" fill="#000" opacity="0.18" />
+          <path d="M36 200c10-30 34-44 44-46" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="7" stroke-linecap="round" />
+          <path d="M40 286c34 22 86 22 120 0" fill="none" stroke="#000" stroke-opacity="0.14" stroke-width="3" />
+          <path d="M28 262c40 26 104 26 144 0" fill="none" stroke="#000" stroke-opacity="0.1" stroke-width="3" />
+        </g>
+        <!-- compact product icon: bulb wearing a moodie, no cord -->
+        <symbol id="mini" viewBox="0 20 200 300">
+          <use href="#bulb-hw" />
+          <use href="#moodie" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="hero" aria-label="moodies">
+        <div class="keyart" id="keyart">
+          <!-- Drop the Moodies key art still at moodies/assets/key-art.jpg -->
+          <img src="assets/key-art.jpg" alt="" onerror="this.parentNode.classList.add('is-missing')" />
+          <div class="keyart-fallback" aria-hidden="true">
+            <div class="glow" style="background: var(--pink); left: -6vmax; top: 8vh"></div>
+            <div class="glow" style="background: var(--blue); right: -10vmax; top: 0; animation-delay: -4s"></div>
+            <div class="glow" style="background: var(--green); left: 30vw; top: 30vh; animation-delay: -8s; opacity: 0.35"></div>
+            <div class="hero-bulbs" id="heroBulbs"></div>
+          </div>
+        </div>
+        <div class="wrap hero-copy">
+          <p class="eyebrow reveal in">Silicone bulb covers · Made for CFL &amp; LED</p>
+          <h1 class="display">m<span class="o">o</span>odies<span class="tm">™</span></h1>
+          <p class="lede">Change the mood. Keep the bulb.</p>
+          <p class="sub">Slip a heat-safe silicone Moodie over the CFL or LED bulb you already own and the room changes color. No wiring, no tools, about half the cost of a colored bulb. From $2.99.</p>
+          <div class="ctas">
+            <a class="btn" href="#shop">Shop moodies</a>
+            <a class="btn ghost" href="#legal">▶&nbsp; Watch “Legal Review”</a>
+          </div>
+        </div>
+        <div class="scroll-cue">Scroll to set the mood</div>
+      </section>
+
+      <!-- ============ STORY ============ -->
+      <section class="story" id="story" aria-label="How a Moodie changes a room">
+        <div class="stage" id="stage">
+          <div class="room-wall"></div>
+          <div class="frame" aria-hidden="true"></div>
+
+          <svg class="furniture" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+            <ellipse class="pool" cx="890" cy="282" rx="420" ry="34" />
+            <rect class="solid" x="0" y="270" width="1440" height="30" />
+            <path class="rim" d="M0 270H1440" />
+            <!-- floor lamp + armchair (left) -->
+            <path class="solid" d="M150 270v-150M120 120h60" stroke="#0a0a0f" stroke-width="8" />
+            <path class="solid" d="M110 125l20-60h40l20 60z" />
+            <path class="rim" d="M130 65h40l20 60" />
+            <path class="solid" d="M220 270v-20h-10v-80c0-26 16-40 46-40h120c30 0 46 14 46 40v80h-10v20z" />
+            <path class="rim" d="M210 170c0-26 16-40 46-40h120c30 0 46 14 46 40" />
+            <!-- sofa (right of bulb) -->
+            <path class="solid" d="M720 270v-18h-24v-70c0-20 14-30 30-30h20v-40c0-24 16-36 40-36h360c24 0 40 12 40 36v40h20c16 0 30 10 30 30v70h-24v18z" />
+            <path class="rim" d="M746 152v-40c0-24 16-36 40-36h360c24 0 40 12 40 36v40" />
+            <path class="rim" d="M696 182c0-20 14-30 30-30h20M1186 152h20c16 0 30 10 30 30" />
+            <!-- side table + plant -->
+            <path class="solid" d="M1290 270v-90h80v90zM1330 180c-30-20-46-56-30-90 16 22 26 50 30 90zm0 0c24-26 52-44 78-44-10 26-38 40-78 44zm0 0c-4-40 6-80 30-110 10 40 2 80-30 110z" />
+            <path class="rim" d="M1300 90c16 22 26 50 30 90M1360 70c10 40 2 80-30 110" />
+            <!-- record crate -->
+            <path class="solid" d="M500 270v-70h120v70z" />
+            <path class="rim" d="M500 200h120" />
+          </svg>
+
+          <div class="bulb-glow"></div>
+          <div class="extra-bulbs" id="extraBulbs" aria-hidden="true"></div>
+
+          <svg class="bulb flicker" id="heroBulb" viewBox="0 -420 200 740" aria-hidden="true">
+            <line x1="100" y1="-420" x2="100" y2="30" stroke="#1d1d24" stroke-width="5" />
+            <use href="#bulb-hw" />
+            <use href="#glass-path" class="glass" />
+            <g class="cover"><use href="#moodie" /></g>
+          </svg>
+
+          <div class="steps" id="steps">
+            <article class="step on">
+              <div class="num">01 · The problem</div>
+              <h2 class="display">Meet the bulb.</h2>
+              <p>Efficient. Long-lasting. About as much personality as a parking garage.</p>
+            </article>
+            <article class="step">
+              <div class="num">02 · The fix</div>
+              <h2 class="display">Slip on a <em>moodie.</em></h2>
+              <p>A heat-safe silicone sleeve that stretches over most CFL and LED bulbs. On in seconds, off just as fast.</p>
+            </article>
+            <article class="step">
+              <div class="num">03 · Pink</div>
+              <h2 class="display"><em>Pink</em> for date night.</h2>
+              <p>Self-care Sundays, candle-free romance, and pretending you live in a music video.</p>
+            </article>
+            <article class="step">
+              <div class="num">04 · Blue</div>
+              <h2 class="display"><em>Blue</em> to chill out.</h2>
+              <p>Deep focus, deep breaths, deep-sea documentary energy.</p>
+            </article>
+            <article class="step">
+              <div class="num">05 · Grass green</div>
+              <h2 class="display"><em>Green</em> for game day.</h2>
+              <p>Turf-colored hangouts, St. Patrick’s, and late-night arcade glow.</p>
+            </article>
+            <article class="step">
+              <div class="num">06 · Red</div>
+              <h2 class="display"><em>Red</em> for movie night.</h2>
+              <p>Horror marathons, darkroom vibes, and the best Halloween porch on the block.</p>
+            </article>
+            <article class="step">
+              <div class="num">07 · All of the above</div>
+              <h2 class="display">Why pick <em>one?</em></h2>
+              <p>The Rainbow Pack puts a different mood on every bulb in the house. It’s our most popular pack and the best value.</p>
+            </article>
+          </div>
+
+          <div class="swatches" id="swatches" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- ============ HOW IT WORKS ============ -->
+      <section class="block" id="how">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">How it works</span>
+            <h2 class="display">Three seconds to a new room.</h2>
+            <p>One size fits most CFL and LED bulbs. Nothing to install, nothing to rewire, and you get to keep the bulb you already paid for.</p>
+          </div>
+          <div class="how-grid">
+            <article class="how-card reveal" style="--c: var(--pink)">
+              <div class="art">
+                <svg viewBox="0 20 200 300" aria-hidden="true"><g class="stretch"><use href="#moodie" style="--mood: var(--pink)" /></g></svg>
+              </div>
+              <span class="n">STEP 01</span>
+              <h3>Stretch</h3>
+              <p>Moodies are made of soft, flexible silicone, so they stretch to fit and snap back.</p>
+            </article>
+            <article class="how-card reveal" style="--c: var(--blue); --d: 0.12s">
+              <div class="art">
+                <svg viewBox="0 20 200 300" aria-hidden="true">
+                  <use href="#bulb-hw" />
+                  <use href="#glass-path" fill="#e9edf8" />
+                  <g class="slip"><use href="#moodie" style="--mood: var(--blue)" /></g>
+                </svg>
+              </div>
+              <span class="n">STEP 02</span>
+              <h3>Slip</h3>
+              <p>Pull it over the bulb with the light off and cool. It hugs the glass on its own.</p>
+            </article>
+            <article class="how-card reveal" style="--c: var(--green); --d: 0.24s">
+              <div class="art">
+                <svg viewBox="0 0 200 300" aria-hidden="true" class="switch"><use href="#mini" style="--mood: var(--green)" /></svg>
+              </div>
+              <span class="n">STEP 03</span>
+              <h3>Switch</h3>
+              <p>Flip the switch and the whole room takes on the color. Swap it whenever the mood changes.</p>
+            </article>
+          </div>
+          <div class="specs reveal">
+            <span>Heat-safe silicone</span>
+            <span>Fits most CFL &amp; LED bulbs</span>
+            <span>Reusable</span>
+            <span>No tools or wiring</span>
+            <span>Works in lamps &amp; pendants</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ THE MATH ============ -->
+      <section class="block" id="math" style="padding-top: 0">
+        <div class="wrap math">
+          <div class="reveal">
+            <span class="eyebrow">The math</span>
+            <p class="display big-stat">½<sup>*</sup></p>
+            <h2 class="display" style="font-size: clamp(32px, 4vw, 54px)">The color, at half the cost.</h2>
+            <p class="footnote">*Our legal team asked us to say “about half the cost of a colored bulb.” Please see Legal Review, below.</p>
+          </div>
+          <div class="bars reveal" id="bars">
+            <div class="bar-row old">
+              <div class="label"><span>A colored bulb</span><span>you buy a whole new bulb</span></div>
+              <div class="bar"><i></i></div>
+            </div>
+            <div class="bar-row new">
+              <div class="label"><span>A moodie™</span><span>you keep the one you’ve got</span></div>
+              <div class="bar"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ LEGAL REVIEW ============ -->
+      <section class="block legal" id="legal">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Now playing</span>
+            <h2 class="display">Legal Review.</h2>
+            <p>We made a commercial. Then Legal had some notes.</p>
+          </div>
+          <div class="legal-grid">
+            <div class="theater reveal" id="theater">
+              <!-- Drop the commercial at moodies/assets/legal-review.mp4 (and an optional poster at assets/legal-review-poster.jpg),
+                   or set CONFIG.legalReviewYouTubeId below to embed it from YouTube instead. -->
+              <video id="legalVideo" controls playsinline preload="metadata" poster="assets/legal-review-poster.jpg">
+                <source src="assets/legal-review.mp4" type="video/mp4" />
+              </video>
+              <div class="title-card">
+                <div>
+                  <div class="tc-title">Legal<br />Review</div>
+                  <div class="tc-sub">A moodies™ commercial</div>
+                </div>
+              </div>
+            </div>
+            <aside class="fineprint" id="fineprint">
+              <h3>Notes from Legal</h3>
+              <ol>
+                <li style="--i: 0">Moodies change the color of your light. They do not change your personality. Results may vary.</li>
+                <li style="--i: 1">For use with CFL and LED bulbs. Not for incandescent or halogen bulbs.</li>
+                <li style="--i: 2">Put it on and take it off while the bulb is off and cool.</li>
+                <li style="--i: 3">Do not eat the moodie. We know it looks like candy.</li>
+                <li style="--i: 4">Moodies may cause spontaneous dance parties. Moodies accepts no responsibility for the dancing.</li>
+                <li style="--i: 5">“About half the cost” compares a moodie to buying a new colored bulb. Your bulb not included.</li>
+              </ol>
+              <div class="stamp" aria-hidden="true">Approved<small>by legal · mostly</small></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SHOP ============ -->
+      <section class="block" id="shop">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Shop</span>
+            <h2 class="display">Pick your mood.</h2>
+            <p>Singles for one room, 5-packs for the whole place, and the Rainbow Pack if you can’t decide.</p>
+          </div>
+          <div class="filters reveal" id="filters" role="group" aria-label="Filter products">
+            <button aria-pressed="true" data-f="all">All</button>
+            <button aria-pressed="false" data-f="pack">Packs</button>
+            <button aria-pressed="false" data-f="single">Singles</button>
+          </div>
+          <div class="products" id="products"></div>
+          <p class="amazon reveal">Also available on <a href="https://www.amazon.com/s?k=moodies+lightbulb+covers" target="_blank" rel="noopener">Amazon</a>.</p>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section class="block" id="faq" style="padding-top: 0">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Questions</span>
+            <h2 class="display">Before you ask.</h2>
+          </div>
+          <div class="faq reveal">
+            <details>
+              <summary>Will a moodie fit my bulb?</summary>
+              <p>Moodies are one-size-fits-most covers for standard CFL and LED bulbs. The silicone stretches to hug the glass.</p>
+            </details>
+            <details>
+              <summary>Is it safe to leave on?</summary>
+              <p>Yes, when it’s on a CFL or LED bulb. Moodies are made from heat-safe silicone for these cooler-running bulbs. Don’t use them on incandescent or halogen bulbs.</p>
+            </details>
+            <details>
+              <summary>How bright is the room with one on?</summary>
+              <p>A moodie tints the light rather than blocking it, so you get a colored glow. Expect a softer, moodier room, which is the whole point.</p>
+            </details>
+            <details>
+              <summary>Can I reuse them?</summary>
+              <p>Over and over. Pull one off, put another on, keep the ones you’re not using in a drawer for the next party.</p>
+            </details>
+            <details>
+              <summary>Where do you ship from?</summary>
+              <p>Moodies ship from Eagle Rock in Los Angeles, California.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FINALE ============ -->
+      <section class="finale" id="finale">
+        <div class="wrap">
+          <div class="mood-picker reveal" id="moodPicker" role="group" aria-label="Try a mood"></div>
+          <h2 class="display reveal">Set the mood.</h2>
+          <p class="reveal">Every bulb in your house is a moodie waiting to happen.</p>
+          <a class="btn reveal" href="#shop">Shop moodies</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div>
+          <a href="#top" class="logo" style="font-size: 22px">mood<span class="dot">i</span>es<span class="tm">™</span></a>
+          <div style="margin-top: 8px">5117 Eagle Rock Blvd, Los Angeles, CA 90041</div>
+        </div>
+        <div class="links">
+          <a href="https://www.facebook.com/buymoodies/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/buymoodies/" target="_blank" rel="noopener">Instagram</a>
+          <a href="#faq">FAQ</a>
+          <span>© <span id="year"></span> moodies™</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cart -->
+    <div class="scrim" id="scrim"></div>
+    <aside class="drawer" id="drawer" aria-label="Cart" aria-hidden="true">
+      <header>
+        <strong style="font-size: 18px">Your moodies</strong>
+        <button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button>
+      </header>
+      <div class="items" id="cartItems"></div>
+      <div class="foot">
+        <div class="total"><span>Subtotal</span><span id="cartTotal">$0.00</span></div>
+        <button class="btn" id="checkout">Checkout</button>
+        <small style="color: var(--muted); text-align: center">Shipping and tax calculated at checkout.</small>
+      </div>
+    </aside>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      /* ================= CONFIG: edit these ================= */
+      const CONFIG = {
+        // Checkout: paste a Shopify / Stripe Payment Link / Square URL here and the cart button will send people there.
+        // Leave blank and checkout opens a pre-filled order email instead.
+        checkoutUrl: '',
+        orderEmail: 'hello@buymoodies.com', // TODO: confirm
+        // Set to a YouTube video ID to embed Legal Review from YouTube instead of assets/legal-review.mp4
+        legalReviewYouTubeId: '',
+      };
+
+      const COLORS = {
+        pink: '#ff4fa3',
+        blue: '#3d7bff',
+        green: '#3ddc6b',
+        red: '#ff3b30',
+        amber: '#ffb020',
+      };
+
+      // Inventory. Singles are $2.99. TODO: confirm 5-pack and Rainbow Pack prices and Rainbow Pack colors.
+      // Add a per-product buyUrl (e.g. a Stripe Payment Link) to skip the cart for that item.
+      const PRODUCTS = [
+        { id: 'rainbow', type: 'pack', name: 'Rainbow Pack', desc: 'Five colors, five moods. Our most popular pack and the best value.', price: 12.99, colors: ['pink', 'red', 'amber', 'green', 'blue'], badge: 'Best seller' },
+        { id: '5-pink', type: 'pack', name: 'Moodie 5 Pack · Pink', desc: 'Five pink bulb huggers for the whole place.', price: 12.99, colors: ['pink', 'pink', 'pink', 'pink', 'pink'] },
+        { id: '5-blue', type: 'pack', name: 'Moodie 5 Pack · Blue', desc: 'Five blue bulb huggers. Chill, multiplied.', price: 12.99, colors: ['blue', 'blue', 'blue', 'blue', 'blue'] },
+        { id: '5-red', type: 'pack', name: 'Moodie 5 Pack · Red', desc: 'Five red bulb huggers. Halloween, sorted.', price: 12.99, colors: ['red', 'red', 'red', 'red', 'red'] },
+        { id: '1-pink', type: 'single', name: 'Moodie · Pink', desc: 'One pink unit.', price: 2.99, colors: ['pink'] },
+        { id: '1-blue', type: 'single', name: 'Moodie · Blue', desc: 'One blue unit.', price: 2.99, colors: ['blue'] },
+        { id: '1-green', type: 'single', name: 'Moodie · Grass Green', desc: 'One grass green unit.', price: 2.99, colors: ['green'] },
+        { id: '1-red', type: 'single', name: 'Moodie · Red', desc: 'One red unit.', price: 2.99, colors: ['red'] },
+      ];
+      /* ====================================================== */
+
+      const $ = (s, el = document) => el.querySelector(s);
+      const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const money = (n) => '$' + n.toFixed(2);
+      const root = document.documentElement;
+      const setAccent = (c) => root.style.setProperty('--accent', c);
+      $('#year').textContent = new Date().getFullYear();
+
+      const SVGNS = 'http://www.w3.org/2000/svg';
+      function miniBulb(color, extra = '') {
+        return `<svg viewBox="0 0 200 300" ${extra} style="--mood:${COLORS[color]}"><use href="#mini"/></svg>`;
+      }
+      function hangingBulb(color) {
+        return `<svg viewBox="0 -420 200 740" style="--mood:${COLORS[color]};overflow:visible">
+          <line x1="100" y1="-420" x2="100" y2="30" stroke="#1d1d24" stroke-width="5"/>
+          <use href="#bulb-hw"/><use href="#moodie"/></svg>`;
+      }
+
+      /* ---------- Hero fallback bulbs (shown until key art is dropped in) ---------- */
+      {
+        const order = ['blue', 'pink', 'amber', 'green', 'red'];
+        const drops = [56, 40, 52, 34, 46]; // % of the bulb's own height pulled up above the top edge
+        $('#heroBulbs').innerHTML = order
+          .map((c, i) => `<div class="hb" style="--k:${drops[i]};animation-delay:${i * 0.12}s, ${1.6 + i * 0.3}s">${hangingBulb(c)}</div>`)
+          .join('');
+      }
+
+      /* ---------- Story: scroll-driven pinned scene ---------- */
+      const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+      const STAGES = [
+        { c: [226, 232, 255], lit: 0.45 }, // bare bulb, cold white
+        { c: hex(COLORS.pink), lit: 0.95 }, // slip on
+        { c: hex(COLORS.pink), lit: 1 },
+        { c: hex(COLORS.blue), lit: 1 },
+        { c: hex(COLORS.green), lit: 1 },
+        { c: hex(COLORS.red), lit: 1 },
+        { c: hex(COLORS.amber), lit: 1 }, // rainbow
+      ];
+      const story = $('#story');
+      const stage = $('#stage');
+      const cover = $('#heroBulb .cover');
+      const steps = $$('.step');
+      const swatchColors = ['#e2e8ff', COLORS.pink, COLORS.pink, COLORS.blue, COLORS.green, COLORS.red, 'conic-gradient(var(--pink), var(--amber), var(--green), var(--blue), var(--pink))'];
+      $('#swatches').innerHTML = swatchColors.map((c) => `<span style="--c:${c}"></span>`).join('');
+      const swatches = $$('#swatches span');
+
+      // Rainbow finale: four more bulbs drop in around the main one
+      const EXTRA = [
+        { color: 'blue', x: -20, nx: -34, d: 0.0 },
+        { color: 'green', x: 12, nx: 18, d: 0.12 },
+        { color: 'red', x: -11, nx: -18, d: 0.24 },
+        { color: 'amber', x: 23, nx: 34, d: 0.36 },
+      ];
+      const extraWrap = $('#extraBulbs');
+      extraWrap.innerHTML = EXTRA.map(
+        (b) => `<div class="glow-sm" style="--mood:${COLORS[b.color]}"></div>
+                <div class="bulb" style="--mood:${COLORS[b.color]}">${hangingBulb(b.color)}</div>`
+      ).join('');
+      const extraGlows = $$('.glow-sm', extraWrap);
+      const extraBulbs = $$('.bulb', extraWrap);
+
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const clamp01 = (t) => Math.min(1, Math.max(0, t));
+      const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      const RAINBOW = ['pink', 'amber', 'green', 'blue', 'red'].map((k) => hex(COLORS[k]));
+
+      let activeStep = -1;
+      function renderStory() {
+        const rect = story.getBoundingClientRect();
+        const total = story.offsetHeight - innerHeight;
+        const p = clamp01(-rect.top / total);
+        const n = STAGES.length;
+        const f = Math.min(p * n, n - 0.0001);
+        const i = Math.floor(f);
+        const t = f - i;
+        const k = ease(clamp01(t / 0.35)); // transition happens in the first 35% of each stage
+
+        const prev = STAGES[Math.max(0, i - 1)];
+        const cur = STAGES[i];
+        let rgb = cur.c.map((v, j) => lerp(prev.c[j], v, k));
+        let lit = lerp(prev.lit, cur.lit, k);
+
+        // Rainbow stage: the main moodie cycles through every color
+        if (i === n - 1) {
+          const cyc = (t * (RAINBOW.length - 1)) % RAINBOW.length;
+          const a = RAINBOW[Math.floor(cyc)];
+          const b = RAINBOW[(Math.floor(cyc) + 1) % RAINBOW.length];
+          const m = ease(cyc % 1);
+          rgb = a.map((v, j) => lerp(v, b[j], m));
+        }
+        const mood = `rgb(${rgb.map(Math.round).join(' ')})`;
+        stage.style.setProperty('--mood', mood);
+        stage.style.setProperty('--lit', lit.toFixed(3));
+        if (rect.top < innerHeight && rect.bottom > 0) setAccent(mood);
+
+        // Cover slides up over the glass during stage 1
+        const c = i === 0 ? 0 : i === 1 ? ease(clamp01(t / 0.45)) : 1;
+        cover.style.setProperty('--cover-y', `${(1 - c) * 420}px`);
+        cover.style.setProperty('--cover-o', c > 0 ? Math.min(1, c * 3) : 0);
+
+        // Extra bulbs drop in on the last stage
+        const isNarrow = innerWidth <= 900;
+        const bx = isNarrow ? 50 : 62;
+        EXTRA.forEach((b, j) => {
+          const d = i === n - 1 ? ease(clamp01((t - b.d) / 0.35)) : 0;
+          const x = bx + (isNarrow ? b.nx : b.x);
+          const yOff = (j % 2 ? 10 : 2) + (isNarrow ? -6 : 0);
+          extraBulbs[j].style.left = x + '%';
+          extraBulbs[j].style.top = `${lerp(-60, yOff, d)}%`;
+          extraBulbs[j].style.opacity = d > 0 ? 1 : 0;
+          extraGlows[j].style.left = x + '%';
+          extraGlows[j].style.top = `${yOff + (isNarrow ? 27 : 38)}%`;
+          extraGlows[j].style.opacity = d * 0.9;
+        });
+
+        if (i !== activeStep) {
+          activeStep = i;
+          steps.forEach((s, j) => s.classList.toggle('on', j === i));
+          swatches.forEach((s, j) => s.classList.toggle('on', j === i));
+        }
+      }
+
+      /* ---------- Global scroll loop ---------- */
+      const bar = $('.progress');
+      const header = $('.top');
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const max = document.documentElement.scrollHeight - innerHeight;
+          bar.style.transform = `scaleX(${scrollY / max})`;
+          header.classList.toggle('solid', scrollY > innerHeight * 0.6);
+          renderStory();
+          ticking = false;
+        });
+      }
+      addEventListener('scroll', onScroll, { passive: true });
+      addEventListener('resize', onScroll);
+      renderStory();
+
+      /* ---------- Reveal on scroll ---------- */
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))),
+        { threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
+      );
+      const observeAll = () => $$('.reveal:not(.in), .bars, .fineprint, .how-card').forEach((el) => io.observe(el));
+
+      /* ---------- Legal Review video ---------- */
+      {
+        const theater = $('#theater');
+        const video = $('#legalVideo');
+        if (CONFIG.legalReviewYouTubeId) {
+          video.remove();
+          theater.insertAdjacentHTML(
+            'afterbegin',
+            `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(CONFIG.legalReviewYouTubeId)}?rel=0" title="Legal Review, a moodies commercial" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+          );
+        } else {
+          const noVideo = () => theater.classList.add('no-video');
+          $('source', video).addEventListener('error', noVideo);
+          if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) noVideo();
+        }
+      }
+
+      /* ---------- Shop ---------- */
+      const cart = (() => {
+        try {
+          return JSON.parse(localStorage.getItem('moodies-cart')) || {};
+        } catch {
+          return {};
+        }
+      })();
+      const saveCart = () => {
+        try {
+          localStorage.setItem('moodies-cart', JSON.stringify(cart));
+        } catch {}
+      };
+      const byId = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
+
+      function productArt(p) {
+        if (p.colors.length === 1) return miniBulb(p.colors[0]);
+        // fan of five
+        const items = p.colors
+          .map((c, i) => {
+            const x = 10 + i * 64;
+            const y = i % 2 ? 40 : 0;
+            return `<g transform="translate(${x} ${y}) scale(0.55)" style="--mood:${COLORS[c]}"><use href="#mini" width="200" height="300"/></g>`;
+          })
+          .join('');
+        return `<svg viewBox="0 0 380 210">${items}</svg>`;
+      }
+
+      function renderProducts(filter = 'all') {
+        $('#products').innerHTML = PRODUCTS.filter((p) => filter === 'all' || p.type === filter)
+          .map((p) => {
+            const c = p.colors.length > 1 && new Set(p.colors).size > 1 ? COLORS.amber : COLORS[p.colors[0]];
+            return `<article class="product reveal" style="--c:${c}" data-id="${p.id}">
+              ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+              <div class="pic">${productArt(p)}</div>
+              <h3>${p.name}</h3>
+              <p>${p.desc}</p>
+              <div class="row"><span class="price">${money(p.price)}</span>
+                ${p.buyUrl ? `<a class="add" href="${p.buyUrl}">Buy now</a>` : `<button class="add" data-add="${p.id}">Add to cart</button>`}
+              </div>
+            </article>`;
+          })
+          .join('');
+        observeAll();
+      }
+      $('#products').addEventListener('click', (e) => {
+        const id = e.target.closest('[data-add]')?.dataset.add;
+        if (!id) return;
+        cart[id] = (cart[id] || 0) + 1;
+        saveCart();
+        renderCart();
+        toast(`${byId[id].name} added`);
+      });
+      $('#products').addEventListener('pointerover', (e) => {
+        const card = e.target.closest('.product');
+        if (card) setAccent(getComputedStyle(card).getPropertyValue('--c'));
+      });
+      $('#filters').addEventListener('click', (e) => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        $$('#filters button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+        renderProducts(b.dataset.f);
+      });
+
+      function renderCart() {
+        const ids = Object.keys(cart).filter((id) => byId[id] && cart[id] > 0);
+        const count = ids.reduce((n, id) => n + cart[id], 0);
+        const total = ids.reduce((n, id) => n + cart[id] * byId[id].price, 0);
+        $('#cartCount').textContent = count;
+        $('#cartTotal').textContent = money(total);
+        $('#checkout').disabled = !count;
+        $('#cartItems').innerHTML = ids.length
+          ? ids
+              .map((id) => {
+                const p = byId[id];
+                const sw = new Set(p.colors).size > 1 ? `conic-gradient(${p.colors.map((c) => COLORS[c]).join(',')},${COLORS[p.colors[0]]})` : COLORS[p.colors[0]];
+                return `<div class="line"><div class="sw" style="--c:${sw}"></div>
+                  <div><div>${p.name}</div><small>${money(p.price)} each</small></div>
+                  <div class="qty"><button data-q="-1" data-id="${id}" aria-label="Remove one">−</button><span>${cart[id]}</span><button data-q="1" data-id="${id}" aria-label="Add one">+</button></div></div>`;
+              })
+              .join('')
+          : `<div class="empty">No moodies yet. The room is very beige right now.</div>`;
+      }
+      $('#cartItems').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-q]');
+        if (!b) return;
+        cart[b.dataset.id] = Math.max(0, (cart[b.dataset.id] || 0) + Number(b.dataset.q));
+        if (!cart[b.dataset.id]) delete cart[b.dataset.id];
+        saveCart();
+        renderCart();
+      });
+      const openCart = (open) => {
+        document.body.classList.toggle('cart-open', open);
+        $('#drawer').setAttribute('aria-hidden', !open);
+      };
+      $('#cartBtn').addEventListener('click', () => openCart(true));
+      $('#closeCart').addEventListener('click', () => openCart(false));
+      $('#scrim').addEventListener('click', () => openCart(false));
+      addEventListener('keydown', (e) => e.key === 'Escape' && openCart(false));
+      $('#checkout').addEventListener('click', () => {
+        if (CONFIG.checkoutUrl) return (location.href = CONFIG.checkoutUrl);
+        const lines = Object.keys(cart).map((id) => `${cart[id]} × ${byId[id].name} (${money(byId[id].price)})`);
+        const total = Object.keys(cart).reduce((n, id) => n + cart[id] * byId[id].price, 0);
+        const body = `Hi Moodies! I'd like to order:\n\n${lines.join('\n')}\n\nSubtotal: ${money(total)}\n\nShip to:\n`;
+        location.href = `mailto:${CONFIG.orderEmail}?subject=${encodeURIComponent('Moodies order')}&body=${encodeURIComponent(body)}`;
+      });
+
+      let toastTimer;
+      function toast(msg) {
+        const t = $('#toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+      }
+
+      /* ---------- Finale mood picker ---------- */
+      {
+        const picks = ['pink', 'blue', 'green', 'red', 'amber'];
+        const wrap = $('#moodPicker');
+        wrap.innerHTML = picks.map((c, i) => `<button style="--c:${COLORS[c]}" aria-pressed="${i === 0}" aria-label="${c}" data-c="${c}"></button>`).join('');
+        wrap.addEventListener('click', (e) => {
+          const b = e.target.closest('button');
+          if (!b) return;
+          $$('button', wrap).forEach((x) => x.setAttribute('aria-pressed', x === b));
+          setAccent(COLORS[b.dataset.c]);
+        });
+      }
+
+      renderProducts();
+      renderCart();
+      observeAll();
+      if (reduced) $('#heroBulb').classList.remove('flicker');
+    </script>
+  </body>
+</html>
